@@ -1,10 +1,8 @@
 package t3.logica_interfaz;
 
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import java.awt.Color;
 
 
