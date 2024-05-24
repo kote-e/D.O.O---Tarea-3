@@ -15,13 +15,15 @@ public class MonedaButton extends JButton implements ActionListener {
         value = val;
 
         ImageIcon buttonImg = new ImageIcon(file);
-        this.setBounds(posX, posY, 90, 50);
+        this.setBounds(posX, posY, 85, 45);
         this.addActionListener(this);
         this.setIcon(buttonImg);
         this.setText(String.valueOf(val));
+        this.setFont(new Font("monospaced", Font.PLAIN, 12));
         this.setForeground(Color.black);
         this.setFocusable(true);
-        this.setBackground(new Color(0xDDDDDD));
+        this.setToolTipText("text");
+        this.setBackground(new Color(0xE0FAFA));
         this.setBorder(BorderFactory.createEtchedBorder());
         //this.setVerticalAlignment(JButton.CENTER);
         //this.setHorizontalAlignment(JButton.CENTER);
