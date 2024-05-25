@@ -1,5 +1,7 @@
 package t3.logica_interfaz;
 
+import t3.logica_interfaz.Ventana;
+import t3.logica_expendedor.*;
 import t3.logica_expendedor.Monedas.Moneda;
 
 import javax.swing.*;
@@ -33,6 +35,10 @@ public class MonedaButton extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this){
             System.out.println(String.valueOf(value));
+
+            switch(value){
+                case 100: break;
+            }
         }
     }
 }

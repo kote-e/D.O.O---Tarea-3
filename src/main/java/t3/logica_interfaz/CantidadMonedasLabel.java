@@ -20,7 +20,7 @@ public class CantidadMonedasLabel extends JLabel {
         this.setVerticalTextPosition(JLabel.CENTER);
         this.setHorizontalAlignment(JLabel.LEFT);
         this.setIcon(icon);
-        this.setBounds(posX, posY, 400 - posX - icon.getIconWidth(), icon.getIconHeight() - 10);
+        this.setBounds(posX, posY, 390 - 2*posX - icon.getIconWidth(), icon.getIconHeight() - 10);
         this.setBackground(new Color(0xF4EAFF));
         this.setOpaque(true);
 
