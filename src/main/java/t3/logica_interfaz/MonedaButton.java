@@ -13,13 +13,33 @@ import java.awt.event.ActionListener;
 public class MonedaButton extends JButton implements ActionListener {
     int value = 0;
 
-    public MonedaButton(int val, String file, int posX, int posY){
+    public MonedaButton(int val, int posX, int posY){
         value = val;
+        ImageIcon icon = null;
 
-        ImageIcon buttonImg = new ImageIcon(file);
+        switch(val) {
+            case 100:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
+                break;
+            case 500:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
+                break;
+            case 1000:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
+                break;
+            case 1500:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
+                break;
+
+        }
+
+        Image img = icon.getImage();
+        Image scaledImg = img.getScaledInstance(30,30, Image.SCALE_DEFAULT);
+        icon = new ImageIcon(scaledImg);
+
         this.setBounds(posX, posY, 85, 45);
         this.addActionListener(this);
-        this.setIcon(buttonImg);
+        this.setIcon(icon);
         this.setText(String.valueOf(val));
         this.setFont(new Font("monospaced", Font.PLAIN, 12));
         this.setForeground(Color.black);
