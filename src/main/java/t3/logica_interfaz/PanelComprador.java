@@ -1,5 +1,7 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Precios_Productos;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,6 +13,12 @@ public class PanelComprador extends JPanel {
         productoUsuarioTitulo.setFont(new Font("Monospaced", Font.PLAIN, 18));
         productoUsuarioTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         productoUsuarioTitulo.setBounds(0, 0, 350, 40);
+
+        JLabel productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40);
+        JLabel productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 66);
+        JLabel productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 92);
+        JLabel productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20,    118);
+        JLabel productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 144);
 
         JPanel panelProductoUsuario = new JPanel();
         panelProductoUsuario.setBackground(new Color(0xF4F8FF));
@@ -121,6 +129,12 @@ public class PanelComprador extends JPanel {
         // añadir componentes a los subpaneles
 
         panelProductoUsuario.add(productoUsuarioTitulo);
+        panelProductoUsuario.add(productoUsuarioCoca);
+        panelProductoUsuario.add(productoUsuarioSprite);
+        panelProductoUsuario.add(productoUsuarioFanta);
+        panelProductoUsuario.add(productoUsuarioSuper8);
+        panelProductoUsuario.add(productoUsuarioSnickers);
+
         panelCantMonedas.add(moneda1500CantLabel);
         panelCantMonedas.add(moneda1000CantLabel);
         panelCantMonedas.add(moneda500CantLabel);

@@ -1,6 +1,12 @@
 package t3.logica_interfaz;
 
 
+import t3.logica_expendedor.Comprador;
+import t3.logica_expendedor.Deposito;
+import t3.logica_expendedor.Expendedor;
+import t3.logica_expendedor.Monedas.*;
+import t3.logica_expendedor.Precios_Productos;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -29,5 +35,13 @@ public class Ventana extends JFrame {
         // añadir paneles a ventana
         this.add(panelComprador);
         this.add(panelExpendedor);
+
+
+
+
+
+
+        //integrar lógica backend
+
     }
 }
