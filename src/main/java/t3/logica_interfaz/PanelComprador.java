@@ -53,10 +53,6 @@ public class PanelComprador extends JPanel {
 
 
         // seccion de seleccion de moneda
-        JButton btnMoneda1500 = new MonedaButton(1500,20, 35);
-        JButton btnMoneda1000 = new MonedaButton(1000,110, 35);
-        JButton btnMoneda500 = new MonedaButton(500,20, 85);
-        JButton btnMoneda100 = new MonedaButton(100,110, 85);
 
         ImageIcon iconoMonedaSelec = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
         Image imgMonedaSelec = iconoMonedaSelec.getImage();
@@ -65,6 +61,12 @@ public class PanelComprador extends JPanel {
 
         JLabel lblMonedaSeleccionada = new JLabel(iconoMonedaSelec);
         lblMonedaSeleccionada.setBounds(230, 40, iconoMonedaSelec.getIconWidth(), iconoMonedaSelec.getIconHeight());
+
+        JButton btnMoneda1500 = new MonedaButton(1500,lblMonedaSeleccionada,20, 35);
+        JButton btnMoneda1000 = new MonedaButton(1000,lblMonedaSeleccionada, 110, 35);
+        JButton btnMoneda500 = new MonedaButton(500, lblMonedaSeleccionada,20, 85);
+        JButton btnMoneda100 = new MonedaButton(100, lblMonedaSeleccionada,110, 85);
+
 
         JLabel selecMonedaTitulo = new JLabel("Elegir Moneda");
         selecMonedaTitulo.setFont(new Font("Monospaced", Font.PLAIN, 18));
