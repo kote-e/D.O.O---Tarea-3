@@ -15,10 +15,10 @@ public class PanelComprador extends JPanel {
         productoUsuarioTitulo.setBounds(0, 0, 350, 40);
 
         JLabel productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40);
-        JLabel productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 66);
-        JLabel productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 92);
-        JLabel productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20,    118);
-        JLabel productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 144);
+        JLabel productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66);
+        JLabel productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92);
+        JLabel productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20,    118);
+        JLabel productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144);
 
         JPanel panelProductoUsuario = new JPanel();
         panelProductoUsuario.setBackground(new Color(0xF4F8FF));

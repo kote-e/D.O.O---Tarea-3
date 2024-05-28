@@ -20,23 +20,23 @@ public class ProductosUsuarioLabel extends JLabel {
 
         switch(prod) {
             case Precios_Productos.COCACOLA:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Cocacola.png");
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/cocacola.png");
                 strProducto = "Cocacola";
                 break;
             case Precios_Productos.FANTA:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Fanta.png");
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/fanta.png");
                 strProducto = "Fanta   ";
                 break;
             case Precios_Productos.SPRITE:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Sprite.png");
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/sprite.png");
                 strProducto = "Sprite  ";
                 break;
             case Precios_Productos.SUPER8:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Super8.png");
-                strProducto = "Super8   ";
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/super8.png");
+                strProducto = "Super8  ";
                 break;
             case Precios_Productos.SNICKERS:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Snickers.png");
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/snickers.png");
                 strProducto = "Snickers";
                 break;
         }
@@ -101,7 +101,7 @@ public class ProductosUsuarioLabel extends JLabel {
         @Override
         public void mouseEntered(MouseEvent e) {
             ProductosUsuarioLabel lbl = (ProductosUsuarioLabel) e.getComponent();
-            lbl.setBackground(new Color(0xCC9DFF));
+            lbl.setBackground(new Color(0xDFC3FF));
         }
 
         @Override
