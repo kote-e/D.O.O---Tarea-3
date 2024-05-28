@@ -5,6 +5,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 
+import t3.logica_expendedor.Comprador;
+import t3.logica_expendedor.Deposito;
+import t3.logica_expendedor.Expendedor;
+import t3.logica_expendedor.Monedas.*;
+import t3.logica_expendedor.Precios_Productos;
+
+import javax.swing.*;
+import java.awt.*;
+
 
 public class Ventana extends JFrame {
     public Ventana(){
@@ -12,7 +21,10 @@ public class Ventana extends JFrame {
         JPanel panelComprador = new PanelComprador();
         JPanel panelExpendedor = new PanelExpendedor();
 
+        ImageIcon icono = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Icono-aplicacion.jpg");
+
         this.setTitle("Expendedor de Bebidas");
+        this.setIconImage(icono.getImage());
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // cerrar la aplicacion al apretar x
         this.setSize(1100, 670); // tamaño de la ventana
@@ -23,5 +35,6 @@ public class Ventana extends JFrame {
         this.add(panelExpendedor);
 
         this.setVisible(true);
+
     }
 }
