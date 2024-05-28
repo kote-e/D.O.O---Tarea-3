@@ -1,19 +1,37 @@
 package t3.logica_expendedor;
 
-import java.util.ArrayList;     //Importacion de la clase ArrayList
+import java.util.ArrayList;
 
+/**
+ * Clase que representa a un Deposito de Productos o Monedas
+ * @param <T>   //Tipo de Productos o Monedas que almacena
+ */
 public class Deposito<T>{
-    //DECLARACIONES DE ATRIBUTOS
     ArrayList<T> list; //Definicion de la lista que guardara a las productos
 
-    //DECLARACIONES DE METODOS
-    //Constructor: Instanciacion de la lista que guardara a las productos
+    /**
+     * Instanciacion de la lista que guardara a las productos
+     */
     public Deposito() {list = new ArrayList<T>();}
 
-    public void add(T x) {list.add(x);}  //Funcion para agregar productos a la lista
+    /**
+     * Agregar un Producto o Moneda
+     * @param x Producto o Moneda a ingresar
+     */
+    public void add(T x) {list.add(x);}
 
-    public T get(){  //Funcion para retirar productos de la lista
+    /**
+     * Funcion para retirar Productos o monedas de la lista
+     * @return Producto o Moneda a retirar
+     */
+    public T get(){
         if (list.size() != 0) {return list.remove(0);}  //Si la lista no esta vacia se retorna al primera producto de la lista eliminadolo a la ves de esta lista
         else return null;       //Si la lista esta vacia se retorna null
     }
+
+    /**
+     * Funcion que devuelve la cantidad de Productos o Monedas que contiene
+     * @return
+     */
+    public int size(){return list.size();}
 }
