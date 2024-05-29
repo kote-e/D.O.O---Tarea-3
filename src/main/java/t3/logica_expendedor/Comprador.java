@@ -1,171 +1,146 @@
 package t3.logica_expendedor;
 
-import t3.logica_expendedor.Bebidas.*;
-import t3.logica_expendedor.Dulces.*;
+import t3.logica_expendedor.Bebidas.CocaCola;
+import t3.logica_expendedor.Bebidas.Fanta;
+import t3.logica_expendedor.Bebidas.Sprite;
+import t3.logica_expendedor.Dulces.Snickers;
+import t3.logica_expendedor.Dulces.Super8;
 import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Producto;
 import t3.logica_expendedor.Excepciones.*;
 import t3.logica_expendedor.Precios_Productos;
 
-import javax.swing.*;
+import java.util.ArrayList;
 
 public class Comprador{
     //DECLARACIONES DE ATRIBUTOS
-    private String sonido;  //Guarda el sonido/gesto de consumir el producto comprado
-    private int vuelto = 0; //Guarda el valor numeroco (int) del vuelto resibido al comprar el producto
-    private Expendedor expendedor;
-    Producto producto = null;
+    private final Expendedor expendedor;
 
-    // depositos para monedas del comprador
-    private Deposito<Moneda> depositoMoneda100;
-    private Deposito<Moneda> depositoMoneda500;
-    private Deposito<Moneda> depositoMoneda1000;
-    private Deposito<Moneda> depositoMoneda1500;
+    private Deposito<Moneda100> moneda100; //Deposito en donde se guardaran las monedas en posecion del Comprador
+    private Deposito<Moneda500> moneda500; //Deposito en donde se guardaran las monedas en posecion del Comprador
+    private Deposito<Moneda1000> moneda1000; //Deposito en donde se guardaran las monedas en posecion del Comprador
+    private Deposito<Moneda1500> moneda1500; //Deposito en donde se guardaran las monedas en posecion del Comprador
 
-    // depositos para productos del comprador
-    private Deposito<Producto> depositoCocacola;
-    private Deposito<Producto> depositoSprite;
-    private Deposito<Producto> depositoFanta;
-    private Deposito<Producto> depositoSnickers;
-    private Deposito<Producto> depositoSuper8;
+    private Deposito<CocaCola> cocaColaDeposito;
+    private Deposito<Sprite> spriteDeposito;
+    private Deposito<Fanta> fantaDeposito;
+    private Deposito<Snickers> snickersDeposito;
+    private Deposito<Super8> super8Deposito;
 
     //DECLARACIONES DE METODOS
-
     //Constructor: recibe la moneda con la que comprara, un numero que identifica el tipo de producto y la referencia al Expendedor en el que comprara
-    public Comprador(Expendedor exp) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
 
-        expendedor = exp;
+    public Comprador(Expendedor expendedor) {
+        this.expendedor = expendedor;
 
-        // incializar depositos
+        moneda100 = new Deposito<Moneda100>();
+        moneda500 = new Deposito<Moneda500>();
+        moneda1000 = new Deposito<Moneda1000>();
+        moneda1500 = new Deposito<Moneda1500>();
 
-        depositoMoneda100 = new Deposito<Moneda>();
-        depositoMoneda500 = new Deposito<Moneda>();
-        depositoMoneda1000 = new Deposito<Moneda>();
-        depositoMoneda1500 = new Deposito<Moneda>();
+        cocaColaDeposito = new Deposito<CocaCola>();
+        spriteDeposito = new Deposito<Sprite>();
+        fantaDeposito = new Deposito<Fanta>();
+        snickersDeposito = new Deposito<Snickers>();
+        super8Deposito = new Deposito<Super8>();
 
-        depositoCocacola = new Deposito<Producto>();
-        depositoSprite = new Deposito<Producto>();
-        depositoFanta = new Deposito<Producto>();
-        depositoSuper8 = new Deposito<Producto>();
-        depositoSnickers = new Deposito<Producto>();
     }
 
-    public void getVuelto(){
-        while (true) {
-            Moneda vueltoexp = expendedor.getVuelto();                 //Se extrae una moneda del deposito de vuelto del expendedor
+    public void comprar(Precios_Productos cualProducto)throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
+        try{expendedor.comprarProducto(cualProducto);}    //Se compra el producto en el expendedor entregandole la moneda y el numero que identifica el tipo de producto
+        catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoException e){
+        throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
+    }
+    }
 
-            if (vueltoexp == null) {
-                break;
-            }                      //Si no se extrajo ninguna moneda se sale del bucle, debido a esto vuelto queda en 0 debido a que no se modifico
-            vuelto = vuelto + vueltoexp.getValor();             //Si se logro sacar una moneda, el valor de esa moneda se suma con el vuelto guardado en las iteraciones anteriores
-
-            switch (vueltoexp.getValor()) {
-                case 100:
-                    depositoMoneda100.add(vueltoexp);
-                    break;
-
-                case 500:
-                    depositoMoneda500.add(vueltoexp);
-                    break;
-
-                case 1000:
-                    depositoMoneda1000.add(vueltoexp);
-                    break;
-
-                case 1500:
-                    depositoMoneda1500.add(vueltoexp);
-                    break;
-            }
+    public void addMonedas(Moneda moneda){
+        if(moneda instanceof Moneda100){
+            moneda100.add((Moneda100) moneda);
+        }
+        if(moneda instanceof Moneda500){
+            moneda500.add((Moneda500) moneda);
+        }
+        if(moneda instanceof Moneda1000){
+            moneda1000.add((Moneda1000) moneda);
+        }
+        if(moneda instanceof Moneda1500){
+            moneda1500.add((Moneda1500) moneda);
         }
     }
 
-    public int cuantoVuelto() {return vuelto;}      //Funcion que retorna el vuelto como un valor "int"
+    public Moneda getMonedas100(){return moneda100.get();}
+    public Moneda getMonedas500(){return moneda500.get();}
+    public Moneda getMonedas1000(){return moneda1000.get();}
+    public Moneda getMonedas1500(){return moneda1500.get();}
 
+    public int cantidadMonedas100(){return moneda100.size();}
+    public int cantidadMonedas500(){return moneda500.size();}
+    public int cantidadMonedas1000(){return moneda1000.size();}
+    public int cantidadMonedas1500(){return moneda1500.size();}
 
-    public void comprarProducto(Moneda moneda, Precios_Productos cualProducto){
-        try{
-            producto = expendedor.comprarProducto(moneda, cualProducto);    //Se compra el producto en el expendedor entregandole la moneda y el numero que identifica el tipo de producto
-
-        } catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoException e){
-            e.printStackTrace();
-            //throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
+    public void addProducto(Producto producto){
+        if(producto instanceof CocaCola){
+            cocaColaDeposito.add((CocaCola) producto);
         }
+        if(producto instanceof Sprite){
+            spriteDeposito.add((Sprite) producto);
+        }
+        if(producto instanceof Fanta){
+            fantaDeposito.add((Fanta) producto);
+        }
+        if(producto instanceof Snickers){
+            snickersDeposito.add((Snickers) producto);
+        }
+        if(producto instanceof Super8){
+            super8Deposito.add((Super8) producto);
+        }
+    }
 
-        switch (cualProducto) {   //Switch que permite retirar un producto del deposito correspondiente
+    public int cantidadProducto(Precios_Productos producto){        //REVISAR//
+        return switch (producto) {
+            case COCACOLA -> cocaColaDeposito.size();
+            case SPRITE -> spriteDeposito.size();
+            case FANTA -> fantaDeposito.size();
+            case SNICKERS -> snickersDeposito.size();
+            case SUPER8 -> super8Deposito.size();
+        };
+    }
+
+    public void consumirProducto(Precios_Productos tipo_producto){
+        Producto producto = null;
+        switch (tipo_producto) {
             case COCACOLA:
-                depositoCocacola.add(producto);    //Se añade una CocaCola al deposito
-                break;
+                producto  = cocaColaDeposito.get();
             case SPRITE:
-                depositoSprite.add(producto);    //Se añade una Sprite al deposito
-                break;
+                producto = spriteDeposito.get();
             case FANTA:
-                depositoFanta.add(producto);    //Se añade una Fanta al deposito
-                break;
+                producto = fantaDeposito.get();
             case SNICKERS:
-                depositoSnickers.add(producto);    //Se añade un Snickers al deposito
-                break;
+                producto = snickersDeposito.get();
             case SUPER8:
-                depositoSuper8.add(producto);    //Se añade un Super8 al deposito
-                break;
-            default:
-                break;
+                producto = super8Deposito.get();
         }
+        System.out.println(producto.consumir());
     }
 
-    public void consumirProducto(Producto producto){
-        if (producto == null) {     //Si no se logro conprar un producto:
-            sonido = null;          //El sonido de consumir el producto queda como null
+    public void sacarMonedas(){
+        Moneda moneda = expendedor.getVuelto();                 //Se extrae una moneda del deposito de vuelto del expendedor
 
-        } else {sonido = producto.consumir();}  //Si se logro consumir el producto se asigna el gesto/sonido de consumir el producto
+        if(moneda instanceof Moneda100){moneda100.add((Moneda100) moneda);}
+        if(moneda instanceof Moneda500){moneda500.add((Moneda500) moneda);}
+        if(moneda instanceof Moneda1000){moneda1000.add((Moneda1000) moneda);}
+        if(moneda instanceof Moneda1500){moneda1500.add((Moneda1500) moneda);}
     }
 
-    public String queConsumiste() {return sonido;}  //Funcion que retorna el sonido de consumir el producto comprado en formato "String"
-
-
-    public Moneda getMoneda(int val){
-
-        Moneda m = null;
-        switch(val) {
-            case 100:
-                m = depositoMoneda100.get();
-                break;
-            case 500:
-                m = depositoMoneda500.get();
-                break;
-            case 1000:
-                m = depositoMoneda1000.get();
-                break;
-            case 1500:
-                m = depositoMoneda1500.get();
-                break;
-        }
-
-        if(m == null){
-            return null; // luego crear excepcion para manejar caso
-        }
-
-        return m;
-    }
-
-    public void setMoneda(Moneda moneda){
-
-        if(moneda == null){
-            return; // luego escribir codigo para manejar caso
-        }
-
-        switch(moneda.getValor()) {
-            case 100:
-                depositoMoneda100.add(moneda);
-                break;
-            case 500:
-                depositoMoneda500.add(moneda);
-                break;
-            case 1000:
-                depositoMoneda1000.add(moneda);
-                break;
-            case 1500:
-                depositoMoneda1500.add(moneda);
-                break;
+    public void sacarProducto()throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
+        Producto producto = null;
+        producto = expendedor.getProducto();
+        if(producto != null){
+            if(producto instanceof CocaCola){cocaColaDeposito.add((CocaCola)producto);}
+            if(producto instanceof Sprite){spriteDeposito.add((Sprite)producto);}
+            if(producto instanceof Fanta){fantaDeposito.add((Fanta)producto);}
+            if(producto instanceof Snickers){snickersDeposito.add((Snickers)producto);}
+            if(producto instanceof Super8){super8Deposito.add((Super8)producto);}
         }
     }
 }
