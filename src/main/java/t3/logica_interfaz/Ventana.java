@@ -14,34 +14,38 @@ import java.awt.*;
 
 public class Ventana extends JFrame {
     public Ventana(){
+        Comprador comprador;
+        Expendedor expendedor;
+        try {
 
-        JPanel panelComprador = new PanelComprador();
+            int cantidadProductosExpendedor = 3;
 
-        JPanel panelExpendedor = new JPanel();
-        panelExpendedor.setBackground(new Color(0xf0f6ff));
-        panelExpendedor.setBounds(400, 0, 850, 670);
+            expendedor =  new Expendedor(cantidadProductosExpendedor);
+            comprador = new Comprador(expendedor);
 
-        ImageIcon icono = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Icono-aplicacion.jpg");
+            JPanel panelComprador = new PanelComprador(comprador);
 
-        this.setTitle("Expendedor de Bebidas");
-        this.setIconImage(icono.getImage());
-        this.setLayout(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // cerrar la aplicacion al apretar x
-        this.setSize(1100, 670); // tamaño de la ventana
-        this.setResizable(false); // no se puede cambiar el tamaño
-        this.setVisible(true);
+            JPanel panelExpendedor = new JPanel();
+            panelExpendedor.setBackground(new Color(0xf0f6ff));
+            panelExpendedor.setBounds(400, 0, 850, 670);
 
+            ImageIcon icono = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Icono-aplicacion.jpg");
 
-        // añadir paneles a ventana
-        this.add(panelComprador);
-        this.add(panelExpendedor);
-
-
+            this.setTitle("Expendedor de Bebidas");
+            this.setIconImage(icono.getImage());
+            this.setLayout(null);
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // cerrar la aplicacion al apretar x
+            this.setSize(1100, 670); // tamaño de la ventana
+            this.setResizable(false); // no se puede cambiar el tamaño
+            this.setVisible(true);
 
 
-
-
-        //integrar lógica backend
-
+            // añadir paneles a ventana
+            this.add(panelComprador);
+            this.add(panelExpendedor);
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 }
