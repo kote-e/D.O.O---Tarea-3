@@ -74,18 +74,19 @@ public class MonedaButton extends JButton{
 
             selecMonedaLabel.setIcon(iconoMonedaSelec);
 
-
-            // si el comprador no tiene una moneda
+            // si el comprador no tiene una moneda no hacer nada
 
             Moneda moneda = comprador.getMoneda(value);
             if(moneda != null){
                 comprador.getExpendedor().addMonedaEntrada(moneda);
+                cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
+                selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
             } else {
                 System.out.println("No hay moneda");
+                selecMonedaLabel.setText("XXXXX");
                 JOptionPane.showMessageDialog(null, "No tienes moneda de " + String.valueOf(value));
             }
 
-            cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
 
         }
     }

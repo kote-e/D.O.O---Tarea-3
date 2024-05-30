@@ -62,6 +62,12 @@ public class PanelComprador extends JPanel {
 
         JLabel lblMonedaSeleccionada = new JLabel(iconoMonedaSelec);
         lblMonedaSeleccionada.setBounds(230, 40, iconoMonedaSelec.getIconWidth(), iconoMonedaSelec.getIconHeight());
+        lblMonedaSeleccionada.setText("XXXXX");
+        lblMonedaSeleccionada.setHorizontalTextPosition(JLabel.CENTER);
+        lblMonedaSeleccionada.setVerticalTextPosition(JLabel.CENTER);
+        lblMonedaSeleccionada.setIconTextGap(-30);
+        lblMonedaSeleccionada.setFont(new Font("Monospaced", Font.PLAIN, 10));
+        lblMonedaSeleccionada.setForeground(new Color(0x555555));
 
         JButton btnMoneda1500 = new MonedaButton(1500,20, 35, comprador,lblMonedaSeleccionada, moneda1500CantLabel);
         JButton btnMoneda1000 = new MonedaButton(1000, 110, 35, comprador,lblMonedaSeleccionada, moneda1000CantLabel);
