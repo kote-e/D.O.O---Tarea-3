@@ -1,5 +1,6 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Monedas.Moneda100;
 import t3.logica_interfaz.Ventana;
 import t3.logica_expendedor.*;
 import t3.logica_expendedor.Monedas.Moneda;
@@ -13,12 +14,17 @@ import java.awt.event.MouseListener;
 
 
 public class MonedaButton extends JButton{
-    int value = 0;
-    JLabel label;
+    private int value = 0;
+    private JLabel selecMonedaLabel;
+    private CantidadMonedasLabel cantMonedasLabel;
+    private Comprador comprador;
 
-    public MonedaButton(int val, JLabel lbl, int posX, int posY){
+    public MonedaButton(int val, int posX, int posY, Comprador comp, JLabel selecMonlbl, JLabel cantMonedasLbl){
         value = val;
-        label = lbl;
+        selecMonedaLabel = selecMonlbl;
+        cantMonedasLabel = (CantidadMonedasLabel) cantMonedasLbl;
+        comprador = comp;
+
         ImageIcon icon = null;
 
         switch(val) {
@@ -66,7 +72,22 @@ public class MonedaButton extends JButton{
             Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
             iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
 
-            label.setIcon(iconoMonedaSelec);
+            selecMonedaLabel.setIcon(iconoMonedaSelec);
+
+            // si el comprador no tiene una moneda no hacer nada
+
+            Moneda moneda = comprador.getMoneda(value);
+            if(moneda != null){
+                comprador.getExpendedor().addMonedaEntrada(moneda);
+                cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
+                selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
+            } else {
+                System.out.println("No hay moneda");
+                selecMonedaLabel.setText("XXXXX");
+                JOptionPane.showMessageDialog(null, "No tienes moneda de " + String.valueOf(value));
+            }
+
+
         }
     }
 
