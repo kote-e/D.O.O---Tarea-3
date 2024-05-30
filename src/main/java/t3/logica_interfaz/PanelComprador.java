@@ -15,10 +15,10 @@ public class PanelComprador extends JPanel {
         productoUsuarioTitulo.setBounds(0, 0, 350, 40);
 
         JLabel productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40);
-        JLabel productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 66);
-        JLabel productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 92);
-        JLabel productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20,    118);
-        JLabel productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 144);
+        JLabel productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66);
+        JLabel productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92);
+        JLabel productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20,    118);
+        JLabel productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144);
 
         JPanel panelProductoUsuario = new JPanel();
         panelProductoUsuario.setBackground(new Color(0xF4F8FF));
@@ -32,25 +32,10 @@ public class PanelComprador extends JPanel {
         int posY = 40;
         int offset = 35;
 
-        JLabel moneda1500CantLabel = new CantidadMonedasLabel(1500,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                posX, posY
-        );
-
-        JLabel moneda1000CantLabel = new CantidadMonedasLabel(1000,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                posX, posY + offset
-        );
-
-        JLabel moneda500CantLabel = new CantidadMonedasLabel(500,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                posX, posY + offset*2
-        );
-
-        JLabel moneda100CantLabel = new CantidadMonedasLabel(100,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                posX , posY + offset*3
-        );
+        JLabel moneda1500CantLabel = new CantidadMonedasLabel(1500, posX, posY);
+        JLabel moneda1000CantLabel = new CantidadMonedasLabel(1000, posX, posY + offset);
+        JLabel moneda500CantLabel = new CantidadMonedasLabel(500, posX, posY + offset*2);
+        JLabel moneda100CantLabel = new CantidadMonedasLabel(100, posX , posY + offset*3);
 
         // titulo de la seccion donde se muestra la cantidad de monedas
         JLabel cantMonedasTitulo = new JLabel("Cantidad de Monedas");
@@ -68,25 +53,20 @@ public class PanelComprador extends JPanel {
 
 
         // seccion de seleccion de moneda
-        JButton btnMoneda1500 = new MonedaButton(1500,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                20, 35);
 
-        JButton btnMoneda1000 = new MonedaButton(1000,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                110, 35);
+        ImageIcon iconoMonedaSelec = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
+        Image imgMonedaSelec = iconoMonedaSelec.getImage();
+        Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
+        iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
 
-        JButton btnMoneda500 = new MonedaButton(500,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                20, 85);
+        JLabel lblMonedaSeleccionada = new JLabel(iconoMonedaSelec);
+        lblMonedaSeleccionada.setBounds(230, 40, iconoMonedaSelec.getIconWidth(), iconoMonedaSelec.getIconHeight());
 
-        JButton btnMoneda100 = new MonedaButton(100,
-                "src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",
-                110, 85);
+        JButton btnMoneda1500 = new MonedaButton(1500,lblMonedaSeleccionada,20, 35);
+        JButton btnMoneda1000 = new MonedaButton(1000,lblMonedaSeleccionada, 110, 35);
+        JButton btnMoneda500 = new MonedaButton(500, lblMonedaSeleccionada,20, 85);
+        JButton btnMoneda100 = new MonedaButton(100, lblMonedaSeleccionada,110, 85);
 
-        ImageIcon imgMonedaSeleccionada = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-        JLabel lblMonedaSeleccionada = new JLabel(imgMonedaSeleccionada);
-        lblMonedaSeleccionada.setBounds(250, 60, imgMonedaSeleccionada.getIconWidth(), imgMonedaSeleccionada.getIconHeight() );
 
         JLabel selecMonedaTitulo = new JLabel("Elegir Moneda");
         selecMonedaTitulo.setFont(new Font("Monospaced", Font.PLAIN, 18));

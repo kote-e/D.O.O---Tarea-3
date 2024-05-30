@@ -7,8 +7,28 @@ public class CantidadMonedasLabel extends JLabel {
 
     private int cantidad = 0;
 
-    public CantidadMonedasLabel(int val, String file, int posX, int posY ) {
-        ImageIcon icon = new ImageIcon(file);
+    public CantidadMonedasLabel(int val, int posX, int posY ) {
+        ImageIcon icon = null;
+
+        switch(val) {
+            case 100:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
+                break;
+            case 500:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
+                break;
+            case 1000:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
+                break;
+            case 1500:
+                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
+                break;
+
+        }
+
+        Image img = icon.getImage();
+        Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
+        icon = new ImageIcon(scaledImg);
 
         String strVal = "";
         if(val >= 1000){strVal = String.valueOf(val);}
@@ -20,7 +40,7 @@ public class CantidadMonedasLabel extends JLabel {
         this.setVerticalTextPosition(JLabel.CENTER);
         this.setHorizontalAlignment(JLabel.LEFT);
         this.setIcon(icon);
-        this.setBounds(posX, posY, 310, icon.getIconHeight() - 10);
+        this.setBounds(posX, posY, 310, 30);
         this.setBackground(new Color(0xF4EAFF));
         this.setOpaque(true);
 
