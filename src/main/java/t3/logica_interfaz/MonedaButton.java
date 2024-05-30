@@ -14,13 +14,15 @@ import java.awt.event.MouseListener;
 
 
 public class MonedaButton extends JButton{
-    int value = 0;
-    JLabel label;
-    Comprador comprador;
+    private int value = 0;
+    private JLabel selecMonedaLabel;
+    private JLabel cantMonedasLabel;
+    private Comprador comprador;
 
-    public MonedaButton(int val, JLabel lbl, int posX, int posY, Comprador comp){
+    public MonedaButton(int val, int posX, int posY, Comprador comp, JLabel selecMonlbl, JLabel cantMonedasLbl){
         value = val;
-        label = lbl;
+        selecMonedaLabel = selecMonlbl;
+        cantMonedasLabel = cantMonedasLbl;
         comprador = comp;
 
         ImageIcon icon = null;
@@ -70,23 +72,27 @@ public class MonedaButton extends JButton{
             Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
             iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
 
-            label.setIcon(iconoMonedaSelec);
+            selecMonedaLabel.setIcon(iconoMonedaSelec);
+
+            Moneda moneda = null;
 
             switch(value) {
                 case 100:
-                    Moneda moneda100 = comprador.getMonedas100();
+                    moneda = comprador.getMonedas100();
                     break;
                 case 500:
-                    Moneda moneda500 = comprador.getMonedas100();
+                    moneda = comprador.getMonedas500();
                     break;
                 case 1000:
-                    Moneda moneda1000 = comprador.getMonedas100();
+                    moneda = comprador.getMonedas1000();
                     break;
                 case 1500:
-                    Moneda moneda1500 = comprador.getMonedas100();
+                    moneda = comprador.getMonedas1500();
                     break;
-
             }
+
+            comprador.getExpendedor().addMonedaEntrada(moneda);
+
         }
     }
 

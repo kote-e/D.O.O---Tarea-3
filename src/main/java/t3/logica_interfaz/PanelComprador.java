@@ -63,10 +63,10 @@ public class PanelComprador extends JPanel {
         JLabel lblMonedaSeleccionada = new JLabel(iconoMonedaSelec);
         lblMonedaSeleccionada.setBounds(230, 40, iconoMonedaSelec.getIconWidth(), iconoMonedaSelec.getIconHeight());
 
-        JButton btnMoneda1500 = new MonedaButton(1500,lblMonedaSeleccionada,20, 35, comprador);
-        JButton btnMoneda1000 = new MonedaButton(1000,lblMonedaSeleccionada, 110, 35, comprador);
-        JButton btnMoneda500 = new MonedaButton(500, lblMonedaSeleccionada,20, 85, comprador);
-        JButton btnMoneda100 = new MonedaButton(100, lblMonedaSeleccionada,110, 85, comprador);
+        JButton btnMoneda1500 = new MonedaButton(1500,20, 35, comprador,lblMonedaSeleccionada, moneda1500CantLabel);
+        JButton btnMoneda1000 = new MonedaButton(1000, 110, 35, comprador,lblMonedaSeleccionada, moneda1000CantLabel);
+        JButton btnMoneda500 = new MonedaButton(500,20, 85, comprador, lblMonedaSeleccionada, moneda500CantLabel);
+        JButton btnMoneda100 = new MonedaButton(100,110, 85, comprador, lblMonedaSeleccionada, moneda100CantLabel);
 
 
         JLabel selecMonedaTitulo = new JLabel("Elegir Moneda");
