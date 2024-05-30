@@ -31,7 +31,7 @@ public class Deposito<T>{
 
     /**
      * Funcion que devuelve la cantidad de Productos o Monedas que contiene
-     * @return
+     * @return Cantidas de productos o Monedas que posee
      */
     public int size(){return list.size();}
 }

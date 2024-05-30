@@ -68,15 +68,27 @@ public class Comprador{
         }
     }
 
-    public Moneda getMonedas100(){return moneda100.get();}
-    public Moneda getMonedas500(){return moneda500.get();}
-    public Moneda getMonedas1000(){return moneda1000.get();}
-    public Moneda getMonedas1500(){return moneda1500.get();}
+    public Moneda getMoneda(int valor){
+        return switch (valor) {
+            case 100 -> moneda100.get();
+            case 500 -> moneda500.get();
+            case 1000 -> moneda1000.get();
+            case 1500 -> moneda1500.get();
+            default -> null;
+        };
+    }
 
-    public int cantidadMonedas100(){return moneda100.size();}
-    public int cantidadMonedas500(){return moneda500.size();}
-    public int cantidadMonedas1000(){return moneda1000.size();}
-    public int cantidadMonedas1500(){return moneda1500.size();}
+    public int cantidadMonedas(int valor){
+        return switch (valor){
+            case 100 -> moneda100.size();
+            case 500 -> moneda500.size();
+            case 1000 -> moneda1000.size();
+            case 1500 -> moneda1500.size();
+            default -> -1;  //Valor de ERROR
+        };
+    }
+
+    public Expendedor getExpendedor() {return expendedor;}
 
     public void addProducto(Producto producto){
         if(producto instanceof CocaCola){
@@ -106,7 +118,7 @@ public class Comprador{
         };
     }
 
-    public void consumirProducto(Precios_Productos tipo_producto){
+    public Producto consumirProducto(Precios_Productos tipo_producto){
         Producto producto = null;
         switch (tipo_producto) {
             case COCACOLA:
@@ -120,7 +132,11 @@ public class Comprador{
             case SUPER8:
                 producto = super8Deposito.get();
         }
-        System.out.println(producto.consumir());
+        if(producto != null){
+            System.out.println(producto.consumir());
+        }
+        else{System.out.println("No existe producto para consumir");}
+        return producto;
     }
 
     public void sacarMonedas(){
