@@ -1,5 +1,6 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Comprador;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
@@ -9,15 +10,20 @@ import java.awt.event.MouseListener;
 
 public class ProductosUsuarioLabel extends JLabel {
 
-    Precios_Productos producto;
+    private final ProductosUsuarioLabel thisLabel;
+    private Comprador comprador;
+    private Precios_Productos producto;
+    private String strProducto;
     private int cantidad = 0;
 
-    public ProductosUsuarioLabel(Precios_Productos prod, int posX, int posY ) {
-        ImageIcon icon = null;
+    public ProductosUsuarioLabel(Precios_Productos prod, int posX, int posY, Comprador comp) {
+        comprador = comp;
         producto = prod;
+        cantidad = comp.cantidadProducto(prod);
+        thisLabel = this;
 
-        String strProducto = "";
 
+        ImageIcon icon = null;
         switch(prod) {
             case Precios_Productos.COCACOLA:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/cocacola.png");
@@ -57,7 +63,6 @@ public class ProductosUsuarioLabel extends JLabel {
         this.setOpaque(true);
 
         this.addMouseListener(new EscucharMouse());
-
     }
 
     private class EscucharMouse implements MouseListener {
@@ -65,10 +70,20 @@ public class ProductosUsuarioLabel extends JLabel {
         @Override
         public void mouseClicked(MouseEvent e) {
 
-            String strProducto = null;
+            if(comprador.cantidadProducto(producto) != 0){
+                comprador.consumirProducto(producto);
+                thisLabel.setCantidad(comprador.cantidadProducto(producto));
+
+            } else {
+                System.out.println("No hay producto");
+                JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
+                // implementar excepcion customizada
+            }
+
 
             switch (producto) {
                 case Precios_Productos.COCACOLA:
+
                     strProducto = "Cocacola";
                     break;
                 case Precios_Productos.FANTA:
@@ -113,6 +128,6 @@ public class ProductosUsuarioLabel extends JLabel {
 
     public void setCantidad(int cant){
         cantidad = cant;
+        this.setText(strProducto + "       cantidad: " + cantidad);
     }
-
 }

@@ -1,5 +1,6 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Monedas.Moneda100;
 import t3.logica_interfaz.Ventana;
 import t3.logica_expendedor.*;
 import t3.logica_expendedor.Monedas.Moneda;
@@ -15,10 +16,13 @@ import java.awt.event.MouseListener;
 public class MonedaButton extends JButton{
     int value = 0;
     JLabel label;
+    Comprador comprador;
 
-    public MonedaButton(int val, JLabel lbl, int posX, int posY){
+    public MonedaButton(int val, JLabel lbl, int posX, int posY, Comprador comp){
         value = val;
         label = lbl;
+        comprador = comp;
+
         ImageIcon icon = null;
 
         switch(val) {
@@ -67,6 +71,22 @@ public class MonedaButton extends JButton{
             iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
 
             label.setIcon(iconoMonedaSelec);
+
+            switch(value) {
+                case 100:
+                    Moneda moneda100 = comprador.getMonedas100();
+                    break;
+                case 500:
+                    Moneda moneda500 = comprador.getMonedas100();
+                    break;
+                case 1000:
+                    Moneda moneda1000 = comprador.getMonedas100();
+                    break;
+                case 1500:
+                    Moneda moneda1500 = comprador.getMonedas100();
+                    break;
+
+            }
         }
     }
 

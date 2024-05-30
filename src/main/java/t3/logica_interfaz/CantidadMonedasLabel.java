@@ -1,27 +1,35 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Comprador;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class CantidadMonedasLabel extends JLabel {
 
     private int cantidad = 0;
+    private Comprador comprador = null;
 
-    public CantidadMonedasLabel(int val, int posX, int posY ) {
+    public CantidadMonedasLabel(int val, int posX, int posY , Comprador comp) {
         ImageIcon icon = null;
+        comprador = comp;
 
         switch(val) {
             case 100:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
+                cantidad = comp.cantidadMonedas100();
                 break;
             case 500:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
+                cantidad = comp.cantidadMonedas500();
                 break;
             case 1000:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
+                cantidad = comp.cantidadMonedas1000();
                 break;
             case 1500:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
+                cantidad = comp.cantidadMonedas1500();
                 break;
 
         }
@@ -44,9 +52,12 @@ public class CantidadMonedasLabel extends JLabel {
         this.setBackground(new Color(0xF4EAFF));
         this.setOpaque(true);
 
+
+
     }
 
     public void setCantidad(int cant){
         cantidad = cant;
+
     }
 }
