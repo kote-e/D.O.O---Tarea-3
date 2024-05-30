@@ -13,26 +13,24 @@ public class CantidadMonedasLabel extends JLabel {
     public CantidadMonedasLabel(int val, int posX, int posY , Comprador comp) {
         ImageIcon icon = null;
         comprador = comp;
+        cantidad = comprador.cantidadMonedas(val);
 
         switch(val) {
             case 100:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
-                cantidad = comp.cantidadMonedas100();
                 break;
             case 500:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
-                cantidad = comp.cantidadMonedas500();
                 break;
             case 1000:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
-                cantidad = comp.cantidadMonedas1000();
                 break;
             case 1500:
                 icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-                cantidad = comp.cantidadMonedas1500();
                 break;
 
         }
+
 
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
