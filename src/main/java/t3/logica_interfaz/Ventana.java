@@ -17,9 +17,10 @@ import java.awt.*;
 
 public class Ventana extends JFrame {
     public Ventana(){
-
+        Expendedor expendedor = new Expendedor(2);
+        Comprador comprador = new Comprador(expendedor);
         JPanel panelComprador = new PanelComprador();
-        JPanel panelExpendedor = new PanelExpendedor();
+        JPanel panelExpendedor = new PanelExpendedor(expendedor, comprador);
 
         ImageIcon icono = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Icono-aplicacion.jpg");
 
@@ -35,6 +36,5 @@ public class Ventana extends JFrame {
         this.add(panelExpendedor);
 
         this.setVisible(true);
-
     }
 }
