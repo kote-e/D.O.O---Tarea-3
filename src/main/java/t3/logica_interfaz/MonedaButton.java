@@ -16,13 +16,13 @@ import java.awt.event.MouseListener;
 public class MonedaButton extends JButton{
     private int value = 0;
     private JLabel selecMonedaLabel;
-    private JLabel cantMonedasLabel;
+    private CantidadMonedasLabel cantMonedasLabel;
     private Comprador comprador;
 
     public MonedaButton(int val, int posX, int posY, Comprador comp, JLabel selecMonlbl, JLabel cantMonedasLbl){
         value = val;
         selecMonedaLabel = selecMonlbl;
-        cantMonedasLabel = cantMonedasLbl;
+        cantMonedasLabel = (CantidadMonedasLabel) cantMonedasLbl;
         comprador = comp;
 
         ImageIcon icon = null;
@@ -84,6 +84,8 @@ public class MonedaButton extends JButton{
                 System.out.println("No hay moneda");
                 JOptionPane.showMessageDialog(null, "No tienes moneda de " + String.valueOf(value));
             }
+
+            cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
 
         }
     }
