@@ -18,7 +18,7 @@ public class BotonVuelto extends JLabel implements MouseListener {
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
 
     public void mousePressed(MouseEvent me) {
-        //pExpendedor.getExpendedor().sacarMonedasEntradaASalida();
+        pExpendedor.getComprador().addMonedas(pExpendedor.getExpendedor().getVuelto());
     }
 
     public void mouseReleased(MouseEvent me) {;}

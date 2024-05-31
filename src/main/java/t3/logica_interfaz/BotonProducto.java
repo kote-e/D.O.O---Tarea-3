@@ -16,7 +16,9 @@ public class BotonProducto extends JLabel implements MouseListener {
 
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
 
-    public void mousePressed(MouseEvent me) {;}
+    public void mousePressed(MouseEvent me) {
+        pExp.getComprador().addProducto(pExp.getExpendedor().getProducto());
+    }
 
     public void mouseReleased(MouseEvent me) {;}
 

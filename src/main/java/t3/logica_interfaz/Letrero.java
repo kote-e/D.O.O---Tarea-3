@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class Letrero extends JLabel {
     private final PanelExpendedor expendedor;
-    String imprimir = "-----";
 
     public Letrero(PanelExpendedor pExp, int x, int y, int width, int height) {
         super();
@@ -19,14 +18,14 @@ public class Letrero extends JLabel {
         this.setFont(new Font("monospace", Font.PLAIN, 30));
         this.setForeground(new Color(0xFFFF));
 
-        this.setText(imprimir);
+        this.setText("-----");
     }
 
-    public void Imprimir(){
-        if(expendedor.getProducto() != null){
-            imprimir = "$" + String.valueOf(expendedor.getProducto().getPrecio());
-        }
+    public void ImprimirPrecio(){
+        this.setText("Precio: " + String.valueOf(expendedor.getProducto().getPrecio()));
+    }
 
-        this.setText(imprimir);
+    public void ImprimirMonedas(){      //Falta implementar
+        this.setText("Monedas: $" + String.valueOf(expendedor.getExpendedor().valorTotalIngresado()));
     }
 }
