@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Clase que representa a un expendedor de Bebidas y Dulces
  */
-public class Expendedor{
+public class Expendedor {
     private Deposito<Moneda> monEn;     //Deposito que guarda las monedas que entran
     private int valorIngresado = 0;         //Guarda el valor total ingresado de las monedas
     private Deposito<Moneda> monVu;     //Deposito que guarda las monedas del vuelto
@@ -22,8 +22,9 @@ public class Expendedor{
     private Producto deposito;
 
     /**
-     * Contructor: Recibe la cantidad de bebidas con la que se llenaran los depositos
-     * @param numBebidas Cantidad de bebidas con las que se llamaran los depositos
+     * Constructor: Recibe la cantidad de bebidas con la que se llenaran los depósitos
+     *
+     * @param numBebidas Cantidad de bebidas con las que se llamaran los depósitos
      */
     public Expendedor(int numBebidas) {
         monEn = new Deposito<Moneda>();     //Instanciacion del Deposito de Monedas
@@ -37,21 +38,31 @@ public class Expendedor{
         for (int i = 0; i < numBebidas; i++) {      //For en que se rellenan los depositos con sus respectivasd monedas
             Bebida bc = new CocaCola(i);            //Se crea una CocaCola con su numero de serie
             coca.add(bc);                     //Se ingresa la bebida recien creada al deposito de CocaCola
-            Bebida bs = new Sprite(numBebidas+i);   //Se crea una Sprite con su numero de serie
+            Bebida bs = new Sprite(numBebidas + i);   //Se crea una Sprite con su numero de serie
             sprite.add(bs);                   //Se ingresa la bebida recien creada al deposito de Sprite
-            Bebida bf = new Fanta(2*numBebidas+i);   //Se crea una Fanta con su numero de serie
+            Bebida bf = new Fanta(2 * numBebidas + i);   //Se crea una Fanta con su numero de serie
             fanta.add(bf);                   //Se ingresa la bebida recien creada al deposito de Fanta
-            Dulce ds = new Snickers(3*numBebidas+i);            //Se crea un Snickers con su numero de serie
+            Dulce ds = new Snickers(3 * numBebidas + i);            //Se crea un Snickers con su numero de serie
             snickers.add(ds);                 //Se ingresa el dulce recien creado al deposito de Snickers
-            Dulce d8 = new Super8(4*numBebidas+i);   //Se crea un Super8 con su numero de serie
+            Dulce d8 = new Super8(4 * numBebidas + i);   //Se crea un Super8 con su numero de serie
             super8.add(d8);                   //Se ingresa el dulce recien creado al deposito de Super8
         }
     }
 
-    public void comprarProducto(Precios_Productos cualProducto) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
-        Producto producto = null;                               //Se crea un puntero auxiliar de tipo Bebida nulo
+    /**
+     * Permite comprar productos del expendedor ingresando una moneda y el tipo de producto a comprar.
+     *
+     * @param cualProducto tipo del producto
+     * @throws PagoIncorrectoException   si no se ingres monedas
+     * @throws PagoInsuficienteException si el dinero ingresado es menor al precio del producto
+     * @throws NoHayProductoException    si no hay producto disponible
+     */
+    public void comprarProducto(Precios_Productos cualProducto) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
+        Producto producto = null; //Se crea un puntero auxiliar de tipo Bebida nulo
 
-        if (monEn.size() == 0) {throw new PagoIncorrectoException("No se ingreso moneda.");}  //Si no se ingreso una moneda se sale de la funcion
+        if (monEn.size() == 0) {
+            throw new PagoIncorrectoException("No se ingreso moneda.");
+        }  //Si no se ingreso una moneda se sale de la funcion
 
         if (valorIngresado < cualProducto.getPrecio()) {                         //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
             sacarMonedasEntradaASalida();
@@ -79,7 +90,7 @@ public class Expendedor{
                 break;
         }
 
-        if(producto == null){
+        if (producto == null) {
             sacarMonedasEntradaASalida();
             throw new NoHayProductoException("No hay producto.");
         }
@@ -90,16 +101,28 @@ public class Expendedor{
                 Moneda vueltomon100 = new Moneda100();          //Se instancia una moneda de 100
                 monVu.add(vueltomon100);                        //Se agrega la moneda al deposito del vuelto
             }
-            for(int i = 0; i < monEn.size(); i++){monEn.get();} //Elimino todas las monedas del deposito de entrada
+            for (int i = 0; i < monEn.size(); i++) {
+                monEn.get();
+            } //Elimino todas las monedas del deposito de entrada
             valorIngresado = 0;
         }
 
         deposito = producto;   //Se retorna el producto que se compro o null en otros casos
     }
 
+    /**
+     *Devuelve una moneda del depósito
+     * @return Moneda del depósito
+     */
     public Moneda getVuelto() {return monVu.get();}
 
-    public int getPrecio(Precios_Productos producto){                             //Funcion que retorna el valor numerico del precio de los productos
+    /**
+     * Funcion que retorna el precio de los productos
+     * @param producto tipo de producto
+     * @return precio del producto
+     */
+
+    public int getPrecio(Precios_Productos producto){
         switch (producto) {
             case COCACOLA:
                 return Precios_Productos.COCACOLA.getPrecio();
@@ -116,17 +139,34 @@ public class Expendedor{
         }
     }
 
+    /**
+     * Agrega la moneda al deposito
+     * @param moneda la moneda que se agrega
+     */
     public void addMonedaEntrada(Moneda moneda){
         monEn.add(moneda);
         valorIngresado =+ moneda.getValor();
     }
 
+    /**
+     * Devuelve todo el valor ingresado
+     * @return valor ingresado
+     */
     public int valorTotalIngresado(){return valorIngresado;}
+
+    /**
+     * Saca todas las monedas del depósito de entrada al depósito de vuelto
+     */
 
     public void sacarMonedasEntradaASalida(){
         for(int i = 0; i < monEn.size(); i++){monVu.add(monEn.get());}   //Se agrega la moneda al deposito del vuelto
         valorIngresado = 0;
     }
+
+    /**
+     * devuelve el producto obtenido del expendedor
+     * @return producto obtenido
+     */
 
     public Producto getProducto(){return deposito;}
 }

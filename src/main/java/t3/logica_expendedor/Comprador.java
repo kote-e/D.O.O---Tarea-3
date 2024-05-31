@@ -12,6 +12,11 @@ import t3.logica_expendedor.Precios_Productos;
 
 import java.util.ArrayList;
 
+/**
+ * clase que representa al comprador
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
+ */
 public class Comprador{
     //DECLARACIONES DE ATRIBUTOS
     private final Expendedor expendedor;
@@ -28,7 +33,12 @@ public class Comprador{
     private Deposito<Super8> super8Deposito;
 
     //DECLARACIONES DE METODOS
-    //Constructor: recibe la moneda con la que comprara, un numero que identifica el tipo de producto y la referencia al Expendedor en el que comprara
+    /**
+     *Constructor que recibe la referencia
+     * la moneda con la que comprara, un numero que identifica el tipo de producto y
+     * la referencia al Expendedor en el que comprara
+     * @param expendedor referencia a Expendedor
+     */
 
     public Comprador(Expendedor expendedor) {
         this.expendedor = expendedor;
@@ -46,13 +56,26 @@ public class Comprador{
 
     }
 
+    /**
+     * Metodo para comprar un producto (Se compra el producto en el expendedor
+     * entregandole la moneda y el numero que identifica el tipo de producto)
+     * @param cualProducto El producto que se desea comprar
+     * @throws PagoInsuficienteException si el pago es insuficiente
+     * @throws PagoIncorrectoException si el pago es incorrecto
+     * @throws NoHayProductoException si no hay el producto que se eligio
+     */
+
     public void comprar(Precios_Productos cualProducto)throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
-        try{expendedor.comprarProducto(cualProducto);}    //Se compra el producto en el expendedor entregandole la moneda y el numero que identifica el tipo de producto
+        try{expendedor.comprarProducto(cualProducto);}
         catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoException e){
         throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
     }
     }
 
+    /**
+     * Metodo para añadrir monedas al depósito
+     * @param moneda la moneda ingresada
+     */
     public void addMonedas(Moneda moneda){
         if(moneda instanceof Moneda100){
             moneda100.add((Moneda100) moneda);
@@ -90,6 +113,11 @@ public class Comprador{
 
     public Expendedor getExpendedor() {return expendedor;}
 
+    /**
+     * Añade del producto  qie puede ser una bebida o dulce al depósito del comprador
+     * @param producto producto que se añade
+     */
+
     public void addProducto(Producto producto){
         if(producto instanceof CocaCola){
             cocaColaDeposito.add((CocaCola) producto);
@@ -108,6 +136,11 @@ public class Comprador{
         }
     }
 
+    /**
+     * Obtiene la cantidad de un producto en específico en el depósito
+     * @param producto el tipo de producto
+     * @return la cantidad de producto en el depósito
+     */
     public int cantidadProducto(Precios_Productos producto){        //REVISAR//
         return switch (producto) {
             case COCACOLA -> cocaColaDeposito.size();
@@ -139,8 +172,11 @@ public class Comprador{
         return producto;
     }
 
+    /**
+     * Extrae una moneda del depósito de vuelto del expendedor y se agrega al depósito del comprador
+     */
     public void sacarMonedas(){
-        Moneda moneda = expendedor.getVuelto();                 //Se extrae una moneda del deposito de vuelto del expendedor
+        Moneda moneda = expendedor.getVuelto(); // Se extrae una moneda del depósito de vuelto del expendedor
 
         if(moneda instanceof Moneda100){moneda100.add((Moneda100) moneda);}
         if(moneda instanceof Moneda500){moneda500.add((Moneda500) moneda);}
@@ -148,6 +184,12 @@ public class Comprador{
         if(moneda instanceof Moneda1500){moneda1500.add((Moneda1500) moneda);}
     }
 
+    /**
+     * Extrae un producto del expendedor y lo añade al depósito del comprador
+     * @throws PagoInsuficienteException si el pago es insuficiente
+     * @throws PagoIncorrectoException si el pago es incorrecto
+     * @throws NoHayProductoException si no hay producto
+     */
     public void sacarProducto()throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
         Producto producto = null;
         producto = expendedor.getProducto();
