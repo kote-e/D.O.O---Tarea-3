@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 /**
  * La subclase BotonProducto es una extensión de JLabel e implementa MouseListener que
  * representa un botón en la interfaz que permite agregar un producto al hacer clic
+ * @see PanelExpendedor
  */
 public class BotonProducto extends JLabel implements MouseListener {
     private final PanelExpendedor pExp;
