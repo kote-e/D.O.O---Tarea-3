@@ -15,8 +15,8 @@ public class BotonVuelto extends JLabel implements MouseListener {
     /**
      * Este es el constructor para iniciar el boton del vuelto
      * @param pExp es el panel en expendedor asociado al boton
-     * @param x  esta es la cooredenada x donde se encuentrab el bóton en la pantalla
-     * @param y esta es la cooredenada y donde se encuentrab el bóton en la pantalla
+     * @param x  esta es la cooredenada x donde se encuentra el bóton en la pantalla
+     * @param y esta es la cooredenada y donde se encuentra el bóton en la pantalla
      * @param width este es el ancho del boton
      * @param height este es el alto del boton
      */

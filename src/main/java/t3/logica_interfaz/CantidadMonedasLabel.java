@@ -5,18 +5,30 @@ import t3.logica_expendedor.Comprador;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La clase CantidadMonedasLabel que muestra una etiqueta la cantidad de monedas de
+ * un valor que tiene el comprador
+ * @author
+ */
 public class CantidadMonedasLabel extends JLabel {
     private CantidadMonedasLabel thisLabel;
     private int cantidad = 0;
     private Comprador comprador = null;
     private String strVal = "";
 
+    /**
+     * Constructor para inicializar la etiqueta con la cantidad de monedas y su ícono correspondiente
+     * @param val esta es el valor de la moneda
+     * @param posX esta es la cooredenada x donde se encuentra la etiqueta en la pantalla
+     * @param posY esta es la cooredenada y donde se encuentra la etiqueta en la pantalla
+     * @param comp este es el comprador
+     */
     public CantidadMonedasLabel(int val, int posX, int posY , Comprador comp) {
         thisLabel = this;
         comprador = comp;
         cantidad = comprador.cantidadMonedas(val);
 
-
+        /** Selecciona el ícono correspondiente al valor de la moneda */
         ImageIcon icon = null;
         switch(val) {
             case 100:
@@ -34,12 +46,12 @@ public class CantidadMonedasLabel extends JLabel {
 
         }
 
-
+        /** Escala la imagen del ícono */
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
         icon = new ImageIcon(scaledImg);
 
-
+        /** Establece el texto y el ícono de la etiqueta */
         if(val >= 1000){strVal = String.valueOf(val);}
         else{strVal = String.valueOf(val) + " ";}
 
