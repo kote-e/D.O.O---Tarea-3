@@ -20,8 +20,8 @@ public class BotonResetMoney extends JLabel implements MouseListener {
     /**
      * crea una instancia de BotonResetMoney
      * @param pExp es el panel en expendedor asociado al boton
-     * @param x esta es la cooredenada x donde se encuentrab el bóton en la pantalla
-     * @param y esta es la cooredenada y donde se encuentrab el bóton en la pantalla
+     * @param x esta es la cooredenada x donde se encuentra el bóton en la pantalla
+     * @param y esta es la cooredenada y donde se encuentra el bóton en la pantalla
      * @param width este es el ancho del boton
      * @param height este es el alto del boton
      */

@@ -11,17 +11,23 @@ import java.awt.event.MouseListener;
  */
 public class BotonProducto extends JLabel implements MouseListener {
     private final PanelExpendedor pExp;
+    private PanelComprador panelComprador;
 
+<<<<<<< HEAD
     /**
      * crea una istancia del BotonProducto
      * @param pExp es el panel en expendedor asociado al boton
-     * @param x esta es la cooredenada x donde se encuentrab el bóton en la pantalla
-     * @param y esta es la cooredenada y donde se encuentrab el bóton en la pantalla
+     * @param x esta es la cooredenada x donde se encuentra el bóton en la pantalla
+     * @param y esta es la cooredenada y donde se encuentra el bóton en la pantalla
      * @param width este es el ancho del boton
      * @param height este es el alto del boton
      */
     public BotonProducto(PanelExpendedor pExp, int x, int y, int width, int height) {
+=======
+    public BotonProducto(PanelExpendedor pExp,PanelComprador panelComprador ,int x, int y, int width, int height) {
+>>>>>>> d0430253fc45c7dbe9d94a63705ec29c24568871
         this.pExp = pExp;
+        this.panelComprador = panelComprador;
         this.setBounds(x,y,width,height);
         this.setOpaque(false);
         this.addMouseListener(this);
@@ -41,6 +47,7 @@ public class BotonProducto extends JLabel implements MouseListener {
      */
     public void mousePressed(MouseEvent me) {
         pExp.getComprador().addProducto(pExp.getExpendedor().getProducto());
+        panelComprador.getProductosUsuarioLabel(pExp.getComprado()).setCantidad(pExp.getComprador().cantidadProducto(pExp.getComprado()));
     }
 
     /**
@@ -60,4 +67,6 @@ public class BotonProducto extends JLabel implements MouseListener {
      * @param me es el evento del mouse
      */
     public void mouseExited(MouseEvent me) {;}
+
+    public void setPanelComprador(PanelComprador panelComprador) {this.panelComprador = panelComprador;}
 }

@@ -18,12 +18,14 @@ public class MonedaButton extends JButton{
     private JLabel selecMonedaLabel;
     private CantidadMonedasLabel cantMonedasLabel;
     private Comprador comprador;
+    private final PanelExpendedor pExpendedor;
 
-    public MonedaButton(int val, int posX, int posY, Comprador comp, JLabel selecMonlbl, JLabel cantMonedasLbl){
+    public MonedaButton(PanelExpendedor panelExpendeor,int val, int posX, int posY, JLabel selecMonlbl, JLabel cantMonedasLbl){
+        pExpendedor=panelExpendeor;
         value = val;
         selecMonedaLabel = selecMonlbl;
         cantMonedasLabel = (CantidadMonedasLabel) cantMonedasLbl;
-        comprador = comp;
+        comprador = pExpendedor.getComprador();
 
         ImageIcon icon = null;
 
@@ -64,9 +66,6 @@ public class MonedaButton extends JButton{
 
     private class EscuchadorBoton implements ActionListener {
         public void actionPerformed(ActionEvent ae) {
-
-            System.out.println(value);
-
             ImageIcon iconoMonedaSelec = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_"+ value +".png");
             Image imgMonedaSelec = iconoMonedaSelec.getImage();
             Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
@@ -81,6 +80,7 @@ public class MonedaButton extends JButton{
                 comprador.getExpendedor().addMonedaEntrada(moneda);
                 cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
                 selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
+                pExpendedor.getLetrero().ImprimirMonedas();
             } else {
                 System.out.println("No hay moneda");
                 selecMonedaLabel.setText("XXXXX");
