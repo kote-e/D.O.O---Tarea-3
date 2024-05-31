@@ -15,14 +15,14 @@ public class Letrero extends JLabel {
 
         this.setHorizontalTextPosition(CENTER);
         this.setVerticalTextPosition(CENTER);
-        this.setFont(new Font("monospace", Font.PLAIN, 30));
+        this.setFont(new Font("monospace", Font.PLAIN, 25));
         this.setForeground(new Color(0xFFFF));
 
         this.setText("-----");
     }
 
     public void ImprimirPrecio(){
-        this.setText("Precio: " + String.valueOf(expendedor.getProducto().getPrecio()));
+        this.setText("Precio: $" + String.valueOf(expendedor.getProducto().getPrecio()));
     }
 
     public void ImprimirMonedas(){      //Falta implementar

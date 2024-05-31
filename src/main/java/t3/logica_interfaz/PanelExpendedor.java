@@ -21,11 +21,11 @@ public class PanelExpendedor extends JPanel {
         setLayout(null);
 
         //Se agregan los productos
-        add(scaledProducto("cocacola.png",65,100,150,150));
-        add(scaledProducto("sprite.png",170,100,150,150));
-        add(scaledProducto("fanta.png",270,100,150,150));
-        add(scaledProducto("snickers.png",55,270,160,160));
-        add(scaledProducto("super8.png",153,275,160,160));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",65,100,150,150));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",170,100,150,150));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",270,100,150,150));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",55,270,160,160));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8.png",153,275,160,160));
 
         //Se agregan los precios
         add(mostrarPrecios(Precios_Productos.COCACOLA,120,250,30,20));
@@ -58,7 +58,7 @@ public class PanelExpendedor extends JPanel {
         add(new BotonProducto(this,93,477,304,81));
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
-        ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/resources/expendedor.png");
+        ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png");
         Image originalExpendedorIconImage = originalExpendedorIcon.getImage();
         Image scaledExpendedorIconImage = originalExpendedorIconImage.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
         ImageIcon expendedorIcon = new ImageIcon(scaledExpendedorIconImage);
@@ -71,7 +71,7 @@ public class PanelExpendedor extends JPanel {
 
     // Cargar y redimensionar la imagen del Producto
     private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
-        ImageIcon originalIcon = new ImageIcon("src/main/java/t3/resources/" + nombre);
+        ImageIcon originalIcon = new ImageIcon(nombre);
         Image originalIconImage = originalIcon.getImage();
         Image scaledIconImage = originalIconImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         ImageIcon Icon = new ImageIcon(scaledIconImage);
