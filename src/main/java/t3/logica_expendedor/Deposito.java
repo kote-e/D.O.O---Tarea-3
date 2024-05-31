@@ -25,13 +25,13 @@ public class Deposito<T>{
      * @return Producto o Moneda a retirar, o null si el depósito está vacío
      */
     public T get(){
-        if (list.size() != 0) {return list.remove(0);}  //Si la lista no está vacia se retorna el primer producto de la lista eliminadolo a la ves de esta lista
-        else return null;       //Si la lista esta vacía se retorna null
+        if (list.size() != 0) {return list.remove(0);}  //Si la lista no esta vacia se retorna al primer objeto de la lista eliminadolo a la ves de esta lista
+        else return null;       //Si la lista esta vacia se retorna null
     }
 
     /**
-     * Funcion que devuelve la cantidad de Productos o Monedas que contiene el depósito
-     * @return la cantidad de productos o monedas del depósito
+     * Funcion que devuelve la cantidad de Productos o Monedas que contiene
+     * @return Cantidad de Productos o Monedas que posee
      */
     public int size(){return list.size();}
 }
