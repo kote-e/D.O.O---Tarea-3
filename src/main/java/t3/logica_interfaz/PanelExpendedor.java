@@ -39,11 +39,11 @@ public class PanelExpendedor extends JPanel {
         add(letrero);
 
         //Se agregan los botones para seleccionar los productos
-        add(new BotonSelectorP(this,Precios_Productos.COCACOLA,438,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SPRITE,490,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.FANTA,544,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SNICKERS,438,377,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SUPER8,490,377,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.COCACOLA,"1",438,328,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.SPRITE,"2",490,328,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.FANTA,"3",544,328,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.SNICKERS,"4",438,377,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.SUPER8,"5",490,377,47,42));
 
         //Se agrega el Boton para concretar la compra
         add(new BotonCompra(this,557,235,40,40));
