@@ -23,6 +23,7 @@ public class BotonCompra extends JLabel implements MouseListener{
     public void mousePressed(MouseEvent me) {
         try{
             pExp.getComprador().comprar(pExp.getProducto());
+            pExp.setComprado(pExp.getProducto());
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());

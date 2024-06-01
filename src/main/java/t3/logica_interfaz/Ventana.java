@@ -10,6 +10,7 @@ public class Ventana extends JFrame {
         try{
             PanelExpendedor panelExpendedor = new PanelExpendedor(expendedor, comprador);
             PanelComprador panelComprador = new PanelComprador(panelExpendedor);
+            panelExpendedor.setPanelComprador(panelComprador);
 
             ImageIcon icono = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Icono-aplicacion.jpg");
 

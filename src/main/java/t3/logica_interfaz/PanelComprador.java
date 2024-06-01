@@ -7,6 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelComprador extends JPanel {
+    private ProductosUsuarioLabel productoUsuarioCoca;
+    private ProductosUsuarioLabel productoUsuarioSprite;
+    private ProductosUsuarioLabel productoUsuarioFanta;
+    private ProductosUsuarioLabel productoUsuarioSuper8;
+    private ProductosUsuarioLabel productoUsuarioSnickers;
 
     public PanelComprador(PanelExpendedor panelExpendedor) {
         Comprador comprador = panelExpendedor.getComprador();
@@ -16,11 +21,11 @@ public class PanelComprador extends JPanel {
         productoUsuarioTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         productoUsuarioTitulo.setBounds(0, 0, 350, 40);
 
-        JLabel productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40, comprador);
-        JLabel productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66, comprador);
-        JLabel productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92, comprador);
-        JLabel productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20, 118, comprador);
-        JLabel productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144, comprador);
+        productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40, comprador);
+        productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66, comprador);
+        productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92, comprador);
+        productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20, 118, comprador);
+        productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144, comprador);
 
         JPanel panelProductoUsuario = new JPanel();
         panelProductoUsuario.setBackground(new Color(0xF4F8FF));
@@ -136,5 +141,15 @@ public class PanelComprador extends JPanel {
         panelSelecMoneda.add(selecMonedaTitulo);
         panelSelecMoneda.add(lblMonedaSeleccionada);
 
+    }
+
+    public ProductosUsuarioLabel getProductosUsuarioLabel(Precios_Productos tipoProducto) {
+        return switch (tipoProducto) {
+            case Precios_Productos.COCACOLA -> productoUsuarioCoca;
+            case Precios_Productos.SPRITE -> productoUsuarioSprite;
+            case Precios_Productos.FANTA -> productoUsuarioFanta;
+            case Precios_Productos.SNICKERS -> productoUsuarioSnickers;
+            case Precios_Productos.SUPER8 -> productoUsuarioSuper8;
+        };
     }
 }

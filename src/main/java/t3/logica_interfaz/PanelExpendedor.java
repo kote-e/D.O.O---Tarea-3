@@ -7,9 +7,12 @@ import t3.logica_expendedor.*;
 
 public class PanelExpendedor extends JPanel {
     private Precios_Productos producto = null;
+    private Precios_Productos pComprado = null;
     private final Expendedor expendedor;
     private final Comprador comprador;
     private final Letrero letrero;
+    private PanelComprador panelComprador;
+    private final BotonProducto botonProducto;
 
     public PanelExpendedor(Expendedor expendedor, Comprador comprador) {
         super();
@@ -55,7 +58,8 @@ public class PanelExpendedor extends JPanel {
         add(new BotonVuelto(this,431,477,166,81));
 
         //Se agrega el boton para sacar al producto
-        add(new BotonProducto(this,93,477,304,81));
+        botonProducto = new BotonProducto(this,panelComprador,93,477,304,81);
+        add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
         ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png");
@@ -99,4 +103,13 @@ public class PanelExpendedor extends JPanel {
     public Comprador getComprador(){return this.comprador;}
 
     public Letrero getLetrero(){return this.letrero;}
+
+    public void setPanelComprador(PanelComprador panelComprador) {
+        this.panelComprador = panelComprador;
+        botonProducto.setPanelComprador(panelComprador);
+    }
+
+    public void setComprado(Precios_Productos producto){this.pComprado = producto;}
+
+    public Precios_Productos getComprado(){return this.pComprado;}
 }
