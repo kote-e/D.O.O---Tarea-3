@@ -98,7 +98,7 @@ public class Expendedor {
         if (valorIngresado > cualProducto.getPrecio()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
             int mon100 = (valorIngresado - cualProducto.getPrecio()) / 100;    //Se calcula la diferencia entre el presio y el valor del producto, dividiendolo por 100 para el siguiente for
             for (int i = 0; i < mon100; i++) {                  //For en que se agregan monedas al deposito del vuelto con el valor del vuelto calculado anteriormente
-                Moneda vueltomon100 = new Moneda100();          //Se instancia una moneda de 100
+                Moneda100 vueltomon100 = new Moneda100();          //Se instancia una moneda de 100
                 monVu.add(vueltomon100);                        //Se agrega la moneda al deposito del vuelto
             }
             for (int i = 0; i < monEn.size(); i++) {

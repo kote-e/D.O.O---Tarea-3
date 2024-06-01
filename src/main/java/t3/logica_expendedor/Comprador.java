@@ -164,18 +164,6 @@ public class Comprador{
     }
 
     /**
-     * Extrae una moneda del depósito de vuelto del expendedor y se agrega al depósito del comprador
-     */
-    public void sacarMonedas(){
-        Moneda moneda = expendedor.getVuelto(); // Se extrae una moneda del depósito de vuelto del expendedor
-
-        if(moneda instanceof Moneda100){moneda100.add((Moneda100) moneda);}
-        if(moneda instanceof Moneda500){moneda500.add((Moneda500) moneda);}
-        if(moneda instanceof Moneda1000){moneda1000.add((Moneda1000) moneda);}
-        if(moneda instanceof Moneda1500){moneda1500.add((Moneda1500) moneda);}
-    }
-
-    /**
      * Extrae un producto del expendedor y lo añade al depósito del comprador
      * @throws PagoInsuficienteException si el pago es insuficiente
      * @throws PagoIncorrectoException si el pago es incorrecto
