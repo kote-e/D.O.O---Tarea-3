@@ -11,12 +11,16 @@ public class BotonSelectorP extends JLabel implements MouseListener {
     private final Precios_Productos producto;
     private final PanelExpendedor pExpendedor;
 
-    public BotonSelectorP(PanelExpendedor pExp, Precios_Productos producto, int x, int y, int width, int height) {
+    public BotonSelectorP(PanelExpendedor pExp, Precios_Productos producto,String ver, int x, int y, int width, int height) {
         this.pExpendedor = pExp;
         this.producto = producto;
         this.setBounds(x,y,width,height);
         this.setBackground(new Color(0xF4EAFF));
         this.setOpaque(true);
+        this.setText("   " + ver);
+        this.setFont(new Font("monospace", Font.PLAIN, 20));
+        this.setHorizontalTextPosition(CENTER);
+        this.setVerticalTextPosition(CENTER);
         this.addMouseListener(this);
     }
 

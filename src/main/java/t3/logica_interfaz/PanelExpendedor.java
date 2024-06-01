@@ -7,9 +7,13 @@ import t3.logica_expendedor.*;
 
 public class PanelExpendedor extends JPanel {
     private Precios_Productos producto = null;
+    private Precios_Productos pComprado = null;
     private final Expendedor expendedor;
     private final Comprador comprador;
     private final Letrero letrero;
+    private PanelComprador panelComprador;
+    private final BotonProducto botonProducto;
+    private final BotonVuelto botonVuelto;
 
     public PanelExpendedor(Expendedor expendedor, Comprador comprador) {
         super();
@@ -21,11 +25,11 @@ public class PanelExpendedor extends JPanel {
         setLayout(null);
 
         //Se agregan los productos
-        add(scaledProducto("cocacola.png",65,100,150,150));
-        add(scaledProducto("sprite.png",170,100,150,150));
-        add(scaledProducto("fanta.png",270,100,150,150));
-        add(scaledProducto("snickers.png",55,270,160,160));
-        add(scaledProducto("super8.png",153,275,160,160));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",65,100,150,150));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",170,100,150,150));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",270,100,150,150));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",55,270,160,160));
+        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8.png",153,275,160,160));
 
         //Se agregan los precios
         add(mostrarPrecios(Precios_Productos.COCACOLA,120,250,30,20));
@@ -39,11 +43,11 @@ public class PanelExpendedor extends JPanel {
         add(letrero);
 
         //Se agregan los botones para seleccionar los productos
-        add(new BotonSelectorP(this,Precios_Productos.COCACOLA,438,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SPRITE,490,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.FANTA,544,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SNICKERS,438,377,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SUPER8,490,377,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.COCACOLA,"1",438,328,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.SPRITE,"2",490,328,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.FANTA,"3",544,328,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.SNICKERS,"4",438,377,47,42));
+        add(new BotonSelectorP(this,Precios_Productos.SUPER8,"5",490,377,47,42));
 
         //Se agrega el Boton para concretar la compra
         add(new BotonCompra(this,557,235,40,40));
@@ -52,13 +56,15 @@ public class PanelExpendedor extends JPanel {
         add(new BotonResetMoney(this,500,235,40,40));
 
         //Se agrega el boton para sacar el vuelto
-        add(new BotonVuelto(this,431,477,166,81));
+        botonVuelto = new BotonVuelto(this,431,477,166,82);
+        add(botonVuelto);
 
         //Se agrega el boton para sacar al producto
-        add(new BotonProducto(this,93,477,304,81));
+        botonProducto = new BotonProducto(this,panelComprador,93,477,306,82);
+        add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
-        ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/resources/expendedor.png");
+        ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png");
         Image originalExpendedorIconImage = originalExpendedorIcon.getImage();
         Image scaledExpendedorIconImage = originalExpendedorIconImage.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
         ImageIcon expendedorIcon = new ImageIcon(scaledExpendedorIconImage);
@@ -71,7 +77,7 @@ public class PanelExpendedor extends JPanel {
 
     // Cargar y redimensionar la imagen del Producto
     private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
-        ImageIcon originalIcon = new ImageIcon("src/main/java/t3/resources/" + nombre);
+        ImageIcon originalIcon = new ImageIcon(nombre);
         Image originalIconImage = originalIcon.getImage();
         Image scaledIconImage = originalIconImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         ImageIcon Icon = new ImageIcon(scaledIconImage);
@@ -99,4 +105,14 @@ public class PanelExpendedor extends JPanel {
     public Comprador getComprador(){return this.comprador;}
 
     public Letrero getLetrero(){return this.letrero;}
+
+    public void setPanelComprador(PanelComprador panelComprador) {
+        this.panelComprador = panelComprador;
+        botonProducto.setPanelComprador(panelComprador);
+        botonVuelto.setpComprador(panelComprador);
+    }
+
+    public void setComprado(Precios_Productos producto){this.pComprado = producto;}
+
+    public Precios_Productos getComprado(){return this.pComprado;}
 }

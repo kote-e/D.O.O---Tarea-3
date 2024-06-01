@@ -8,7 +8,6 @@ import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
-
 import java.awt.*;
 
 
@@ -28,8 +27,9 @@ public class Ventana extends JFrame {
 
 
             // Comprador y Expendedor
-            JPanel panelComprador = new PanelComprador(comprador);
-            JPanel panelExpendedor = new PanelExpendedor(expendedor, comprador);
+            PanelExpendedor panelExpendedor = new PanelExpendedor(expendedor, comprador);
+            PanelComprador panelComprador = new PanelComprador(panelExpendedor);
+            panelExpendedor.setPanelComprador(panelComprador);
 
             ImageIcon icono = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/Icono-aplicacion.jpg");
 
@@ -43,6 +43,7 @@ public class Ventana extends JFrame {
             // añadir paneles a ventana
             this.add(panelComprador);
             this.add(panelExpendedor);
+
             this.setVisible(true);
 
         } catch (Exception e){

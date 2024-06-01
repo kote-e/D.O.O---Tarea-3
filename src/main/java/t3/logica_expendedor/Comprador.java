@@ -6,11 +6,8 @@ import t3.logica_expendedor.Bebidas.Sprite;
 import t3.logica_expendedor.Dulces.Snickers;
 import t3.logica_expendedor.Dulces.Super8;
 import t3.logica_expendedor.Monedas.*;
-import t3.logica_expendedor.Producto;
 import t3.logica_expendedor.Excepciones.*;
-import t3.logica_expendedor.Precios_Productos;
-
-import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  * clase que representa al comprador
@@ -151,37 +148,19 @@ public class Comprador{
         };
     }
 
-    public Producto consumirProducto(Precios_Productos tipo_producto){
+    public void consumirProducto(Precios_Productos tipo_producto){
         Producto producto = null;
         switch (tipo_producto) {
-            case COCACOLA:
-                producto  = cocaColaDeposito.get();
-            case SPRITE:
-                producto = spriteDeposito.get();
-            case FANTA:
-                producto = fantaDeposito.get();
-            case SNICKERS:
-                producto = snickersDeposito.get();
-            case SUPER8:
-                producto = super8Deposito.get();
+            case COCACOLA -> producto  = cocaColaDeposito.get();
+            case SPRITE -> producto = spriteDeposito.get();
+            case FANTA -> producto = fantaDeposito.get();
+            case SNICKERS -> producto = snickersDeposito.get();
+            case SUPER8 -> producto = super8Deposito.get();
         }
         if(producto != null){
-            System.out.println(producto.consumir());
+            JOptionPane.showMessageDialog(null,producto.consumir());
         }
         else{System.out.println("No existe producto para consumir");}
-        return producto;
-    }
-
-    /**
-     * Extrae una moneda del depósito de vuelto del expendedor y se agrega al depósito del comprador
-     */
-    public void sacarMonedas(){
-        Moneda moneda = expendedor.getVuelto(); // Se extrae una moneda del depósito de vuelto del expendedor
-
-        if(moneda instanceof Moneda100){moneda100.add((Moneda100) moneda);}
-        if(moneda instanceof Moneda500){moneda500.add((Moneda500) moneda);}
-        if(moneda instanceof Moneda1000){moneda1000.add((Moneda1000) moneda);}
-        if(moneda instanceof Moneda1500){moneda1500.add((Moneda1500) moneda);}
     }
 
     /**

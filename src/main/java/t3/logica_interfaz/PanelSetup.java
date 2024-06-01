@@ -48,14 +48,15 @@ public class PanelSetup extends JPanel implements ChangeListener {
         compradorMonedas1500.addChangeListener(this);
 
         // agregar los spinners al panel
-        setupPanel.add(new JLabel("Monedas de 100"));
-        setupPanel.add(compradorMonedas100);
-        setupPanel.add(new JLabel("Monedas de 500"));
-        setupPanel.add(compradorMonedas500);
-        setupPanel.add(new JLabel("Monedas de 1000"));
-        setupPanel.add(compradorMonedas1000);
         setupPanel.add(new JLabel("Monedas de 1500"));
         setupPanel.add(compradorMonedas1500);
+        setupPanel.add(new JLabel("Monedas de 1000"));
+        setupPanel.add(compradorMonedas1000);
+        setupPanel.add(new JLabel("Monedas de 500"));
+        setupPanel.add(compradorMonedas500);
+        setupPanel.add(new JLabel("Monedas de 100"));
+        setupPanel.add(compradorMonedas100);
+
 
 
         int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
