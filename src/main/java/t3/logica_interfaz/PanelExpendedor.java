@@ -5,6 +5,11 @@ import java.awt.*;
 
 import t3.logica_expendedor.*;
 
+/**
+ * La subclase PanelExpendedor es una extensión de JPanel que representa la interfaz gráfica
+ * de la máquina expendedora
+ * @author
+ */
 public class PanelExpendedor extends JPanel {
     private Precios_Productos producto = null;
     private Precios_Productos pComprado = null;
@@ -14,6 +19,12 @@ public class PanelExpendedor extends JPanel {
     private PanelComprador panelComprador;
     private final BotonProducto botonProducto;
     private final BotonVuelto botonVuelto;
+
+    /**
+     * Estye es el constructor para inicializar el panel de la maquina expendedora
+     * @param expendedor este es el panel de la maquina expendedora
+     * @param comprador este es el usuario
+     */
 
     public PanelExpendedor(Expendedor expendedor, Comprador comprador) {
         super();
@@ -75,7 +86,15 @@ public class PanelExpendedor extends JPanel {
         add(expendedorLabel);
     }
 
-    // Cargar y redimensionar la imagen del Producto
+    /**
+     *  Carga y redimensiona la imagen del Producto
+     * @param nombre esta es la ruta de la imagen del producto
+     * @param x esta es la cooredenada x donde se encuentra el prducto en el panel
+     * @param y esta es la cooredenada y donde se encuentra el prducto en el panel
+     * @param width
+     * @param height
+     * @return
+     */
     private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
         ImageIcon originalIcon = new ImageIcon(nombre);
         Image originalIconImage = originalIcon.getImage();
