@@ -1,14 +1,16 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Precios_Productos;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Letrero extends JLabel {
-    private final PanelExpendedor expendedor;
+    private final PanelExpendedor panelExpendedor;
 
     public Letrero(PanelExpendedor pExp, int x, int y, int width, int height) {
         super();
-        this.expendedor = pExp;
+        this.panelExpendedor = pExp;
         this.setBounds(x,y,width,height);
         this.setBackground(new Color(0x000000));
         this.setOpaque(true);
@@ -22,10 +24,18 @@ public class Letrero extends JLabel {
     }
 
     public void ImprimirPrecio(){
-        this.setText("Precio: $" + String.valueOf(expendedor.getProducto().getPrecio()));
+        String producto = null;
+        switch (panelExpendedor.getProducto()){
+            case Precios_Productos.COCACOLA -> producto = "Cocacola";
+            case Precios_Productos.SPRITE -> producto = "Sprites";
+            case Precios_Productos.FANTA -> producto = "Fanta";
+            case Precios_Productos.SNICKERS -> producto = "Snickers";
+            case Precios_Productos.SUPER8 -> producto = "Super8";
+        }
+        this.setText("<html>Precio de "+ producto +":<br>$" + panelExpendedor.getProducto().getPrecio() + "</html>");
     }
 
-    public void ImprimirMonedas(){      //Falta implementar
-        this.setText("Monedas: $" + String.valueOf(expendedor.getExpendedor().valorTotalIngresado()));
+    public void ImprimirMonedas(){
+        this.setText("<html>Monedas:<br>$" + panelExpendedor.getExpendedor().valorTotalIngresado() + "</html>");
     }
 }

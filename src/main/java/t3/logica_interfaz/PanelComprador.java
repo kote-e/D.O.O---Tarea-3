@@ -8,7 +8,8 @@ import java.awt.*;
 
 public class PanelComprador extends JPanel {
 
-    public PanelComprador(Comprador comprador) {
+    public PanelComprador(PanelExpendedor panelExpendedor) {
+        Comprador comprador = panelExpendedor.getComprador();
 
         JLabel productoUsuarioTitulo = new JLabel("Productos del Usuario");
         productoUsuarioTitulo.setFont(new Font("Monospaced", Font.PLAIN, 18));
@@ -69,10 +70,10 @@ public class PanelComprador extends JPanel {
         lblMonedaSeleccionada.setFont(new Font("Monospaced", Font.PLAIN, 10));
         lblMonedaSeleccionada.setForeground(new Color(0x555555));
 
-        JButton btnMoneda1500 = new MonedaButton(1500,20, 35, comprador,lblMonedaSeleccionada, moneda1500CantLabel);
-        JButton btnMoneda1000 = new MonedaButton(1000, 110, 35, comprador,lblMonedaSeleccionada, moneda1000CantLabel);
-        JButton btnMoneda500 = new MonedaButton(500,20, 85, comprador, lblMonedaSeleccionada, moneda500CantLabel);
-        JButton btnMoneda100 = new MonedaButton(100,110, 85, comprador, lblMonedaSeleccionada, moneda100CantLabel);
+        JButton btnMoneda1500 = new MonedaButton(panelExpendedor,1500,20, 35,lblMonedaSeleccionada, moneda1500CantLabel);
+        JButton btnMoneda1000 = new MonedaButton(panelExpendedor,1000, 110, 35,lblMonedaSeleccionada, moneda1000CantLabel);
+        JButton btnMoneda500 = new MonedaButton(panelExpendedor,500,20, 85,lblMonedaSeleccionada, moneda500CantLabel);
+        JButton btnMoneda100 = new MonedaButton(panelExpendedor,100,110, 85,lblMonedaSeleccionada, moneda100CantLabel);
 
 
         JLabel selecMonedaTitulo = new JLabel("Elegir Moneda");

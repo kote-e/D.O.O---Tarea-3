@@ -145,7 +145,7 @@ public class Expendedor {
      */
     public void addMonedaEntrada(Moneda moneda){
         monEn.add(moneda);
-        valorIngresado =+ moneda.getValor();
+        this.valorIngresado += moneda.getValor();
     }
 
     /**
