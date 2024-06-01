@@ -5,6 +5,7 @@ import t3.logica_expendedor.Dulces.*;
 import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Excepciones.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -168,5 +169,16 @@ public class Expendedor {
      * @return producto obtenido
      */
 
-    public Producto getProducto(){return deposito;}
+    public Producto getProducto(){
+        Producto producto = null;
+        if (deposito != null) {
+            producto = deposito;
+            deposito = null;
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No hay mas productos para sacar");
+        }
+        return producto;
+    }
 }
