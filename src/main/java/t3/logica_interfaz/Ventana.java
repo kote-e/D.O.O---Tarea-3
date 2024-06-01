@@ -12,13 +12,8 @@ import java.awt.*;
 
 
 public class Ventana extends JFrame {
-    public Ventana(){
-        Comprador comprador;
-        Expendedor expendedor;
+    public Ventana(Expendedor expendedor, Comprador comprador){
         try{
-            expendedor = new Expendedor(3);
-            comprador = new Comprador(expendedor);
-
             JPanel panelComprador = new PanelComprador(comprador);
             JPanel panelExpendedor = new PanelExpendedor(expendedor, comprador);
 
