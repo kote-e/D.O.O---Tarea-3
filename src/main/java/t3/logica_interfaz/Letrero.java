@@ -38,4 +38,16 @@ public class Letrero extends JLabel {
     public void ImprimirMonedas(){
         this.setText("<html>Monedas:<br>$" + panelExpendedor.getExpendedor().valorTotalIngresado() + "</html>");
     }
+
+    public void ImprimirCompra(){
+        String producto = null;
+        switch (panelExpendedor.getComprado()){
+            case Precios_Productos.COCACOLA -> producto = "Cocacola";
+            case Precios_Productos.SPRITE -> producto = "Sprites";
+            case Precios_Productos.FANTA -> producto = "Fanta";
+            case Precios_Productos.SNICKERS -> producto = "Snickers";
+            case Precios_Productos.SUPER8 -> producto = "Super8";
+        }
+        this.setText("<html>" + producto + "<br>Comprado con exito</html>");
+    }
 }
