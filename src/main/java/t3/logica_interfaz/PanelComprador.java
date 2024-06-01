@@ -6,6 +6,11 @@ import t3.logica_expendedor.Precios_Productos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La clase PanelCompradores un JPanel personalizado que muestra los productos y
+ * monedas del comprador
+ * @author
+ */
 public class PanelComprador extends JPanel {
     private ProductosUsuarioLabel productoUsuarioCoca;
     private ProductosUsuarioLabel productoUsuarioSprite;
@@ -18,14 +23,19 @@ public class PanelComprador extends JPanel {
     private CantidadMonedasLabel moneda500CantLabel;
     private CantidadMonedasLabel moneda100CantLabel;
 
+    /**
+     * es un constructor para inicializar el panel del comprador
+     * @param panelExpendedor Es el panel del expendedor al que pertenece
+     */
     public PanelComprador(PanelExpendedor panelExpendedor) {
         Comprador comprador = panelExpendedor.getComprador();
 
+        // Configuración de título para los productos del usuario
         JLabel productoUsuarioTitulo = new JLabel("Productos del Usuario");
         productoUsuarioTitulo.setFont(new Font("Monospaced", Font.PLAIN, 18));
         productoUsuarioTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         productoUsuarioTitulo.setBounds(0, 0, 350, 40);
-
+        // Inicializa las etiquetas de productos del usuario
         productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40, comprador);
         productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66, comprador);
         productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92, comprador);
@@ -37,9 +47,7 @@ public class PanelComprador extends JPanel {
         panelProductoUsuario.setLayout(null);
         panelProductoUsuario.setBounds(20, 95, 350, 175);
 
-
-
-        // Seccion donde se muestra las cantidades de monedas del comprador
+        // Configuración donde se muestra las cantidades de monedas del comprador
         int posX = 20;
         int posY = 40;
         int offset = 35;
