@@ -29,7 +29,7 @@ public class BotonVuelto extends JLabel implements MouseListener {
             pComprador.getCantMonedasLabel(moneda.getValor()).setCantidad(pExpendedor.getComprador().cantidadMonedas(moneda.getValor()));
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No hay monedas dentro");
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 

@@ -6,7 +6,6 @@ import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Excepciones.*;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 /**
  * Clase que representa a un expendedor de Bebidas y Dulces
@@ -56,19 +55,24 @@ public class Expendedor {
      * @param cualProducto tipo del producto
      * @throws PagoIncorrectoException   si no se ingres monedas
      * @throws PagoInsuficienteException si el dinero ingresado es menor al precio del producto
-     * @throws NoHayProductoException    si no hay producto disponible
+     * @throws NoHayProductoDepositoExpendedorException    si no hay producto disponible
+     * @throws ProductoNoSeleccionado    si no se ha seleccionado ningun producto para comprar
      */
-    public void comprarProducto(Precios_Productos cualProducto) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
+    public void comprarProducto(Precios_Productos cualProducto) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoDepositoExpendedorException, ProductoNoSeleccionado {   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
         Producto producto = null; //Se crea un puntero auxiliar de tipo Bebida nulo
 
+        if(cualProducto == null){
+            throw new ProductoNoSeleccionado();
+        }
+
         if (monEn.size() == 0) {
-            throw new PagoIncorrectoException("No se ingreso moneda.");
+            throw new PagoIncorrectoException();
         }  //Si no se ingreso una moneda se sale de la funcion
 
         if (valorIngresado < cualProducto.getPrecio()) {                         //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
             sacarMonedasEntradaASalida();
             //Se elimina al producto que se saco del deposito del puntero que la referenciaba
-            throw new PagoInsuficienteException("El valor ingresado es menor al precio del producto.");
+            throw new PagoInsuficienteException();
         }
 
         switch (cualProducto) {   //Switch que permite retirar un producto del deposito correspondiente
@@ -93,7 +97,7 @@ public class Expendedor {
 
         if (producto == null) {
             sacarMonedasEntradaASalida();
-            throw new NoHayProductoException("No hay producto.");
+            throw new NoHayProductoDepositoExpendedorException();
         }
 
         if (valorIngresado > cualProducto.getPrecio()) {                //Si el valor de la moneda ingresada es mayor al precio del producto comprado
@@ -115,7 +119,12 @@ public class Expendedor {
      *Devuelve una moneda del depósito
      * @return Moneda del depósito
      */
-    public Moneda getVuelto() {return monVu.get();}
+    public Moneda getVuelto() throws NoHayMonedasDepositoVuelto{
+        if(monVu.size() == 0){
+            throw new NoHayMonedasDepositoVuelto();
+        }
+        return monVu.get();
+    }
 
     /**
      * Funcion que retorna el precio de los productos
@@ -169,16 +178,14 @@ public class Expendedor {
      * @return producto obtenido
      */
 
-    public Producto getProducto(){
+    public Producto getProducto() throws NoHayProductoDepositoSalida{
         Producto producto = null;
-        if (deposito != null) {
-            producto = deposito;
-            deposito = null;
+        if (deposito == null) {
+            throw new NoHayProductoDepositoSalida();
+        }
+        producto = deposito;
+        deposito = null;
 
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"No hay mas productos para sacar");
-        }
         return producto;
     }
 }

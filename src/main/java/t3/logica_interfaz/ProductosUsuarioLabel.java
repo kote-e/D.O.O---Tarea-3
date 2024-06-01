@@ -1,6 +1,7 @@
 package t3.logica_interfaz;
 
 import t3.logica_expendedor.Comprador;
+import t3.logica_expendedor.Excepciones.NoHayProductoComprador;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
@@ -77,9 +78,8 @@ public class ProductosUsuarioLabel extends JLabel {
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
             }
             else {
-                System.out.println("No hay producto");
-                JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
-                // implementar excepcion customizada
+                NoHayProductoComprador exp = new NoHayProductoComprador(strProducto);
+                JOptionPane.showMessageDialog(null, exp.getMessage());
             }
 
             switch (producto) {

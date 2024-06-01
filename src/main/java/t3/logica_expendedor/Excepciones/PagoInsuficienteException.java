@@ -7,11 +7,9 @@ package t3.logica_expendedor.Excepciones;
 
 public class PagoInsuficienteException extends Exception{
     /**
-     * Se le asigna un mensaje a la excepción que luego se mostrara en la terminal
-     * por el canal de error
-     * @param message mensaje que se mostrara
+     * Se le asigna un mensaje a la excepción que luego se mostrara
      */
-    public PagoInsuficienteException (String message){
-        super(message);
+    public PagoInsuficienteException (){
+        super("El valor ingresado es menor al precio del producto.");
     }
 }

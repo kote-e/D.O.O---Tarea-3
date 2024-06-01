@@ -28,12 +28,13 @@ public class BotonProducto extends JLabel implements MouseListener {
         try{
             pExp.getComprador().addProducto(pExp.getExpendedor().getProducto());
             panelComprador.getProductosUsuarioLabel(pExp.getComprado()).setCantidad(pExp.getComprador().cantidadProducto(pExp.getComprado()));
+
             labelProducto.setVisible(false);
             this.remove(labelProducto);
             labelProducto = null;
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null,"No hay ningun producto");
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 }
 

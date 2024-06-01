@@ -1,5 +1,6 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Excepciones.NoHayMonedasComprador;
 import t3.logica_expendedor.Monedas.Moneda100;
 import t3.logica_interfaz.Ventana;
 import t3.logica_expendedor.*;
@@ -82,12 +83,10 @@ public class MonedaButton extends JButton{
                 selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
                 pExpendedor.getLetrero().ImprimirMonedas();
             } else {
-                System.out.println("No hay moneda");
                 selecMonedaLabel.setText("XXXXX");
-                JOptionPane.showMessageDialog(null, "No tienes moneda de " + String.valueOf(value));
+                NoHayMonedasComprador exc = new NoHayMonedasComprador(String.valueOf(value));
+                JOptionPane.showMessageDialog(null, exc.getMessage());
             }
-
-
         }
     }
 
