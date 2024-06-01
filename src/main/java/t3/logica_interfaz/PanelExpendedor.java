@@ -56,11 +56,11 @@ public class PanelExpendedor extends JPanel {
         add(new BotonResetMoney(this,500,235,40,40));
 
         //Se agrega el boton para sacar el vuelto
-        botonVuelto = new BotonVuelto(this,431,477,166,81);
+        botonVuelto = new BotonVuelto(this,431,477,166,82);
         add(botonVuelto);
 
         //Se agrega el boton para sacar al producto
-        botonProducto = new BotonProducto(this,panelComprador,93,477,304,81);
+        botonProducto = new BotonProducto(this,panelComprador,93,477,306,82);
         add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor

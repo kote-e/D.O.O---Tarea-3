@@ -3,6 +3,7 @@ package t3.logica_interfaz;
 import t3.logica_expendedor.Monedas.Moneda;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,7 +15,8 @@ public class BotonVuelto extends JLabel implements MouseListener {
     public BotonVuelto(PanelExpendedor pExp, int x, int y, int width, int height) {
         this.pExpendedor = pExp;
         this.setBounds(x,y,width,height);
-        this.setOpaque(false);
+        this.setBackground(new Color(0x000000));
+        this.setOpaque(true);
         this.addMouseListener(this);
     }
 
@@ -27,15 +29,21 @@ public class BotonVuelto extends JLabel implements MouseListener {
             pComprador.getCantMonedasLabel(moneda.getValor()).setCantidad(pExpendedor.getComprador().cantidadMonedas(moneda.getValor()));
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No quedan mas monedas");
+            JOptionPane.showMessageDialog(null, "No hay monedas dentro");
         }
     }
 
     public void mouseReleased(MouseEvent me) {;}
 
-    public void mouseEntered(MouseEvent me) {;}
+    public void mouseEntered(MouseEvent me) {
+        BotonVuelto lbl = (BotonVuelto) me.getComponent();
+        lbl.setBackground(new Color(0x672222));
+    }
 
-    public void mouseExited(MouseEvent me) {;}
+    public void mouseExited(MouseEvent me) {
+        BotonVuelto lbl = (BotonVuelto) me.getComponent();
+        lbl.setBackground(new Color(0x000000));
+    }
 
     public void setpComprador(PanelComprador pComprador) {this.pComprador = pComprador;}
 }
