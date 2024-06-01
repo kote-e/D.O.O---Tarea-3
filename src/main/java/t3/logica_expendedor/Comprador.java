@@ -6,11 +6,8 @@ import t3.logica_expendedor.Bebidas.Sprite;
 import t3.logica_expendedor.Dulces.Snickers;
 import t3.logica_expendedor.Dulces.Super8;
 import t3.logica_expendedor.Monedas.*;
-import t3.logica_expendedor.Producto;
 import t3.logica_expendedor.Excepciones.*;
-import t3.logica_expendedor.Precios_Productos;
-
-import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  * clase que representa al comprador
@@ -161,7 +158,7 @@ public class Comprador{
             case SUPER8 -> producto = super8Deposito.get();
         }
         if(producto != null){
-            System.out.println(producto.consumir());
+            JOptionPane.showMessageDialog(null,producto.consumir());
         }
         else{System.out.println("No existe producto para consumir");}
     }
