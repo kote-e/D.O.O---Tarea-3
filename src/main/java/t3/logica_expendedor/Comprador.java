@@ -148,18 +148,37 @@ public class Comprador{
         };
     }
 
-    public void consumirProducto(Precios_Productos tipo_producto){
+    public void consumirProducto(Precios_Productos tipo_producto) throws NoHayProductoComprador{
         Producto producto = null;
+        String nombre = null;
+
         switch (tipo_producto) {
-            case COCACOLA -> producto  = cocaColaDeposito.get();
-            case SPRITE -> producto = spriteDeposito.get();
-            case FANTA -> producto = fantaDeposito.get();
-            case SNICKERS -> producto = snickersDeposito.get();
-            case SUPER8 -> producto = super8Deposito.get();
+            case COCACOLA:
+                producto  = cocaColaDeposito.get();
+                nombre = "CocaCola";
+                break;
+            case SPRITE :
+                producto = spriteDeposito.get();
+                nombre = "Sprite";
+                break;
+            case FANTA:
+                producto = fantaDeposito.get();
+                nombre = "Fanta";
+                break;
+            case SNICKERS:
+                producto = snickersDeposito.get();
+                nombre = "Snickers";
+                break;
+            case SUPER8:
+                producto = super8Deposito.get();
+                nombre = "Super8";
+                break;
         }
-        if(producto != null){
-            JOptionPane.showMessageDialog(null,producto.consumir());
+
+        if(producto == null){
+            throw new NoHayProductoComprador(nombre);
         }
-        else{System.out.println("No existe producto para consumir");}
+
+        JOptionPane.showMessageDialog(null,producto.consumir());
     }
 }

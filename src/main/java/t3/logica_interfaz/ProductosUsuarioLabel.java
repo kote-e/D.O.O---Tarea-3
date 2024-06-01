@@ -12,8 +12,8 @@ import java.awt.event.MouseListener;
 public class ProductosUsuarioLabel extends JLabel {
 
     private final ProductosUsuarioLabel thisLabel;
-    private Comprador comprador;
-    private Precios_Productos producto;
+    private final Comprador comprador;
+    private final Precios_Productos producto;
     private String strProducto;
     private int cantidad = 0;
 
@@ -22,7 +22,6 @@ public class ProductosUsuarioLabel extends JLabel {
         producto = prod;
         cantidad = comp.cantidadProducto(prod);
         thisLabel = this;
-
 
         ImageIcon icon = null;
         switch(prod) {
@@ -72,25 +71,14 @@ public class ProductosUsuarioLabel extends JLabel {
         public void mouseClicked(MouseEvent e) {}
 
         @Override
-        public void mousePressed(MouseEvent e) {
-            if(comprador.cantidadProducto(producto) != 0){
+        public void mousePressed(MouseEvent e){
+            try{
                 comprador.consumirProducto(producto);
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
             }
-            else {
-                NoHayProductoComprador exp = new NoHayProductoComprador(strProducto);
+            catch (NoHayProductoComprador exp){
                 JOptionPane.showMessageDialog(null, exp.getMessage());
             }
-
-            switch (producto) {
-                case Precios_Productos.COCACOLA -> strProducto = "Cocacola";
-                case Precios_Productos.FANTA -> strProducto = "Fanta   ";
-                case Precios_Productos.SPRITE -> strProducto = "Sprite   ";
-                case Precios_Productos.SUPER8 -> strProducto = "Super8   ";
-                case Precios_Productos.SNICKERS -> strProducto = "Snickers";
-            }
-
-
         }
 
         @Override
