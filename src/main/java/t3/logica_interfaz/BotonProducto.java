@@ -1,6 +1,7 @@
 package t3.logica_interfaz;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -29,7 +30,8 @@ public class BotonProducto extends JLabel implements MouseListener {
         this.pExp = pExp;
         this.panelComprador = panelComprador;
         this.setBounds(x,y,width,height);
-        this.setOpaque(false);
+        this.setBackground(new Color(0x000000));
+        this.setOpaque(true);
         this.addMouseListener(this);
     }
 
@@ -46,9 +48,14 @@ public class BotonProducto extends JLabel implements MouseListener {
      * @param me este es el evento del mouse
      */
     public void mousePressed(MouseEvent me) {
-        pExp.getComprador().addProducto(pExp.getExpendedor().getProducto());
-        panelComprador.getProductosUsuarioLabel(pExp.getComprado()).setCantidad(pExp.getComprador().cantidadProducto(pExp.getComprado()));
-    }
+        try{
+            pExp.getComprador().addProducto(pExp.getExpendedor().getProducto());
+            panelComprador.getProductosUsuarioLabel(pExp.getComprado()).setCantidad(pExp.getComprador().cantidadProducto(pExp.getComprado()));
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"No hay ningun producto");
+        }
+}
 
     /**
      * este metodo es cuando se deja de hacer clic en el mouse
@@ -56,6 +63,7 @@ public class BotonProducto extends JLabel implements MouseListener {
      */
     public void mouseReleased(MouseEvent me) {;}
 
+<<<<<<< HEAD
     /**
      *esto se utiluza cuando el mouse esta dentro del area del botón
      * @param me este es el evento del mouse
@@ -67,6 +75,17 @@ public class BotonProducto extends JLabel implements MouseListener {
      * @param me es el evento del mouse
      */
     public void mouseExited(MouseEvent me) {;}
+=======
+    public void mouseEntered(MouseEvent me) {
+        BotonProducto lbl = (BotonProducto) me.getComponent();
+        lbl.setBackground(new Color(0x672222));
+    }
+
+    public void mouseExited(MouseEvent me) {
+        BotonProducto lbl = (BotonProducto) me.getComponent();
+        lbl.setBackground(new Color(0x000000));
+    }
+>>>>>>> 08a9a7e9dc018be0d4641d92cd44cbe7af7de6ba
 
     public void setPanelComprador(PanelComprador panelComprador) {this.panelComprador = panelComprador;}
 }

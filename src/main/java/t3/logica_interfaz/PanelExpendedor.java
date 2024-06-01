@@ -13,6 +13,7 @@ public class PanelExpendedor extends JPanel {
     private final Letrero letrero;
     private PanelComprador panelComprador;
     private final BotonProducto botonProducto;
+    private final BotonVuelto botonVuelto;
 
     public PanelExpendedor(Expendedor expendedor, Comprador comprador) {
         super();
@@ -55,10 +56,11 @@ public class PanelExpendedor extends JPanel {
         add(new BotonResetMoney(this,500,235,40,40));
 
         //Se agrega el boton para sacar el vuelto
-        add(new BotonVuelto(this,431,477,166,81));
+        botonVuelto = new BotonVuelto(this,431,477,166,82);
+        add(botonVuelto);
 
         //Se agrega el boton para sacar al producto
-        botonProducto = new BotonProducto(this,panelComprador,93,477,304,81);
+        botonProducto = new BotonProducto(this,panelComprador,93,477,306,82);
         add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
@@ -107,6 +109,7 @@ public class PanelExpendedor extends JPanel {
     public void setPanelComprador(PanelComprador panelComprador) {
         this.panelComprador = panelComprador;
         botonProducto.setPanelComprador(panelComprador);
+        botonVuelto.setpComprador(panelComprador);
     }
 
     public void setComprado(Precios_Productos producto){this.pComprado = producto;}

@@ -28,30 +28,33 @@ public class CantidadMonedasLabel extends JLabel {
         comprador = comp;
         cantidad = comprador.cantidadMonedas(val);
 
+<<<<<<< HEAD
         /** Selecciona el ícono correspondiente al valor de la moneda */
+=======
+>>>>>>> 08a9a7e9dc018be0d4641d92cd44cbe7af7de6ba
         ImageIcon icon = null;
         switch(val) {
-            case 100:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
-                break;
-            case 500:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
-                break;
-            case 1000:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
-                break;
-            case 1500:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-                break;
+            case 100 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
 
+            case 500 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
+
+            case 1000 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
+
+            case 1500 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
         }
 
+<<<<<<< HEAD
         /** Escala la imagen del ícono */
+=======
+>>>>>>> 08a9a7e9dc018be0d4641d92cd44cbe7af7de6ba
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
         icon = new ImageIcon(scaledImg);
 
+<<<<<<< HEAD
         /** Establece el texto y el ícono de la etiqueta */
+=======
+>>>>>>> 08a9a7e9dc018be0d4641d92cd44cbe7af7de6ba
         if(val >= 1000){strVal = String.valueOf(val);}
         else{strVal = String.valueOf(val) + " ";}
 
@@ -64,9 +67,6 @@ public class CantidadMonedasLabel extends JLabel {
         this.setBounds(posX, posY, 310, 30);
         this.setBackground(new Color(0xF4EAFF));
         this.setOpaque(true);
-
-
-
     }
 
 

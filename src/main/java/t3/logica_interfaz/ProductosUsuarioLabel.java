@@ -68,50 +68,33 @@ public class ProductosUsuarioLabel extends JLabel {
     private class EscucharMouse implements MouseListener {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {}
 
+        @Override
+        public void mousePressed(MouseEvent e) {
             if(comprador.cantidadProducto(producto) != 0){
                 comprador.consumirProducto(producto);
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
-
-            } else {
+            }
+            else {
                 System.out.println("No hay producto");
                 JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
                 // implementar excepcion customizada
             }
 
-
             switch (producto) {
-                case Precios_Productos.COCACOLA:
-
-                    strProducto = "Cocacola";
-                    break;
-                case Precios_Productos.FANTA:
-                    strProducto = "Fanta   ";
-                    break;
-                case Precios_Productos.SPRITE:
-                    strProducto = "Sprite   ";
-                    break;
-                case Precios_Productos.SUPER8:
-                    strProducto = "Super8   ";
-                    break;
-                case Precios_Productos.SNICKERS:
-                    strProducto = "Snickers";
-                    break;
+                case Precios_Productos.COCACOLA -> strProducto = "Cocacola";
+                case Precios_Productos.FANTA -> strProducto = "Fanta   ";
+                case Precios_Productos.SPRITE -> strProducto = "Sprite   ";
+                case Precios_Productos.SUPER8 -> strProducto = "Super8   ";
+                case Precios_Productos.SNICKERS -> strProducto = "Snickers";
             }
 
-            System.out.println("clicked on producto: " + strProducto);
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
 
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
+        public void mouseReleased(MouseEvent e) {}
 
         @Override
         public void mouseEntered(MouseEvent e) {

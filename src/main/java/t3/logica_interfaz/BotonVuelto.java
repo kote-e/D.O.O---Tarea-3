@@ -1,6 +1,9 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Monedas.Moneda;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,6 +14,7 @@ import java.awt.event.MouseListener;
  */
 public class BotonVuelto extends JLabel implements MouseListener {
     private final PanelExpendedor pExpendedor;
+    private PanelComprador pComprador;
 
     /**
      * Este es el constructor para iniciar el boton del vuelto
@@ -24,7 +28,8 @@ public class BotonVuelto extends JLabel implements MouseListener {
     public BotonVuelto(PanelExpendedor pExp, int x, int y, int width, int height) {
         this.pExpendedor = pExp;
         this.setBounds(x,y,width,height);
-        this.setOpaque(false);
+        this.setBackground(new Color(0x000000));
+        this.setOpaque(true);
         this.addMouseListener(this);
     }
 
@@ -41,7 +46,14 @@ public class BotonVuelto extends JLabel implements MouseListener {
      * @param me este es el evento del mouse
      */
     public void mousePressed(MouseEvent me) {
-        pExpendedor.getComprador().addMonedas(pExpendedor.getExpendedor().getVuelto());
+        try {
+            Moneda moneda = pExpendedor.getExpendedor().getVuelto();
+            pExpendedor.getComprador().addMonedas(moneda);
+            pComprador.getCantMonedasLabel(moneda.getValor()).setCantidad(pExpendedor.getComprador().cantidadMonedas(moneda.getValor()));
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No hay monedas dentro");
+        }
     }
 
     /**
@@ -49,6 +61,7 @@ public class BotonVuelto extends JLabel implements MouseListener {
      * @param me este es el evento del mouse
      */
     public void mouseReleased(MouseEvent me) {;}
+<<<<<<< HEAD
     /**
      * Cambia el color del botón cuando el mouse interactua con este
      * @param me este es el evento del mouse
@@ -59,5 +72,18 @@ public class BotonVuelto extends JLabel implements MouseListener {
      * @param me este es el evento del mouse
      */
     public void mouseExited(MouseEvent me) {;}
+=======
 
+    public void mouseEntered(MouseEvent me) {
+        BotonVuelto lbl = (BotonVuelto) me.getComponent();
+        lbl.setBackground(new Color(0x672222));
+    }
+
+    public void mouseExited(MouseEvent me) {
+        BotonVuelto lbl = (BotonVuelto) me.getComponent();
+        lbl.setBackground(new Color(0x000000));
+    }
+>>>>>>> 08a9a7e9dc018be0d4641d92cd44cbe7af7de6ba
+
+    public void setpComprador(PanelComprador pComprador) {this.pComprador = pComprador;}
 }

@@ -13,6 +13,11 @@ public class PanelComprador extends JPanel {
     private ProductosUsuarioLabel productoUsuarioSuper8;
     private ProductosUsuarioLabel productoUsuarioSnickers;
 
+    private CantidadMonedasLabel moneda1500CantLabel;
+    private CantidadMonedasLabel moneda1000CantLabel;
+    private CantidadMonedasLabel moneda500CantLabel;
+    private CantidadMonedasLabel moneda100CantLabel;
+
     public PanelComprador(PanelExpendedor panelExpendedor) {
         Comprador comprador = panelExpendedor.getComprador();
 
@@ -39,10 +44,10 @@ public class PanelComprador extends JPanel {
         int posY = 40;
         int offset = 35;
 
-        JLabel moneda1500CantLabel = new CantidadMonedasLabel(1500, posX, posY, comprador);
-        JLabel moneda1000CantLabel = new CantidadMonedasLabel(1000, posX, posY + offset, comprador);
-        JLabel moneda500CantLabel = new CantidadMonedasLabel(500, posX, posY + offset*2, comprador);
-        JLabel moneda100CantLabel = new CantidadMonedasLabel(100, posX , posY + offset*3, comprador);
+        moneda1500CantLabel = new CantidadMonedasLabel(1500, posX, posY, comprador);
+        moneda1000CantLabel = new CantidadMonedasLabel(1000, posX, posY + offset, comprador);
+        moneda500CantLabel = new CantidadMonedasLabel(500, posX, posY + offset*2, comprador);
+        moneda100CantLabel = new CantidadMonedasLabel(100, posX , posY + offset*3, comprador);
 
         // titulo de la seccion donde se muestra la cantidad de monedas
         JLabel cantMonedasTitulo = new JLabel("Cantidad de Monedas");
@@ -150,6 +155,16 @@ public class PanelComprador extends JPanel {
             case Precios_Productos.FANTA -> productoUsuarioFanta;
             case Precios_Productos.SNICKERS -> productoUsuarioSnickers;
             case Precios_Productos.SUPER8 -> productoUsuarioSuper8;
+        };
+    }
+
+    public CantidadMonedasLabel getCantMonedasLabel(int valor) {
+        return switch (valor) {
+            case 100 -> moneda100CantLabel;
+            case 500 -> moneda500CantLabel;
+            case 1000 -> moneda1000CantLabel;
+            case 1500 -> moneda1500CantLabel;
+            default -> null;
         };
     }
 }
