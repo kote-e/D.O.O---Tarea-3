@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * La clase LlenarMonedas es una extencion de JFrame es una ventana que permite al
+ * usuario seleccionar la cantidad de monedas de diferentes valores
+ */
 public class LlenarMonedas extends JFrame {
     private Comprador comprador;
     private int cant100 = 1;
@@ -17,6 +21,10 @@ public class LlenarMonedas extends JFrame {
     private int cant1000 = 1;
     private int cant1500 = 1;
 
+    /**
+     * Constructor que inicializa la ventana de LlenarMonedas con un comprado
+     * @param comprador este es el usuario
+     */
     public LlenarMonedas(Comprador comprador) {
         super("Monedas");
 
@@ -38,6 +46,15 @@ public class LlenarMonedas extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     *
+     * @param valor este es el valor de la moneda
+     * @param x esta es la cooredenada x donde se encuentra del panel
+     * @param y esta es la cooredenada y donde se encuentra del panel
+     * @param width este es el ancho del panel
+     * @param height este es el alto del panel
+     * @return un panel con el deslizador y la etiqueta
+     */
     private JPanel createSlider(int valor,int x, int y, int width, int height) {
         JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
         slider.setMajorTickSpacing(1);
@@ -77,6 +94,11 @@ public class LlenarMonedas extends JFrame {
         return panel;
     }
 
+    /**
+     * Crea un botón con el texto especificado y lo agrega a la ventana
+     * @param text este es el texto del botón
+     * @return JButton configurado
+     */
     private JButton createButton(String text) {
         JButton boton = new JButton(text);
         boton.setBounds(150, 400, 200, 50);
@@ -100,6 +122,9 @@ public class LlenarMonedas extends JFrame {
         return boton;
     }
 
+    /**
+     * Método para agregar las monedas seleccionadas al comprador
+     */
     private void agregarMonedasComprador(){
         for(int i=0;i<cant100;i++){
             comprador.addMonedas(new Moneda100());
