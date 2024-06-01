@@ -115,4 +115,6 @@ public class PanelExpendedor extends JPanel {
     public void setComprado(Precios_Productos producto){this.pComprado = producto;}
 
     public Precios_Productos getComprado(){return this.pComprado;}
+
+    public BotonProducto getBotonProducto(){return botonProducto;}
 }
