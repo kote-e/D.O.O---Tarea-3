@@ -151,25 +151,19 @@ public class Comprador{
         };
     }
 
-    public Producto consumirProducto(Precios_Productos tipo_producto){
+    public void consumirProducto(Precios_Productos tipo_producto){
         Producto producto = null;
         switch (tipo_producto) {
-            case COCACOLA:
-                producto  = cocaColaDeposito.get();
-            case SPRITE:
-                producto = spriteDeposito.get();
-            case FANTA:
-                producto = fantaDeposito.get();
-            case SNICKERS:
-                producto = snickersDeposito.get();
-            case SUPER8:
-                producto = super8Deposito.get();
+            case COCACOLA -> producto  = cocaColaDeposito.get();
+            case SPRITE -> producto = spriteDeposito.get();
+            case FANTA -> producto = fantaDeposito.get();
+            case SNICKERS -> producto = snickersDeposito.get();
+            case SUPER8 -> producto = super8Deposito.get();
         }
         if(producto != null){
             System.out.println(producto.consumir());
         }
         else{System.out.println("No existe producto para consumir");}
-        return producto;
     }
 
     /**
