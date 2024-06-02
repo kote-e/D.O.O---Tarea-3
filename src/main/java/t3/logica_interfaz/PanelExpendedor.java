@@ -137,7 +137,10 @@ public class PanelExpendedor extends JPanel {
 
     public Precios_Productos getProducto(){return this.producto;}
 
-
+    /**
+     * Obtiene el expendedor asociado
+     * @return
+     */
     public Expendedor getExpendedor(){return this.expendedor;}
 
     public Comprador getComprador(){return this.comprador;}
