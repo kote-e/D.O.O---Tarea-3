@@ -1,6 +1,5 @@
 package t3.logica_interfaz;
 
-import t3.logica_expendedor.Excepciones.NoHayProductoException;
 import t3.logica_expendedor.Expendedor;
 import t3.logica_expendedor.Precios_Productos;
 
@@ -39,15 +38,11 @@ public class BotonCompra extends JLabel implements MouseListener{
             pExp.setComprado(pExp.getProducto());
 
             pExp.getLetrero().cambiarTextoLetrero(producto);
+            pExp.getLetrero().ImprimirCompra();
+            pExp.getBotonProducto().impresionProducto();
         }
         catch(Exception e){
-
-            if(e instanceof NoHayProductoException){
-                JOptionPane.showMessageDialog(null, "No hay producto");
-            }else {
-                JOptionPane.showMessageDialog(null,e.getMessage());
-            }
-
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
         finally {
             pExp.setProducto(null);

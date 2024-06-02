@@ -6,11 +6,9 @@ package t3.logica_expendedor.Excepciones;
  */
 public class PagoIncorrectoException extends Exception{
     /**
-     * Se le asigna un mensaje a la excepción que luego se mostrara en la terminal
-     * por el canal de error
-     * @param message mensaje que se mostrara
+     * Se le asigna un mensaje a la excepción que luego se mostrara
      */
-    public PagoIncorrectoException (String message){
-        super(message);
+    public PagoIncorrectoException (){
+        super("No se ingreso moneda");
     }
 }

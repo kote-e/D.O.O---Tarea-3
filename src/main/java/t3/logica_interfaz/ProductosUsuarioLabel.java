@@ -1,6 +1,7 @@
 package t3.logica_interfaz;
 
 import t3.logica_expendedor.Comprador;
+import t3.logica_expendedor.Excepciones.NoHayProductoComprador;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
@@ -11,8 +12,8 @@ import java.awt.event.MouseListener;
 public class ProductosUsuarioLabel extends JLabel {
 
     private final ProductosUsuarioLabel thisLabel;
-    private Comprador comprador;
-    private Precios_Productos producto;
+    private final Comprador comprador;
+    private final Precios_Productos producto;
     private String strProducto;
     private int cantidad = 0;
 
@@ -20,7 +21,6 @@ public class ProductosUsuarioLabel extends JLabel {
         comprador = comp;
         producto = prod;
         thisLabel = this;
-
 
         ImageIcon icon = null;
         switch(prod) {
@@ -50,6 +50,7 @@ public class ProductosUsuarioLabel extends JLabel {
         icon = new ImageIcon(scaledImgIcon);
 
 
+
         this.setText(strProducto + "       cantidad: " + cantidad);
         this.setFont(new Font("monospaced", Font.PLAIN, 16));
         this.setHorizontalTextPosition(JLabel.RIGHT);
@@ -66,21 +67,19 @@ public class ProductosUsuarioLabel extends JLabel {
     private class EscucharMouse implements MouseListener {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
-            if(comprador.cantidadProducto(producto) != 0){
-                comprador.consumirProducto(producto);
-                thisLabel.setCantidad(comprador.cantidadProducto(producto));
-
-            } else {
-                System.out.println("No hay producto");
-                JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
-                // implementar excepcion customizada
-            }
-        }
+        public void mouseClicked(MouseEvent e) {}
 
         @Override
-        public void mousePressed(MouseEvent e) {
-
+        public void mousePressed(MouseEvent e){
+            try{
+                comprador.consumirProducto(producto);
+                thisLabel.setCantidad(comprador.cantidadProducto(producto));
+            }
+            catch (NoHayProductoComprador exp){
+                JOptionPane.showMessageDialog(null, exp.getMessage());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
 
         @Override

@@ -59,14 +59,14 @@ public class Comprador{
      * @param cualProducto El producto que se desea comprar
      * @throws PagoInsuficienteException si el pago es insuficiente
      * @throws PagoIncorrectoException si el pago es incorrecto
-     * @throws NoHayProductoException si no hay el producto que se eligio
+     * @throws NoHayProductoDepositoExpendedorException si no hay el producto que se eligio
      */
 
-    public void comprar(Precios_Productos cualProducto)throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
+    public void comprar(Precios_Productos cualProducto)throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoDepositoExpendedorException, ProductoNoSeleccionado{
         try{expendedor.comprarProducto(cualProducto);}
-        catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoException e){
-        throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
-    }
+        catch (PagoInsuficienteException | PagoIncorrectoException | NoHayProductoDepositoExpendedorException | ProductoNoSeleccionado e){
+            throw e; // Lanzar la expresion nuevamente para que sea manejada en main.
+        }
     }
 
     /**
@@ -148,35 +148,37 @@ public class Comprador{
         };
     }
 
-    public void consumirProducto(Precios_Productos tipo_producto){
+    public void consumirProducto(Precios_Productos tipo_producto) throws NoHayProductoComprador{
         Producto producto = null;
-        switch (tipo_producto) {
-            case COCACOLA -> producto  = cocaColaDeposito.get();
-            case SPRITE -> producto = spriteDeposito.get();
-            case FANTA -> producto = fantaDeposito.get();
-            case SNICKERS -> producto = snickersDeposito.get();
-            case SUPER8 -> producto = super8Deposito.get();
-        }
-        if(producto != null){
-            JOptionPane.showMessageDialog(null,producto.consumir());
-        }else{System.out.println("No existe producto para consumir");}
-    }
+        String nombre = null;
 
-    /**
-     * Extrae un producto del expendedor y lo añade al depósito del comprador
-     * @throws PagoInsuficienteException si el pago es insuficiente
-     * @throws PagoIncorrectoException si el pago es incorrecto
-     * @throws NoHayProductoException si no hay producto
-     */
-    public void sacarProducto()throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException{
-        Producto producto = null;
-        producto = expendedor.getProducto();
-        if(producto != null){
-            if(producto instanceof CocaCola){cocaColaDeposito.add((CocaCola)producto);}
-            if(producto instanceof Sprite){spriteDeposito.add((Sprite)producto);}
-            if(producto instanceof Fanta){fantaDeposito.add((Fanta)producto);}
-            if(producto instanceof Snickers){snickersDeposito.add((Snickers)producto);}
-            if(producto instanceof Super8){super8Deposito.add((Super8)producto);}
+        switch (tipo_producto) {
+            case COCACOLA:
+                producto  = cocaColaDeposito.get();
+                nombre = "CocaCola";
+                break;
+            case SPRITE :
+                producto = spriteDeposito.get();
+                nombre = "Sprite";
+                break;
+            case FANTA:
+                producto = fantaDeposito.get();
+                nombre = "Fanta";
+                break;
+            case SNICKERS:
+                producto = snickersDeposito.get();
+                nombre = "Snickers";
+                break;
+            case SUPER8:
+                producto = super8Deposito.get();
+                nombre = "Super8";
+                break;
         }
+
+        if(producto == null){
+            throw new NoHayProductoComprador(nombre);
+        }
+
+        JOptionPane.showMessageDialog(null,producto.consumir());
     }
 }

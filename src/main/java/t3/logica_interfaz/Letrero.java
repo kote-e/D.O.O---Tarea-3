@@ -67,4 +67,16 @@ public class Letrero extends JLabel {
     public void cambiarTextoLetrero(String str){
         this.setText("<html> <p  style=\"text-align: center;\">" + str + "</p></html>");
     }
+
+    public void ImprimirCompra(){
+        String producto = null;
+        switch (panelExpendedor.getComprado()){
+            case Precios_Productos.COCACOLA -> producto = "Cocacola comprada con exito!";
+            case Precios_Productos.SPRITE -> producto = "Sprite comprada con exito!";
+            case Precios_Productos.FANTA -> producto = "Fanta comprada con exito!";
+            case Precios_Productos.SNICKERS -> producto = "Snickers comprado con exito!";
+            case Precios_Productos.SUPER8 -> producto = "Super8 comprado con exito!";
+        }
+        this.setText("<html> <p  style=\"text-align: center;\">"  + producto + " </p></html>");
+    }
 }
