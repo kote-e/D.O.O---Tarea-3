@@ -91,9 +91,9 @@ public class PanelExpendedor extends JPanel {
      * @param nombre esta es la ruta de la imagen del producto
      * @param x esta es la cooredenada x donde se encuentra el prducto en el panel
      * @param y esta es la cooredenada y donde se encuentra el prducto en el panel
-     * @param width
-     * @param height
-     * @return
+     * @param width este es el ancho de la imagen del producto selecionado
+     * @param height este es el alto de la imagen del producto selecionado
+     * @return retorna la imagen redimencionada del producto
      */
     private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
         ImageIcon originalIcon = new ImageIcon(nombre);
@@ -107,6 +107,15 @@ public class PanelExpendedor extends JPanel {
         return label;
     }
 
+    /**
+     * Este metodo muestra el precio del producto
+     * @param nombre este es el tipo de producto
+     * @param x esta es la cooredenada x donde se encuentra el precio en el panel
+     * @param y esta es la cooredenada y donde se encuentra el recio en el panel
+     * @param width este es el ancho del área que muestra el precio
+     * @param height este es el alto del área que muestra el precio
+     * @return un JLabel con el precio del producto
+     */
     private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
         JLabel precio = new JLabel("$" + nombre.getPrecio());
         precio.setForeground(new Color(0x000000));
@@ -115,9 +124,19 @@ public class PanelExpendedor extends JPanel {
         return precio;
     }
 
+    /**
+     * establece el producto selecionado
+     * @param producto este es el producto
+     */
     public void setProducto(Precios_Productos producto){this.producto = producto;}
 
+    /**
+     * obtener el producto seleccionado
+     * @return este es el producto
+     */
+
     public Precios_Productos getProducto(){return this.producto;}
+
 
     public Expendedor getExpendedor(){return this.expendedor;}
 
