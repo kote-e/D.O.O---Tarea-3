@@ -19,7 +19,6 @@ public class ProductosUsuarioLabel extends JLabel {
     public ProductosUsuarioLabel(Precios_Productos prod, int posX, int posY, Comprador comp) {
         comprador = comp;
         producto = prod;
-        cantidad = comp.cantidadProducto(prod);
         thisLabel = this;
 
 
@@ -51,7 +50,6 @@ public class ProductosUsuarioLabel extends JLabel {
         icon = new ImageIcon(scaledImgIcon);
 
 
-
         this.setText(strProducto + "       cantidad: " + cantidad);
         this.setFont(new Font("monospaced", Font.PLAIN, 16));
         this.setHorizontalTextPosition(JLabel.RIGHT);
@@ -68,28 +66,20 @@ public class ProductosUsuarioLabel extends JLabel {
     private class EscucharMouse implements MouseListener {
 
         @Override
-        public void mouseClicked(MouseEvent e) {}
-
-        @Override
-        public void mousePressed(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
             if(comprador.cantidadProducto(producto) != 0){
                 comprador.consumirProducto(producto);
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
-            }
-            else {
+
+            } else {
                 System.out.println("No hay producto");
                 JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
                 // implementar excepcion customizada
             }
+        }
 
-            switch (producto) {
-                case Precios_Productos.COCACOLA -> strProducto = "Cocacola";
-                case Precios_Productos.FANTA -> strProducto = "Fanta   ";
-                case Precios_Productos.SPRITE -> strProducto = "Sprite   ";
-                case Precios_Productos.SUPER8 -> strProducto = "Super8   ";
-                case Precios_Productos.SNICKERS -> strProducto = "Snickers";
-            }
-
+        @Override
+        public void mousePressed(MouseEvent e) {
 
         }
 
@@ -111,6 +101,6 @@ public class ProductosUsuarioLabel extends JLabel {
 
     public void setCantidad(int cant){
         cantidad = cant;
-        this.setText(strProducto + "       cantidad: " + cantidad);
+        this.setText(strProducto + "       cantidad: " + String.valueOf(cantidad));
     }
 }

@@ -159,8 +159,7 @@ public class Comprador{
         }
         if(producto != null){
             JOptionPane.showMessageDialog(null,producto.consumir());
-        }
-        else{System.out.println("No existe producto para consumir");}
+        }else{System.out.println("No existe producto para consumir");}
     }
 
     /**

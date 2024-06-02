@@ -55,7 +55,6 @@ public class MonedaButton extends JButton{
         this.setFont(new Font("monospaced", Font.PLAIN, 12));
         this.setForeground(Color.black);
         this.setFocusable(true);
-        this.setToolTipText("text");
         this.setBackground(new Color(0xE0FAFA));
         this.setBorder(BorderFactory.createEtchedBorder());
 
@@ -82,7 +81,6 @@ public class MonedaButton extends JButton{
                 selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
                 pExpendedor.getLetrero().ImprimirMonedas();
             } else {
-                System.out.println("No hay moneda");
                 selecMonedaLabel.setText("XXXXX");
                 JOptionPane.showMessageDialog(null, "No tienes moneda de " + String.valueOf(value));
             }

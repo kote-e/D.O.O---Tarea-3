@@ -29,8 +29,8 @@ public class PanelComprador extends JPanel {
         productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40, comprador);
         productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66, comprador);
         productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92, comprador);
-        productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20, 118, comprador);
-        productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144, comprador);
+        productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20, 118, comprador);
+        productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144, comprador);
 
         JPanel panelProductoUsuario = new JPanel();
         panelProductoUsuario.setBackground(new Color(0xF4F8FF));
@@ -130,8 +130,8 @@ public class PanelComprador extends JPanel {
         panelProductoUsuario.add(productoUsuarioCoca);
         panelProductoUsuario.add(productoUsuarioSprite);
         panelProductoUsuario.add(productoUsuarioFanta);
-        panelProductoUsuario.add(productoUsuarioSuper8);
         panelProductoUsuario.add(productoUsuarioSnickers);
+        panelProductoUsuario.add(productoUsuarioSuper8);
 
         panelCantMonedas.add(moneda1500CantLabel);
         panelCantMonedas.add(moneda1000CantLabel);
