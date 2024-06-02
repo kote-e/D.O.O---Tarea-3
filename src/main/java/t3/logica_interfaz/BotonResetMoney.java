@@ -16,6 +16,7 @@ public class BotonResetMoney extends JLabel implements MouseListener {
         this.setBounds(x,y,width,height);
         this.setOpaque(false);
         this.addMouseListener(this);
+        this.setToolTipText("Cancelar compra");
     }
 
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel

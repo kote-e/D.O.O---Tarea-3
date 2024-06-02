@@ -18,6 +18,7 @@ public class BotonVuelto extends JLabel implements MouseListener {
         this.setBackground(new Color(0x000000));
         this.setOpaque(true);
         this.addMouseListener(this);
+        this.setToolTipText("Sacar vuelto");
     }
 
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel

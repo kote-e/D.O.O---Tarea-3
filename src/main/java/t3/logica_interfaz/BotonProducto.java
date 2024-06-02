@@ -16,6 +16,7 @@ public class BotonProducto extends JLabel implements MouseListener {
         this.setBackground(new Color(0x000000));
         this.setOpaque(true);
         this.addMouseListener(this);
+        this.setToolTipText("Sacar producto");
     }
 
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
@@ -26,7 +27,7 @@ public class BotonProducto extends JLabel implements MouseListener {
             panelComprador.getProductosUsuarioLabel(pExp.getComprado()).setCantidad(pExp.getComprador().cantidadProducto(pExp.getComprado()));
             pExp.getLetrero().cambiarTextoLetrero("Seleccione Producto");
 
-            pExp.setComprado(null);
+
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,"No hay ningún producto");
