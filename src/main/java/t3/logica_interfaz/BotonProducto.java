@@ -72,7 +72,7 @@ public class BotonProducto extends JLabel implements MouseListener {
             case SUPER8 -> "src/main/java/t3/logica_interfaz/Imagenes/super8.png";
         };
 
-        labelProducto = scaledProducto(producto,10,2,200,80);
+        labelProducto = scaledProducto(producto,10,2,100,80);
         this.add(labelProducto);
     }
 
