@@ -22,30 +22,33 @@ public class BotonCompra extends JLabel implements MouseListener{
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
 
     public void mousePressed(MouseEvent me) {
-        try{
-            String productoCompradoTXT;
+        if(pExp.getComprado() == null) { //Si no hay ningun producto en la salida
+            try {
+                String productoCompradoTXT;
 
-            String producto = null;
-            switch (pExp.getProducto()){
-                case Precios_Productos.COCACOLA -> producto = "Cocacola  comprada!";
-                case Precios_Productos.SPRITE -> producto = "Sprite  comprada!";
-                case Precios_Productos.FANTA -> producto = "Fanta  comprada!";
-                case Precios_Productos.SNICKERS -> producto = "Snickers  comprado!";
-                case Precios_Productos.SUPER8 -> producto = "Super8  comprado!";
+                String producto = null;
+                switch (pExp.getProducto()) {
+                    case Precios_Productos.COCACOLA -> producto = "Cocacola  comprada!";
+                    case Precios_Productos.SPRITE -> producto = "Sprite  comprada!";
+                    case Precios_Productos.FANTA -> producto = "Fanta  comprada!";
+                    case Precios_Productos.SNICKERS -> producto = "Snickers  comprado!";
+                    case Precios_Productos.SUPER8 -> producto = "Super8  comprado!";
+                }
+
+                pExp.getComprador().comprar(pExp.getProducto());
+                pExp.setComprado(pExp.getProducto());
+
+                pExp.getLetrero().cambiarTextoLetrero(producto);
+                pExp.getLetrero().ImprimirCompra();
+                pExp.getBotonProducto().impresionProducto();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } finally {
+                pExp.setProducto(null);
             }
-
-            pExp.getComprador().comprar(pExp.getProducto());
-            pExp.setComprado(pExp.getProducto());
-
-            pExp.getLetrero().cambiarTextoLetrero(producto);
-            pExp.getLetrero().ImprimirCompra();
-            pExp.getBotonProducto().impresionProducto();
         }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
-        finally {
-            pExp.setProducto(null);
+        else{
+            JOptionPane.showMessageDialog(null,"Antes de comprar, retire el producto de la salida");
         }
     }
 
