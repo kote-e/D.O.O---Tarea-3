@@ -1,7 +1,6 @@
 package t3.logica_interfaz;
 
 import t3.logica_expendedor.Comprador;
-import t3.logica_expendedor.Excepciones.NoHayProductoComprador;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
@@ -12,8 +11,8 @@ import java.awt.event.MouseListener;
 public class ProductosUsuarioLabel extends JLabel {
 
     private final ProductosUsuarioLabel thisLabel;
-    private final Comprador comprador;
-    private final Precios_Productos producto;
+    private Comprador comprador;
+    private Precios_Productos producto;
     private String strProducto;
     private int cantidad = 0;
 
@@ -22,6 +21,7 @@ public class ProductosUsuarioLabel extends JLabel {
         producto = prod;
         cantidad = comp.cantidadProducto(prod);
         thisLabel = this;
+
 
         ImageIcon icon = null;
         switch(prod) {
@@ -71,14 +71,26 @@ public class ProductosUsuarioLabel extends JLabel {
         public void mouseClicked(MouseEvent e) {}
 
         @Override
-        public void mousePressed(MouseEvent e){
-            try{
+        public void mousePressed(MouseEvent e) {
+            if(comprador.cantidadProducto(producto) != 0){
                 comprador.consumirProducto(producto);
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
             }
-            catch (NoHayProductoComprador exp){
-                JOptionPane.showMessageDialog(null, exp.getMessage());
+            else {
+                System.out.println("No hay producto");
+                JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
+                // implementar excepcion customizada
             }
+
+            switch (producto) {
+                case Precios_Productos.COCACOLA -> strProducto = "Cocacola";
+                case Precios_Productos.FANTA -> strProducto = "Fanta   ";
+                case Precios_Productos.SPRITE -> strProducto = "Sprite   ";
+                case Precios_Productos.SUPER8 -> strProducto = "Super8   ";
+                case Precios_Productos.SNICKERS -> strProducto = "Snickers";
+            }
+
+
         }
 
         @Override
