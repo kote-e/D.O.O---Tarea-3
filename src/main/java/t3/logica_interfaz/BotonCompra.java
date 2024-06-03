@@ -1,5 +1,6 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Excepciones.ProductoNoRetirado;
 import t3.logica_expendedor.Expendedor;
 import t3.logica_expendedor.Precios_Productos;
 
@@ -22,9 +23,11 @@ public class BotonCompra extends JLabel implements MouseListener{
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
 
     public void mousePressed(MouseEvent me) {
-         //Si no hay ningun producto en la salida
         try {
-            pExp.getComprado();
+            if(pExp.getComprado() != null) { //Si no hay ningun producto en la salida
+                throw new ProductoNoRetirado();
+            }
+
             String productoCompradoTXT;
 
             Precios_Productos productoSeleccionado = pExp.getProducto();
@@ -42,16 +45,17 @@ public class BotonCompra extends JLabel implements MouseListener{
             pExp.getComprador().comprar(productoSeleccionado);
             pExp.setComprado(productoSeleccionado);
 
-            pExp.getLetrero().cambiarTextoLetrero(producto);
-            pExp.getLetrero().ImprimirCompra();
-            pExp.getBotonProducto().impresionProducto();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            pExp.setProducto(null);
+                pExp.getLetrero().cambiarTextoLetrero(producto);
+                pExp.getLetrero().ImprimirCompra();
+                pExp.getBotonProducto().impresionProducto();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } finally {
+                pExp.setProducto(null);
+            }
         }
 
-    }
+
 
     public void mouseReleased(MouseEvent me) {;}
 
