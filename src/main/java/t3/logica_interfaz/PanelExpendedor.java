@@ -100,7 +100,6 @@ public class PanelExpendedor extends JPanel {
         Image originalIconImage = originalIcon.getImage();
         Image scaledIconImage = originalIconImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         ImageIcon Icon = new ImageIcon(scaledIconImage);
-
         JLabel label = new JLabel(Icon);
         label.setBounds(x,y , width,height);
 
@@ -143,17 +142,37 @@ public class PanelExpendedor extends JPanel {
      */
     public Expendedor getExpendedor(){return this.expendedor;}
 
+    /**
+     * obtine al comprador
+     * @return retorna al comprador
+     */
     public Comprador getComprador(){return this.comprador;}
 
+    /**
+     * obtiene el letrero
+     * @return el letrero asociado
+     */
     public Letrero getLetrero(){return this.letrero;}
 
+    /**
+     * este establece el panel
+     * @param panelComprador este es el panel del comprador
+     */
     public void setPanelComprador(PanelComprador panelComprador) {
         this.panelComprador = panelComprador;
         botonProducto.setPanelComprador(panelComprador);
         botonVuelto.setpComprador(panelComprador);
     }
 
+    /**
+     * Establese el producto comprado
+     * @param producto
+     */
     public void setComprado(Precios_Productos producto){this.pComprado = producto;}
 
+    /**
+     * Obtiene el producto comprado
+     * @return el producto
+     */
     public Precios_Productos getComprado(){return this.pComprado;}
 }
