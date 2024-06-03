@@ -28,6 +28,7 @@ public class PanelSetup extends JPanel implements ChangeListener {
 
         JPanel setupPanel = new JPanel();
 
+
         setupPanel.setLayout(new GridLayout(0, 2, 2, 2));
         setupPanel.setBounds(0, 0, 500, 500);
 
@@ -62,7 +63,7 @@ public class PanelSetup extends JPanel implements ChangeListener {
         setupPanel.add(compradorMonedas100);
 
 
-        int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
             // agregar monedas al comprador
@@ -74,6 +75,8 @@ public class PanelSetup extends JPanel implements ChangeListener {
 
             for (int l = 0; l < cantMonedas1500; l++) {comprador.addMonedas(new Moneda1500());}
 
+        } else if(option == JOptionPane.CLOSED_OPTION){
+            System.exit( 0 );
         }
     }
 
