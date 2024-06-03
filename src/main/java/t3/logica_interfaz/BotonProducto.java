@@ -1,6 +1,8 @@
 package t3.logica_interfaz;
 
+import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
 import t3.logica_expendedor.Precios_Productos;
+import t3.logica_expendedor.Producto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +29,10 @@ public class BotonProducto extends JLabel implements MouseListener {
 
     public void mousePressed(MouseEvent me) {
         try{
-            pExp.getComprador().addProducto(pExp.getExpendedor().getProducto());
+
+            Producto prod = pExp.getExpendedor().getProducto();
+
+            pExp.getComprador().addProducto(prod);
             panelComprador.getProductosUsuarioLabel(pExp.getComprado()).setCantidad(pExp.getComprador().cantidadProducto(pExp.getComprado()));
             pExp.getLetrero().cambiarTextoLetrero("Sacar Producto");
             pExp.setComprado(null);
@@ -70,6 +75,8 @@ public class BotonProducto extends JLabel implements MouseListener {
             case SNICKERS -> scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers_90.png",100,-40,150,150);
             case SUPER8 -> scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8_90.png",80,-35,130,130);
         };
+
+
         this.add(labelProducto);
     }
 
