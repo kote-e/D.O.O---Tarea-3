@@ -18,23 +18,24 @@ public class PanelSetup extends JPanel implements ChangeListener {
     private JSpinner compradorMonedas1000;
     private JSpinner compradorMonedas1500;
 
-    private int cantMonedas100;
-    private int cantMonedas500;
-    private int cantMonedas1000;
-    private int cantMonedas1500;
+    private int cantMonedas100 = 5;
+    private int cantMonedas500 = 5;
+    private int cantMonedas1000 = 5;
+    private int cantMonedas1500 = 5;
 
     public PanelSetup(Comprador cmp, Ventana frame) {
         comprador = cmp;
 
         JPanel setupPanel = new JPanel();
 
+
         setupPanel.setLayout(new GridLayout(0, 2, 2, 2));
         setupPanel.setBounds(0, 0, 500, 500);
 
-        SpinnerNumberModel model100 = new SpinnerNumberModel(0, 0, 100, 1);
-        SpinnerNumberModel model500 = new SpinnerNumberModel(0, 0, 100, 1);
-        SpinnerNumberModel model1000 = new SpinnerNumberModel(0, 0, 100, 1);
-        SpinnerNumberModel model1500 = new SpinnerNumberModel(0, 0, 100, 1);
+        SpinnerNumberModel model100 = new SpinnerNumberModel(5, 0, 100, 1);
+        SpinnerNumberModel model500 = new SpinnerNumberModel(5, 0, 100, 1);
+        SpinnerNumberModel model1000 = new SpinnerNumberModel(5, 0, 100, 1);
+        SpinnerNumberModel model1500 = new SpinnerNumberModel(5, 0, 100, 1);
 
         compradorMonedas100 = new JSpinner(model100);
         compradorMonedas500 = new JSpinner(model500);
@@ -62,7 +63,7 @@ public class PanelSetup extends JPanel implements ChangeListener {
         setupPanel.add(compradorMonedas100);
 
 
-        int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
             // agregar monedas al comprador
@@ -74,14 +75,10 @@ public class PanelSetup extends JPanel implements ChangeListener {
 
             for (int l = 0; l < cantMonedas1500; l++) {comprador.addMonedas(new Moneda1500());}
 
-        } else {
-            // En el caso de apretar cancel poner 5 monedas de cada una al comprador
-            for (int i = 0; i < 5; i++) {
-                comprador.addMonedas(new Moneda100());
-                comprador.addMonedas(new Moneda500());
-                comprador.addMonedas(new Moneda1000());
-                comprador.addMonedas(new Moneda1500());
-            }
+        } else if(option == JOptionPane.CLOSED_OPTION){
+
+            System.exit( 0 );
+
         }
     }
 
