@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ProductosUsuarioLabel extends JLabel {
+public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
 
     private final ProductosUsuarioLabel thisLabel;
     private final Comprador comprador;
@@ -25,31 +25,26 @@ public class ProductosUsuarioLabel extends JLabel {
         ImageIcon icon = null;
         switch(prod) {
             case Precios_Productos.COCACOLA:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/cocacola.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/cocacola.png",20,20);
                 strProducto = "Cocacola";
                 break;
             case Precios_Productos.FANTA:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/fanta.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",20,20);
                 strProducto = "Fanta   ";
                 break;
             case Precios_Productos.SPRITE:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/sprite.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",20,20);
                 strProducto = "Sprite  ";
                 break;
             case Precios_Productos.SUPER8:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/super8.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8.png",20,20);
                 strProducto = "Super8  ";
                 break;
             case Precios_Productos.SNICKERS:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/snickers.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",20,20);
                 strProducto = "Snickers";
                 break;
         }
-        Image imgIcon = icon.getImage();
-        Image scaledImgIcon = imgIcon.getScaledInstance(20,20, Image.SCALE_DEFAULT);
-        icon = new ImageIcon(scaledImgIcon);
-
-
 
         this.setText(strProducto + "       cantidad: " + cantidad);
         this.setFont(new Font("monospaced", Font.PLAIN, 16));

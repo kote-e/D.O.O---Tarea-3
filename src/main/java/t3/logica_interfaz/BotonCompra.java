@@ -24,14 +24,11 @@ public class BotonCompra extends JLabel implements MouseListener{
 
     public void mousePressed(MouseEvent me) {
         try {
-            if(pExp.getComprado() != null) { //Si no hay ningun producto en la salida
-                throw new ProductoNoRetirado();
-            }
+            //Si no hay ningun producto en la salida
+            if(pExp.getComprado() != null) {throw new ProductoNoRetirado();}
 
             String productoCompradoTXT;
-
             Precios_Productos productoSeleccionado = pExp.getProducto();
-
 
             String producto = null;
             switch (productoSeleccionado) {
@@ -45,17 +42,13 @@ public class BotonCompra extends JLabel implements MouseListener{
             pExp.getComprador().comprar(productoSeleccionado);
             pExp.setComprado(productoSeleccionado);
 
-                pExp.getLetrero().cambiarTextoLetrero(producto);
-                pExp.getLetrero().ImprimirCompra();
-                pExp.getBotonProducto().impresionProducto();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            } finally {
-                pExp.setProducto(null);
-            }
+            pExp.getLetrero().cambiarTextoLetrero(producto);
+            pExp.getLetrero().ImprimirCompra();
+            pExp.getBotonProducto().impresionProducto();
         }
-
-
+        catch (Exception e) {JOptionPane.showMessageDialog(null, e.getMessage());}
+        finally {pExp.setProducto(null);}
+    }
 
     public void mouseReleased(MouseEvent me) {;}
 

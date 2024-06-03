@@ -6,7 +6,7 @@ import java.awt.*;
 import t3.logica_expendedor.*;
 import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
 
-public class PanelExpendedor extends JPanel {
+public class PanelExpendedor extends JPanel implements GeneradorImagen{
     private Precios_Productos producto = null;
     private Precios_Productos pComprado = null;
     private final Expendedor expendedor;
@@ -26,11 +26,11 @@ public class PanelExpendedor extends JPanel {
         setLayout(null);
 
         //Se agregan los productos
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",65,100,150,150));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",170,100,150,150));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",270,100,150,150));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",55,270,160,160));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8.png",153,275,160,160));
+        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",65,100,150,150));
+        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",170,100,150,150));
+        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",270,100,150,150));
+        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",55,270,160,160));
+        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/super8.png",153,275,160,160));
 
         //Se agregan los precios
         add(mostrarPrecios(Precios_Productos.COCACOLA,120,250,30,20));
@@ -65,28 +65,11 @@ public class PanelExpendedor extends JPanel {
         add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
-        ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png");
-        Image originalExpendedorIconImage = originalExpendedorIcon.getImage();
-        Image scaledExpendedorIconImage = originalExpendedorIconImage.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
-        ImageIcon expendedorIcon = new ImageIcon(scaledExpendedorIconImage);
-
+        ImageIcon expendedorIcon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png",600,600);
         JLabel expendedorLabel = new JLabel(expendedorIcon);
         expendedorLabel.setBounds(0,0 , 670,670);
 
         add(expendedorLabel);
-    }
-
-    // Cargar y redimensionar la imagen del Producto
-    private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
-        ImageIcon originalIcon = new ImageIcon(nombre);
-        Image originalIconImage = originalIcon.getImage();
-        Image scaledIconImage = originalIconImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon Icon = new ImageIcon(scaledIconImage);
-
-        JLabel label = new JLabel(Icon);
-        label.setBounds(x,y , width,height);
-
-        return label;
     }
 
     private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
@@ -100,10 +83,7 @@ public class PanelExpendedor extends JPanel {
     public void setProducto(Precios_Productos producto){this.producto = producto;}
 
     public Precios_Productos getProducto() throws ProductoNoSeleccionado{
-
-        if(producto == null){
-            throw new ProductoNoSeleccionado();
-        }
+        if(producto == null){throw new ProductoNoSeleccionado();}
         return this.producto;
     }
 

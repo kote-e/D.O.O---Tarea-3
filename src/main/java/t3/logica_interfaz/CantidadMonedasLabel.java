@@ -5,7 +5,7 @@ import t3.logica_expendedor.Comprador;
 import javax.swing.*;
 import java.awt.*;
 
-public class CantidadMonedasLabel extends JLabel {
+public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
     private CantidadMonedasLabel thisLabel;
     private int cantidad = 0;
     private Comprador comprador = null;
@@ -16,20 +16,13 @@ public class CantidadMonedasLabel extends JLabel {
         comprador = comp;
         cantidad = comprador.cantidadMonedas(val);
 
-        ImageIcon icon = null;
-        switch(val) {
-            case 100 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
-
-            case 500 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
-
-            case 1000 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
-
-            case 1500 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-        }
-
-        Image img = icon.getImage();
-        Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
-        icon = new ImageIcon(scaledImg);
+        ImageIcon icon = switch(val) {
+            case 100 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",20,20);
+            case 500 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png",20,20);
+            case 1000 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png",20,20);
+            case 1500 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",20,20);
+            default -> null;
+        };
 
         if(val >= 1000){strVal = String.valueOf(val);}
         else{strVal = String.valueOf(val) + " ";}

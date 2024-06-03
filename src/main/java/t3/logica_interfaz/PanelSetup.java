@@ -25,9 +25,7 @@ public class PanelSetup extends JPanel implements ChangeListener {
 
     public PanelSetup(Comprador cmp, Ventana frame) {
         comprador = cmp;
-
         JPanel setupPanel = new JPanel();
-
 
         setupPanel.setLayout(new GridLayout(0, 2, 2, 2));
         setupPanel.setBounds(0, 0, 500, 500);

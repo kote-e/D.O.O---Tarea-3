@@ -6,7 +6,7 @@ import t3.logica_expendedor.Precios_Productos;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelComprador extends JPanel {
+public class PanelComprador extends JPanel implements GeneradorImagen{
     private ProductosUsuarioLabel productoUsuarioCoca;
     private ProductosUsuarioLabel productoUsuarioSprite;
     private ProductosUsuarioLabel productoUsuarioFanta;
@@ -65,11 +65,7 @@ public class PanelComprador extends JPanel {
 
 
         // seccion de seleccion de moneda
-
-        ImageIcon iconoMonedaSelec = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-        Image imgMonedaSelec = iconoMonedaSelec.getImage();
-        Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
-        iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
+        ImageIcon iconoMonedaSelec = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",80,80);
 
         JLabel lblMonedaSeleccionada = new JLabel(iconoMonedaSelec);
         lblMonedaSeleccionada.setBounds(230, 40, iconoMonedaSelec.getIconWidth(), iconoMonedaSelec.getIconHeight());

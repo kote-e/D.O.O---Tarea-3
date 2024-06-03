@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class BotonVuelto extends JLabel implements MouseListener {
+public class BotonVuelto extends JLabel implements MouseListener, GeneradorImagen {
     private final PanelExpendedor pExpendedor;
     private PanelComprador pComprador;
 
@@ -67,23 +67,11 @@ public class BotonVuelto extends JLabel implements MouseListener {
     private void creacionMonedas(){     // 166 x 82
         JLabel monedaImg = null;
         for(int i=0;i<7;i++){   //Cantidad de monedas que se pueden mostrar en la salida del vuelto
-            monedas100.add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",10,60 - i*10,20,20));
-            monedas500.add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png",50,60 - i*10,20,20));
-            monedas1000.add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png",90,60 - i*10,20,20));
-            monedas1500.add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",130,60 - i*10,20,20));
+            monedas100.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",10,60 - i*10,20,20));
+            monedas500.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png",50,60 - i*10,20,20));
+            monedas1000.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png",90,60 - i*10,20,20));
+            monedas1500.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",130,60 - i*10,20,20));
         }
-    }
-
-    private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
-        ImageIcon originalIcon = new ImageIcon(nombre);
-        Image originalIconImage = originalIcon.getImage();
-        Image scaledIconImage = originalIconImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon Icon = new ImageIcon(scaledIconImage);
-
-        JLabel label = new JLabel(Icon);
-        label.setBounds(x,y , width,height);
-
-        return label;
     }
 
     public void imprimirMonedas(){

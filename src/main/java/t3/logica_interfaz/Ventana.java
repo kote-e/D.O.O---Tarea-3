@@ -1,15 +1,9 @@
 package t3.logica_interfaz;
 
-
 import t3.logica_expendedor.Comprador;
-import t3.logica_expendedor.Deposito;
 import t3.logica_expendedor.Expendedor;
-import t3.logica_expendedor.Monedas.*;
-import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
-import java.awt.*;
-
 
 public class Ventana extends JFrame {
     public Ventana(){
@@ -21,10 +15,8 @@ public class Ventana extends JFrame {
             expendedor = new Expendedor(cantidadProductosExpendedor);
             comprador = new Comprador(expendedor);
 
-
             // popUp para poner monedas en el comprador
             JPanel setupPanel = new PanelSetup(comprador, this);
-
 
             // Comprador y Expendedor
             PanelExpendedor panelExpendedor = new PanelExpendedor(expendedor, comprador);
@@ -46,7 +38,8 @@ public class Ventana extends JFrame {
 
             this.setVisible(true);
 
-        } catch (Exception e){
+        }
+        catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
