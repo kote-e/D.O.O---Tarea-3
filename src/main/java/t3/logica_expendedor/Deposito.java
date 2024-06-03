@@ -34,4 +34,6 @@ public class Deposito<T>{
      * @return Cantidad de Productos o Monedas que posee
      */
     public int size(){return list.size();}
+
+    public Object getInstance (int i){return list.get(i);}
 }

@@ -61,14 +61,11 @@ public class Expendedor {
     public void comprarProducto(Precios_Productos cualProducto) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoDepositoExpendedorException, ProductoNoSeleccionado {   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
         Producto producto = null; //Se crea un puntero auxiliar de tipo Bebida nulo
 
-        if(cualProducto == null){
-            // Si no se escogio producto
-            throw new ProductoNoSeleccionado();
-        }
+        // Si no se escogio producto
+        if(cualProducto == null){throw new ProductoNoSeleccionado();}
 
-        if (monEn.size() == 0) {
-            throw new PagoIncorrectoException();
-        }  //Si no se ingreso una moneda se sale de la funcion
+        //Si no se ingreso una moneda se sale de la funcion
+        if (monEn.size() == 0) {throw new PagoIncorrectoException();}
 
         if (valorIngresado < cualProducto.getPrecio()) {                         //Si se logro sacar una bebida pero el valor de la moneda no alcansa para comprar:
             sacarMonedasEntradaASalida();
@@ -76,25 +73,13 @@ public class Expendedor {
             throw new PagoInsuficienteException();
         }
 
-        switch (cualProducto) {   //Switch que permite retirar un producto del deposito correspondiente
-            case COCACOLA:
-                producto = coca.get();    //Se retira una CocaCola del deposito
-                break;
-            case SPRITE:
-                producto = sprite.get();    //Se retira una Sprite del deposito
-                break;
-            case FANTA:
-                producto = fanta.get();   //Se retira una Fanta del deposito
-                break;
-            case SNICKERS:
-                producto = snickers.get();  //Se retira un Snickers del deposito
-                break;
-            case SUPER8:
-                producto = super8.get();    //Se retira un Super8 del deposito
-                break;
-            default:
-                break;
-        }
+        producto = switch (cualProducto) {   //Switch que permite retirar un producto del deposito correspondiente
+            case COCACOLA -> coca.get();
+            case SPRITE -> sprite.get();
+            case FANTA -> fanta.get();
+            case SNICKERS -> snickers.get();
+            case SUPER8 -> super8.get();
+        };
 
         if (producto == null) {
             sacarMonedasEntradaASalida();
@@ -112,7 +97,6 @@ public class Expendedor {
             } //Elimino todas las monedas del deposito de entrada
             valorIngresado = 0;
         }
-
         deposito = producto;   //Se retorna el producto que se compro o null en otros casos
     }
 
@@ -191,5 +175,15 @@ public class Expendedor {
 
 
         return producto;
+    }
+
+    public int CantidadMonedasVuelto(int valor){
+        int contador = 0;
+        for(int i = 0; i < monVu.size(); i++){
+            if(((Moneda)monVu.getInstance(i)).getValor() == valor){
+                contador++;
+            }
+        }
+        return contador;
     }
 }

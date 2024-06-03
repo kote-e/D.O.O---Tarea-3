@@ -39,6 +39,9 @@ public class BotonVuelto extends JLabel implements MouseListener {
             Moneda moneda = pExpendedor.getExpendedor().getVuelto();
             pExpendedor.getComprador().addMonedas(moneda);
             pComprador.getCantMonedasLabel(moneda.getValor()).setCantidad(pExpendedor.getComprador().cantidadMonedas(moneda.getValor()));
+            ocultarMonedas();
+            imprimirMonedas();
+            this.repaint();     //Forzar que se refresque la imagen
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -50,28 +53,18 @@ public class BotonVuelto extends JLabel implements MouseListener {
     public void mouseEntered(MouseEvent me) {
         BotonVuelto lbl = (BotonVuelto) me.getComponent();
         lbl.setBackground(new Color(0x672222));
-
-        //Imprime las monedas que estan dentro
-        for(int i = 0; i<7; i++){this.add(monedas100.get(i));}
-        for(int i = 0; i<7; i++){this.add(monedas500.get(i));}
-        for(int i = 0; i<7; i++){this.add(monedas1000.get(i));}
-        for(int i = 0; i<7; i++){this.add(monedas1500.get(i));}
+        imprimirMonedas();
     }
 
     public void mouseExited(MouseEvent me) {
         BotonVuelto lbl = (BotonVuelto) me.getComponent();
         lbl.setBackground(new Color(0x000000));
-
-        //Elimina las monedas que estan dentro
-        for(int i = 0; i<7; i++){this.remove(monedas100.get(i));}
-        for(int i = 0; i<7; i++){this.remove(monedas500.get(i));}
-        for(int i = 0; i<7; i++){this.remove(monedas1000.get(i));}
-        for(int i = 0; i<7; i++){this.remove(monedas1500.get(i));}
+        ocultarMonedas();
     }
 
     public void setpComprador(PanelComprador pComprador) {this.pComprador = pComprador;}
 
-    public void creacionMonedas(){     // 166 x 82
+    private void creacionMonedas(){     // 166 x 82
         JLabel monedaImg = null;
         for(int i=0;i<7;i++){   //Cantidad de monedas que se pueden mostrar en la salida del vuelto
             monedas100.add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",10,60 - i*10,20,20));
@@ -91,5 +84,30 @@ public class BotonVuelto extends JLabel implements MouseListener {
         label.setBounds(x,y , width,height);
 
         return label;
+    }
+
+    public void imprimirMonedas(){
+        int cantidad = pExpendedor.getExpendedor().CantidadMonedasVuelto(100);
+        if(cantidad >7){cantidad = 7;}
+        for(int i = 0; i<cantidad; i++){this.add(monedas100.get(i));}
+
+        cantidad = pExpendedor.getExpendedor().CantidadMonedasVuelto(500);
+        if(cantidad >7){cantidad = 7;}
+        for(int i = 0; i<cantidad; i++){this.add(monedas500.get(i));}
+
+        cantidad = pExpendedor.getExpendedor().CantidadMonedasVuelto(1000);
+        if(cantidad >7){cantidad = 7;}
+        for(int i = 0; i<cantidad; i++){this.add(monedas1000.get(i));}
+
+        cantidad = pExpendedor.getExpendedor().CantidadMonedasVuelto(1500);
+        if(cantidad >7){cantidad = 7;}
+        for(int i = 0; i<cantidad; i++){this.add(monedas1500.get(i));}
+    }
+
+    public void ocultarMonedas(){
+        for(int i = 0; i<7; i++){this.remove(monedas100.get(i));}
+        for(int i = 0; i<7; i++){this.remove(monedas500.get(i));}
+        for(int i = 0; i<7; i++){this.remove(monedas1000.get(i));}
+        for(int i = 0; i<7; i++){this.remove(monedas1500.get(i));}
     }
 }
