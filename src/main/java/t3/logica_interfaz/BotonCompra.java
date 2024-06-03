@@ -30,8 +30,11 @@ public class BotonCompra extends JLabel implements MouseListener{
 
             String productoCompradoTXT;
 
+            Precios_Productos productoSeleccionado = pExp.getProducto();
+
+
             String producto = null;
-            switch (pExp.getProducto()) {
+            switch (productoSeleccionado) {
                 case Precios_Productos.COCACOLA -> producto = "Cocacola  comprada!";
                 case Precios_Productos.SPRITE -> producto = "Sprite  comprada!";
                 case Precios_Productos.FANTA -> producto = "Fanta  comprada!";
@@ -39,18 +42,20 @@ public class BotonCompra extends JLabel implements MouseListener{
                 case Precios_Productos.SUPER8 -> producto = "Super8  comprado!";
             }
 
-            pExp.getComprador().comprar(pExp.getProducto());
-            pExp.setComprado(pExp.getProducto());
+            pExp.getComprador().comprar(productoSeleccionado);
+            pExp.setComprado(productoSeleccionado);
 
-            pExp.getLetrero().cambiarTextoLetrero(producto);
-            pExp.getLetrero().ImprimirCompra();
-            pExp.getBotonProducto().impresionProducto();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            pExp.setProducto(null);
+                pExp.getLetrero().cambiarTextoLetrero(producto);
+                pExp.getLetrero().ImprimirCompra();
+                pExp.getBotonProducto().impresionProducto();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } finally {
+                pExp.setProducto(null);
+            }
         }
-    }
+
+
 
     public void mouseReleased(MouseEvent me) {;}
 

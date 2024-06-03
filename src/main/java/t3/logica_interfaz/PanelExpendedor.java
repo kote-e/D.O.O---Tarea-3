@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import t3.logica_expendedor.*;
+import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
 
 public class PanelExpendedor extends JPanel {
     private Precios_Productos producto = null;
@@ -98,7 +99,13 @@ public class PanelExpendedor extends JPanel {
 
     public void setProducto(Precios_Productos producto){this.producto = producto;}
 
-    public Precios_Productos getProducto(){return this.producto;}
+    public Precios_Productos getProducto() throws ProductoNoSeleccionado{
+
+        if(producto == null){
+            throw new ProductoNoSeleccionado();
+        }
+        return this.producto;
+    }
 
     public Expendedor getExpendedor(){return this.expendedor;}
 
