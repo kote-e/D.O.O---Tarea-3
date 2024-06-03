@@ -28,7 +28,7 @@ public class BotonSelectorP extends JLabel implements MouseListener {
 
     public void mousePressed(MouseEvent me) {
         pExpendedor.setProducto(producto);
-        pExpendedor.getLetrero().ImprimirPrecio();
+        pExpendedor.getLetrero().ImprimirPrecio(producto);
     }
 
     public void mouseReleased(MouseEvent me) {;}

@@ -41,16 +41,17 @@ public class Letrero extends JLabel {
     /**
      * Método para imprimir el precio del producto seleccionado en el letrero
      */
-    public void ImprimirPrecio(){
+    public void ImprimirPrecio(Precios_Productos productoComprado){
         String producto = null;
-        switch (panelExpendedor.getProducto()){
+
+        switch (productoComprado){
             case Precios_Productos.COCACOLA -> producto = "Cocacola";
             case Precios_Productos.SPRITE -> producto = "Sprite";
             case Precios_Productos.FANTA -> producto = "Fanta";
             case Precios_Productos.SNICKERS -> producto = "Snickers";
             case Precios_Productos.SUPER8 -> producto = "Super8";
         }
-        this.setText("<html><p  style=\"text-align: center;\">Precio de "+ producto +":<br>$" + panelExpendedor.getProducto().getPrecio() + "</p></html>");
+        this.setText("<html><p  style=\"text-align: center;\">Precio de "+ producto +":<br>$" + productoComprado.getPrecio() + "</p></html>");
     }
 
     /**
