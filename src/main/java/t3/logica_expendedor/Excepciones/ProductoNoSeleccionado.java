@@ -9,5 +9,5 @@ public class ProductoNoSeleccionado  extends Exception{
     /**
      * Se le asigna un mensaje a la excepción que luego se mostrara
      */
-    public ProductoNoSeleccionado(){super("No ha seleccionado ningun producto para comprar");}
+    public ProductoNoSeleccionado(){super("No ha seleccionado ningún producto para comprar");}
 }

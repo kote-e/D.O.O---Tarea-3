@@ -76,9 +76,7 @@ public class PanelSetup extends JPanel implements ChangeListener {
             for (int l = 0; l < cantMonedas1500; l++) {comprador.addMonedas(new Moneda1500());}
 
         } else if(option == JOptionPane.CLOSED_OPTION){
-
             System.exit( 0 );
-
         }
     }
 

@@ -22,7 +22,9 @@ public class BotonResetMoney extends JLabel implements MouseListener {
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
 
     public void mousePressed(MouseEvent me) {
+
         pExpendedor.getExpendedor().sacarMonedasEntradaASalida();
+        pExpendedor.getLetrero().cambiarTextoLetrero("Seleccione Producto");
     }
 
     public void mouseReleased(MouseEvent me) {;}

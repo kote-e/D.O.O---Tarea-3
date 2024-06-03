@@ -62,6 +62,7 @@ public class Expendedor {
         Producto producto = null; //Se crea un puntero auxiliar de tipo Bebida nulo
 
         if(cualProducto == null){
+            // Si no se escogio producto
             throw new ProductoNoSeleccionado();
         }
 
@@ -183,8 +184,11 @@ public class Expendedor {
         if (deposito == null) {
             throw new NoHayProductoDepositoSalida();
         }
+
         producto = deposito;
         deposito = null;
+
+
 
         return producto;
     }
