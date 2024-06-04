@@ -1,10 +1,7 @@
 package t3.logica_interfaz;
 
-import t3.logica_expendedor.Precios_Productos;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

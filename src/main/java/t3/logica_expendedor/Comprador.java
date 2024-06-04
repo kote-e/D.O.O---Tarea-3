@@ -7,6 +7,9 @@ import t3.logica_expendedor.Dulces.Snickers;
 import t3.logica_expendedor.Dulces.Super8;
 import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Excepciones.*;
+import t3.logica_interfaz.Sonidos;
+
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 /**
@@ -14,7 +17,7 @@ import javax.swing.*;
  * @author Valeria Quiroga
  * @author Antonio Benavides
  */
-public class Comprador{
+public class Comprador implements Sonidos {
     //DECLARACIONES DE ATRIBUTOS
     private final Expendedor expendedor;
 
@@ -28,6 +31,10 @@ public class Comprador{
     private Deposito<Fanta> fantaDeposito;
     private Deposito<Snickers> snickersDeposito;
     private Deposito<Super8> super8Deposito;
+
+    private final Clip beberSonido;
+    private final Clip abrirLataSonido;
+    private final Clip comer;
 
     //DECLARACIONES DE METODOS
     /**
@@ -51,6 +58,9 @@ public class Comprador{
         snickersDeposito = new Deposito<Snickers>();
         super8Deposito = new Deposito<Super8>();
 
+        beberSonido = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Beber.wav");
+        abrirLataSonido = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Abrir_Soda.wav");
+        comer = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Comer.wav");
     }
 
     /**
@@ -175,9 +185,13 @@ public class Comprador{
                 break;
         }
 
-        if(producto == null){
-            throw new NoHayProductoComprador(nombre);
+        if(producto == null){throw new NoHayProductoComprador(nombre);}
+
+        if(nombre.equals("CocaCola") || nombre.equals("Sprite") || nombre.equals("Fanta")){
+            //Luego de finalizar el primer audio se reproduce el siguiente
+            Sonidos.reproducirSonido(abrirLataSonido, () -> Sonidos.reproducirSonido(beberSonido, () -> {;}));
         }
+        else { Sonidos.reproducirSonido(comer, () -> {;});}
 
         JOptionPane.showMessageDialog(null,producto.consumir());
     }
