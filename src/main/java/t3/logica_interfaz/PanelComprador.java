@@ -111,7 +111,7 @@ import java.awt.*;
         titulo.setFont(new Font("Monospaced", Font.BOLD, 25));
 
 
-        // luego optimizar con arrays
+        // Configuración del panel principal
         this.setBackground(new Color(0xceddf2));
         this.setBounds(0, 0, 400, 670);
         this.setLayout(null);
@@ -120,14 +120,12 @@ import java.awt.*;
         this.add(cantMonedasTitulo);
 
         //añadir subpaneles
-
         this.add(panelProductoUsuario);
         this.add(panelSelecMoneda);
         this.add(panelCantMonedas);
 
 
         // añadir componentes a los subpaneles
-
         panelProductoUsuario.add(productoUsuarioTitulo);
         panelProductoUsuario.add(productoUsuarioCoca);
         panelProductoUsuario.add(productoUsuarioSprite);
@@ -150,6 +148,11 @@ import java.awt.*;
 
     }
 
+    /**
+     * Obtiene el label del producto del usuario según el tipo de producto
+     * @param tipoProducto este es el tipo del producto
+     * @return el label del producto
+     */
     public ProductosUsuarioLabel getProductosUsuarioLabel(Precios_Productos tipoProducto) {
         return switch (tipoProducto) {
             case Precios_Productos.COCACOLA -> productoUsuarioCoca;
@@ -160,6 +163,11 @@ import java.awt.*;
         };
     }
 
+    /**
+     * Obtiene el label de la cantidad de monedas según el valor de estas
+     * @param valor es valor de la moneda
+     * @return el label de la cantidad de monedas
+     */
     public CantidadMonedasLabel getCantMonedasLabel(int valor) {
         return switch (valor) {
             case 100 -> moneda100CantLabel;
