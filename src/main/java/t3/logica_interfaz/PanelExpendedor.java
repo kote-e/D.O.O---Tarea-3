@@ -4,13 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 import t3.logica_expendedor.*;
+import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
 
 /**
  * La subclase PanelExpendedor es una extensión de JPanel que representa la interfaz gráfica
  * de la máquina expendedora
  * @author
  */
-public class PanelExpendedor extends JPanel {
+
+public class PanelExpendedor extends JPanel implements GeneradorImagen{
     private Precios_Productos producto = null;
     private Precios_Productos pComprado = null;
     private final Expendedor expendedor;
@@ -19,6 +21,7 @@ public class PanelExpendedor extends JPanel {
     private PanelComprador panelComprador;
     private final BotonProducto botonProducto;
     private final BotonVuelto botonVuelto;
+    private final PanelProductos panelProductos;
 
     /**
      * Estye es el constructor para inicializar el panel de la maquina expendedora
@@ -35,19 +38,8 @@ public class PanelExpendedor extends JPanel {
         setBounds(400, 0, 850, 670);
         setLayout(null);
 
-        //Se agregan los productos
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",65,100,150,150));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",170,100,150,150));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",270,100,150,150));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",55,270,160,160));
-        add(scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8.png",153,275,160,160));
-
-        //Se agregan los precios
-        add(mostrarPrecios(Precios_Productos.COCACOLA,120,250,30,20));
-        add(mostrarPrecios(Precios_Productos.SPRITE,230,250,30,20));
-        add(mostrarPrecios(Precios_Productos.FANTA,330,250,30,20));
-        add(mostrarPrecios(Precios_Productos.SNICKERS,120,425,30,20));
-        add(mostrarPrecios(Precios_Productos.SUPER8,225,425,30,20));
+        panelProductos = new PanelProductos(this);
+        add(panelProductos);
 
         //Agregar el Letrero
         this.letrero = new Letrero(this,432,105,165,100);
@@ -75,66 +67,19 @@ public class PanelExpendedor extends JPanel {
         add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
-        ImageIcon originalExpendedorIcon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png");
-        Image originalExpendedorIconImage = originalExpendedorIcon.getImage();
-        Image scaledExpendedorIconImage = originalExpendedorIconImage.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
-        ImageIcon expendedorIcon = new ImageIcon(scaledExpendedorIconImage);
-
+        ImageIcon expendedorIcon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png",600,600);
         JLabel expendedorLabel = new JLabel(expendedorIcon);
         expendedorLabel.setBounds(0,0 , 670,670);
 
         add(expendedorLabel);
     }
 
-    /**
-     *  Carga y redimensiona la imagen del Producto
-     * @param nombre esta es la ruta de la imagen del producto
-     * @param x esta es la cooredenada x donde se encuentra el prducto en el panel
-     * @param y esta es la cooredenada y donde se encuentra el prducto en el panel
-     * @param width este es el ancho de la imagen del producto selecionado
-     * @param height este es el alto de la imagen del producto selecionado
-     * @return retorna la imagen redimencionada del producto
-     */
-    private JLabel scaledProducto(String nombre, int x, int y, int width, int height){
-        ImageIcon originalIcon = new ImageIcon(nombre);
-        Image originalIconImage = originalIcon.getImage();
-        Image scaledIconImage = originalIconImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon Icon = new ImageIcon(scaledIconImage);
-        JLabel label = new JLabel(Icon);
-        label.setBounds(x,y , width,height);
-
-        return label;
-    }
-
-    /**
-     * Este metodo muestra el precio del producto
-     * @param nombre este es el tipo de producto
-     * @param x esta es la cooredenada x donde se encuentra el precio en el panel
-     * @param y esta es la cooredenada y donde se encuentra el recio en el panel
-     * @param width este es el ancho del área que muestra el precio
-     * @param height este es el alto del área que muestra el precio
-     * @return un JLabel con el precio del producto
-     */
-    private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
-        JLabel precio = new JLabel("$" + nombre.getPrecio());
-        precio.setForeground(new Color(0x000000));
-        precio.setBounds(x,y,width,height);
-
-        return precio;
-    }
-
-    /**
-     * establece el producto selecionado
-     * @param producto este es el producto
-     */
     public void setProducto(Precios_Productos producto){this.producto = producto;}
 
-    /**
-     * obtener el producto seleccionado
-     * @return este es el producto
-     */
-
-    public Precios_Productos getProducto(){return this.producto;}
+    public Precios_Productos getProducto() throws ProductoNoSeleccionado{
+        if(producto == null){throw new ProductoNoSeleccionado();}
+        return this.producto;
+    }
 
     /**
      * Obtiene el expendedor asociado
@@ -175,4 +120,8 @@ public class PanelExpendedor extends JPanel {
      * @return el producto
      */
     public Precios_Productos getComprado(){return this.pComprado;}
+
+    public BotonProducto getBotonProducto(){return botonProducto;}
+
+    public PanelProductos getPanelProductos(){return panelProductos;}
 }

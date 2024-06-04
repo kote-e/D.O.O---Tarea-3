@@ -30,45 +30,54 @@ public class Letrero extends JLabel {
         this.setOpaque(true);
 
         // Configuración de posición y estilo del texto
-        this.setHorizontalTextPosition(CENTER);
-        this.setVerticalTextPosition(CENTER);
-        this.setFont(new Font("monospace", Font.PLAIN, 25));
+        this.setHorizontalTextPosition(JLabel.CENTER);
+        this.setVerticalTextPosition(JLabel.CENTER);
+        this.setFont(new Font("Monospaced", Font.PLAIN, 15));
         this.setForeground(new Color(0xFFFF)); // Color del texto
         // Texto inicial del letrero
-        this.setText("-----");
+        this.setText("<html> <p  style=\"text-align: center;\">Seleccione Producto</p> </html>");
     }
 
     /**
      * Método para imprimir el precio del producto seleccionado en el letrero
      */
-    public void ImprimirPrecio(){
+    public void ImprimirPrecio(Precios_Productos productoComprado){
         String producto = null;
-        switch (panelExpendedor.getProducto()){
+
+        switch (productoComprado){
             case Precios_Productos.COCACOLA -> producto = "Cocacola";
-            case Precios_Productos.SPRITE -> producto = "Sprites";
+            case Precios_Productos.SPRITE -> producto = "Sprite";
             case Precios_Productos.FANTA -> producto = "Fanta";
             case Precios_Productos.SNICKERS -> producto = "Snickers";
             case Precios_Productos.SUPER8 -> producto = "Super8";
         }
-        this.setText("<html>Precio de "+ producto +":<br>$" + panelExpendedor.getProducto().getPrecio() + "</html>");
+        this.setText("<html><p  style=\"text-align: center;\">Precio de "+ producto +":<br>$" + productoComprado.getPrecio() + "</p></html>");
     }
 
     /**
      * Método para imprimir la cantidad total de monedas ingresadas en el expendedor
      */
     public void ImprimirMonedas(){
-        this.setText("<html>Monedas:<br>$" + panelExpendedor.getExpendedor().valorTotalIngresado() + "</html>");
+        this.setText("<html> <p style=\"text-align: center;\">Ingresado: " +
+                "$" + panelExpendedor.getExpendedor().valorTotalIngresado() + "</p></html>");
+    }
+
+    /**
+     * Método para cambiar el texto del letrero del expendedor
+     */
+    public void cambiarTextoLetrero(String str){
+        this.setText("<html> <p  style=\"text-align: center;\">" + str + "</p></html>");
     }
 
     public void ImprimirCompra(){
         String producto = null;
         switch (panelExpendedor.getComprado()){
-            case Precios_Productos.COCACOLA -> producto = "Cocacola";
-            case Precios_Productos.SPRITE -> producto = "Sprites";
-            case Precios_Productos.FANTA -> producto = "Fanta";
-            case Precios_Productos.SNICKERS -> producto = "Snickers";
-            case Precios_Productos.SUPER8 -> producto = "Super8";
+            case Precios_Productos.COCACOLA -> producto = "Cocacola comprada con exito!";
+            case Precios_Productos.SPRITE -> producto = "Sprite comprada con exito!";
+            case Precios_Productos.FANTA -> producto = "Fanta comprada con exito!";
+            case Precios_Productos.SNICKERS -> producto = "Snickers comprado con exito!";
+            case Precios_Productos.SUPER8 -> producto = "Super8 comprado con exito!";
         }
-        this.setText("<html>" + producto + "<br>Comprado con exito</html>");
+        this.setText("<html> <p  style=\"text-align: center;\">"  + producto + " </p></html>");
     }
 }

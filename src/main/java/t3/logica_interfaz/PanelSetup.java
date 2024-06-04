@@ -18,24 +18,27 @@ public class PanelSetup extends JPanel implements ChangeListener {
     private JSpinner compradorMonedas1000;
     private JSpinner compradorMonedas1500;
 
-    private int cantMonedas100;
-    private int cantMonedas500;
-    private int cantMonedas1000;
-    private int cantMonedas1500;
+    private int cantMonedas100 = 5;
+    private int cantMonedas500 = 5;
+    private int cantMonedas1000 = 5;
+    private int cantMonedas1500 = 5;
 
     public PanelSetup(Comprador cmp, Ventana frame) {
         comprador = cmp;
-
-
         JPanel setupPanel = new JPanel();
 
         setupPanel.setLayout(new GridLayout(0, 2, 2, 2));
         setupPanel.setBounds(0, 0, 500, 500);
 
-        compradorMonedas100 = new JSpinner();
-        compradorMonedas500 = new JSpinner();
-        compradorMonedas1000 = new JSpinner();
-        compradorMonedas1500 = new JSpinner();
+        SpinnerNumberModel model100 = new SpinnerNumberModel(5, 0, 100, 1);
+        SpinnerNumberModel model500 = new SpinnerNumberModel(5, 0, 100, 1);
+        SpinnerNumberModel model1000 = new SpinnerNumberModel(5, 0, 100, 1);
+        SpinnerNumberModel model1500 = new SpinnerNumberModel(5, 0, 100, 1);
+
+        compradorMonedas100 = new JSpinner(model100);
+        compradorMonedas500 = new JSpinner(model500);
+        compradorMonedas1000 = new JSpinner(model1000);
+        compradorMonedas1500 = new JSpinner(model1500);
 
         compradorMonedas100.setBounds(70, 20, 50, 40);
         compradorMonedas500.setBounds(70, 50, 50, 40);
@@ -58,73 +61,20 @@ public class PanelSetup extends JPanel implements ChangeListener {
         setupPanel.add(compradorMonedas100);
 
 
-
-        int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        int option = JOptionPane.showConfirmDialog(frame, setupPanel, "Ingresar cantidad de monedas del comprador", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
-
-            // establecer limites de cantidad entre [0,100]
-
-            if (cantMonedas100 < 0) {
-                cantMonedas100 = 0;
-            } else if (cantMonedas100 > 100) {
-                cantMonedas100 = 100;
-            }
-
-            if (cantMonedas500 < 0) {
-                cantMonedas500 = 0;
-            } else if (cantMonedas500 > 100) {
-                cantMonedas500 = 100;
-            }
-
-            if (cantMonedas1000 < 0) {
-                cantMonedas1000 = 0;
-            } else if (cantMonedas1000 > 100) {
-                cantMonedas1000 = 100;
-            }
-
-            if (cantMonedas1500 < 0) {
-                cantMonedas1500 = 0;
-            } else if (cantMonedas1500 > 100) {
-                cantMonedas1500 = 100;
-            }
-
-
             // agregar monedas al comprador
-            for (int i = 0; i < cantMonedas100; i++) {
-                Moneda m100 = new Moneda100();
-                comprador.addMonedas(m100);
-            }
+            for (int i = 0; i < cantMonedas100; i++) {comprador.addMonedas(new Moneda100());}
 
-            for (int j = 0; j < cantMonedas500; j++) {
-                Moneda m = new Moneda500();
-                comprador.addMonedas(m);
-            }
+            for (int j = 0; j < cantMonedas500; j++) {comprador.addMonedas(new Moneda500());}
 
-            for (int k = 0; k < cantMonedas1000; k++) {
-                Moneda m = new Moneda1000();
-                comprador.addMonedas(m);
-            }
+            for (int k = 0; k < cantMonedas1000; k++) {comprador.addMonedas(new Moneda1000());}
 
-            for (int l = 0; l < cantMonedas1500; l++) {
-                Moneda m = new Moneda1500();
-                comprador.addMonedas(m);
-            }
-        } else {
-            // en el caso de apretar cancel poner 5 monedas de cada una al comprador
-            for (int i = 0; i < 5; i++) {
-                Moneda m100 = new Moneda100();
-                comprador.addMonedas(m100);
+            for (int l = 0; l < cantMonedas1500; l++) {comprador.addMonedas(new Moneda1500());}
 
-                Moneda m500 = new Moneda500();
-                comprador.addMonedas(m500);
-
-                Moneda m1000 = new Moneda1000();
-                comprador.addMonedas(m1000);
-
-                Moneda m1500 = new Moneda1500();
-                comprador.addMonedas(m1500);
-            }
+        } else if(option == JOptionPane.CLOSED_OPTION){
+            System.exit( 0 );
         }
     }
 

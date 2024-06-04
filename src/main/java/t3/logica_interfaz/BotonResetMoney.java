@@ -30,6 +30,7 @@ public class BotonResetMoney extends JLabel implements MouseListener {
         this.setBounds(x,y,width,height);
         this.setOpaque(false);
         this.addMouseListener(this);
+        this.setToolTipText("Cancelar compra");
     }
 
     /**
@@ -45,6 +46,7 @@ public class BotonResetMoney extends JLabel implements MouseListener {
      */
     public void mousePressed(MouseEvent me) {
         pExpendedor.getExpendedor().sacarMonedasEntradaASalida();
+        pExpendedor.getLetrero().cambiarTextoLetrero("Seleccione Producto");
     }
 
     /**

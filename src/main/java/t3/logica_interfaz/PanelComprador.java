@@ -6,12 +6,13 @@ import t3.logica_expendedor.Precios_Productos;
 import javax.swing.*;
 import java.awt.*;
 
+ GeneradorImagen{
 /**
  * La clase PanelCompradores un JPanel personalizado que muestra los productos y
  * monedas del comprador
  * @author
  */
-public class PanelComprador extends JPanel {
+     public class PanelComprador extends JPanel implements {
     private ProductosUsuarioLabel productoUsuarioCoca;
     private ProductosUsuarioLabel productoUsuarioSprite;
     private ProductosUsuarioLabel productoUsuarioFanta;
@@ -35,12 +36,12 @@ public class PanelComprador extends JPanel {
         productoUsuarioTitulo.setFont(new Font("Monospaced", Font.PLAIN, 18));
         productoUsuarioTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         productoUsuarioTitulo.setBounds(0, 0, 350, 40);
-        // Inicializa las etiquetas de productos del usuario
+
         productoUsuarioCoca = new ProductosUsuarioLabel(Precios_Productos.COCACOLA, 20, 40, comprador);
         productoUsuarioSprite = new ProductosUsuarioLabel(Precios_Productos.SPRITE, 20, 66, comprador);
         productoUsuarioFanta = new ProductosUsuarioLabel(Precios_Productos.FANTA, 20, 92, comprador);
-        productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20, 118, comprador);
-        productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144, comprador);
+        productoUsuarioSnickers = new ProductosUsuarioLabel(Precios_Productos.SNICKERS, 20, 118, comprador);
+        productoUsuarioSuper8 = new ProductosUsuarioLabel(Precios_Productos.SUPER8, 20, 144, comprador);
 
         JPanel panelProductoUsuario = new JPanel();
         panelProductoUsuario.setBackground(new Color(0xF4F8FF));
@@ -73,11 +74,7 @@ public class PanelComprador extends JPanel {
 
 
         // seccion de seleccion de moneda
-
-        ImageIcon iconoMonedaSelec = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-        Image imgMonedaSelec = iconoMonedaSelec.getImage();
-        Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
-        iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
+        ImageIcon iconoMonedaSelec = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",80,80);
 
         JLabel lblMonedaSeleccionada = new JLabel(iconoMonedaSelec);
         lblMonedaSeleccionada.setBounds(230, 40, iconoMonedaSelec.getIconWidth(), iconoMonedaSelec.getIconHeight());

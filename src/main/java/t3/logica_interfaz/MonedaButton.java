@@ -43,25 +43,14 @@ public class MonedaButton extends JButton{
         cantMonedasLabel = (CantidadMonedasLabel) cantMonedasLbl;
         comprador = pExpendedor.getComprador();
 
-        ImageIcon icon = null;
+        ImageIcon icon = switch(val) {
+            case 100 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
+            case 500 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
+            case 1000 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
+            case 1500 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
+            default -> null;
+        };
 
-        // Seleccionar el ícono dependiendo del valor de la moneda
-        switch(val) {
-            case 100:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
-                break;
-            case 500:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
-                break;
-            case 1000:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
-                break;
-            case 1500:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-                break;
-
-        }
-        // Escala la imagen del ícono
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(30,30, Image.SCALE_DEFAULT);
         icon = new ImageIcon(scaledImg);
@@ -84,16 +73,13 @@ public class MonedaButton extends JButton{
      * Clase interna que implementa ActionListener para manejar eventos de acción del botón
      */
     private class EscuchadorBoton implements ActionListener {
-        public void actionPerformed(ActionEvent ae) {
-            ImageIcon iconoMonedaSelec = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_"+ value +".png");
-            Image imgMonedaSelec = iconoMonedaSelec.getImage();
-            Image scaledImgMonedaSelec = imgMonedaSelec.getScaledInstance(80,80, Image.SCALE_DEFAULT);
-            iconoMonedaSelec = new ImageIcon(scaledImgMonedaSelec);
 
+    private class EscuchadorBoton implements ActionListener, GeneradorImagen {
+        public void actionPerformed(ActionEvent ae) {
+            ImageIcon iconoMonedaSelec = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_"+ value +".png",80,80);
             selecMonedaLabel.setIcon(iconoMonedaSelec);
 
             // si el comprador no tiene una moneda no hacer nada
-
             Moneda moneda = comprador.getMoneda(value);
             if(moneda != null){
                 comprador.getExpendedor().addMonedaEntrada(moneda);

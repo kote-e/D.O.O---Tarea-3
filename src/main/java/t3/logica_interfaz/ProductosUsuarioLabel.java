@@ -1,6 +1,7 @@
 package t3.logica_interfaz;
 
 import t3.logica_expendedor.Comprador;
+import t3.logica_expendedor.Excepciones.NoHayProductoComprador;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
@@ -8,49 +9,42 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ProductosUsuarioLabel extends JLabel {
+public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
 
     private final ProductosUsuarioLabel thisLabel;
-    private Comprador comprador;
-    private Precios_Productos producto;
+    private final Comprador comprador;
+    private final Precios_Productos producto;
     private String strProducto;
     private int cantidad = 0;
 
     public ProductosUsuarioLabel(Precios_Productos prod, int posX, int posY, Comprador comp) {
         comprador = comp;
         producto = prod;
-        cantidad = comp.cantidadProducto(prod);
         thisLabel = this;
-
 
         ImageIcon icon = null;
         switch(prod) {
             case Precios_Productos.COCACOLA:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/cocacola.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/cocacola.png",20,20);
                 strProducto = "Cocacola";
                 break;
             case Precios_Productos.FANTA:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/fanta.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",20,20);
                 strProducto = "Fanta   ";
                 break;
             case Precios_Productos.SPRITE:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/sprite.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",20,20);
                 strProducto = "Sprite  ";
                 break;
             case Precios_Productos.SUPER8:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/super8.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/super8.png",20,20);
                 strProducto = "Super8  ";
                 break;
             case Precios_Productos.SNICKERS:
-                icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/snickers.png");
+                icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",20,20);
                 strProducto = "Snickers";
                 break;
         }
-        Image imgIcon = icon.getImage();
-        Image scaledImgIcon = imgIcon.getScaledInstance(20,20, Image.SCALE_DEFAULT);
-        icon = new ImageIcon(scaledImgIcon);
-
-
 
         this.setText(strProducto + "       cantidad: " + cantidad);
         this.setFont(new Font("monospaced", Font.PLAIN, 16));
@@ -71,26 +65,16 @@ public class ProductosUsuarioLabel extends JLabel {
         public void mouseClicked(MouseEvent e) {}
 
         @Override
-        public void mousePressed(MouseEvent e) {
-            if(comprador.cantidadProducto(producto) != 0){
+        public void mousePressed(MouseEvent e){
+            try{
                 comprador.consumirProducto(producto);
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
             }
-            else {
-                System.out.println("No hay producto");
-                JOptionPane.showMessageDialog(null, "No tienes " + strProducto);
-                // implementar excepcion customizada
+            catch (NoHayProductoComprador exp){
+                JOptionPane.showMessageDialog(null, exp.getMessage());
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
-
-            switch (producto) {
-                case Precios_Productos.COCACOLA -> strProducto = "Cocacola";
-                case Precios_Productos.FANTA -> strProducto = "Fanta   ";
-                case Precios_Productos.SPRITE -> strProducto = "Sprite   ";
-                case Precios_Productos.SUPER8 -> strProducto = "Super8   ";
-                case Precios_Productos.SNICKERS -> strProducto = "Snickers";
-            }
-
-
         }
 
         @Override
@@ -111,6 +95,6 @@ public class ProductosUsuarioLabel extends JLabel {
 
     public void setCantidad(int cant){
         cantidad = cant;
-        this.setText(strProducto + "       cantidad: " + cantidad);
+        this.setText(strProducto + "       cantidad: " + String.valueOf(cantidad));
     }
 }
