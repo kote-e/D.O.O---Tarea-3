@@ -5,7 +5,16 @@ import t3.logica_expendedor.Expendedor;
 
 import javax.swing.*;
 
+/**
+ * La clase Ventana es una extencion de JFrame que representa la interfaz gráfica
+ * de la máquina expendedora y configura los componentes principales de la interfaz de usuario
+ * @author
+ */
 public class Ventana extends JFrame {
+    /**
+     * Inicializa la interfaz gráfica, creando los componentes necesarios como el comprador,
+     * el expendedor, y los paneles correspondientes
+     */
     public Ventana(){
         Comprador comprador;
         Expendedor expendedor;
