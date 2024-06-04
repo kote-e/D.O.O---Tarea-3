@@ -9,6 +9,12 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ *  La clase ProductosUsuarioLabel es una extensión de JLabel que representa un producto
+ *  del usuario en la interfaz gráfica. Implementa la interfaz GeneradorImagen para generar
+ *  imágenes de productos
+ * @author
+ */
 public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
 
     private final ProductosUsuarioLabel thisLabel;
@@ -17,6 +23,13 @@ public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
     private String strProducto;
     private int cantidad = 0;
 
+    /**
+     * Constructor para inicializar un label de producto del usuario
+     * @param prod el producto que representa el label
+     * @param posX esta es la coordenada x donde se encuentra el label en el panel
+     * @param posY esta es la coordenada y donde se encuentra el label en el panel
+     * @param comp este es el comprador
+     */
     public ProductosUsuarioLabel(Precios_Productos prod, int posX, int posY, Comprador comp) {
         comprador = comp;
         producto = prod;
@@ -59,6 +72,9 @@ public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
         this.addMouseListener(new EscucharMouse());
     }
 
+    /**
+     * Esta clase funciona para manejar eventos de mouse sobre el label de producto
+     */
     private class EscucharMouse implements MouseListener {
 
         @Override
@@ -94,6 +110,10 @@ public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
         }
     }
 
+    /**
+     * este método para establecer la cantidad de productos en el label
+     * @param cant La nueva cantidad de productos
+     */
     public void setCantidad(int cant){
         cantidad = cant;
         this.setText(strProducto + "       cantidad: " + String.valueOf(cantidad));
