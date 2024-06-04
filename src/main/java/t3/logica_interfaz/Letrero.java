@@ -16,8 +16,8 @@ public class Letrero extends JLabel {
     /**
      * Constructor que inicializa el letrero en su posición y sus dimensiones
      * @param pExp es el panel al que pertenece el letrero
-     * @param x esta es la cooredenada x donde se encuentra el letrero
-     * @param y esta es la cooredenada y donde se encuentra el letrero
+     * @param x esta es la coordenada x donde se encuentra el letrero
+     * @param y esta es la coordenada y donde se encuentra el letrero
      * @param width este es el ancho del letrero
      * @param height esta es la altura del letrero
      */
@@ -70,6 +70,9 @@ public class Letrero extends JLabel {
         this.setText("<html> <p  style=\"text-align: center;\">" + str + "</p></html>");
     }
 
+    /**
+     * Método para imprimir un mensaje de éxito de compra en el letrero
+     */
     public void ImprimirCompra(){
         String producto = switch (panelExpendedor.getComprado()){
             case Precios_Productos.COCACOLA -> "Cocacola comprada con exito!";
