@@ -25,7 +25,7 @@ public class Deposito<T>{
      * @return Producto o Moneda a retirar, o null si el depósito está vacío
      */
     public T get(){
-        if (list.size() != 0) {return list.remove(0);}  //Si la lista no esta vacia se retorna al primer objeto de la lista eliminadolo a la ves de esta lista
+        if (!list.isEmpty()) {return list.removeLast();}  //Si la lista no esta vacia se retorna al primer objeto de la lista eliminadolo a la ves de esta lista
         else return null;       //Si la lista esta vacia se retorna null
     }
 

@@ -65,7 +65,6 @@ public class BotonVuelto extends JLabel implements MouseListener, GeneradorImage
     public void setpComprador(PanelComprador pComprador) {this.pComprador = pComprador;}
 
     private void creacionMonedas(){     // 166 x 82
-        JLabel monedaImg = null;
         for(int i=0;i<7;i++){   //Cantidad de monedas que se pueden mostrar en la salida del vuelto
             monedas100.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",10,60 - i*10,20,20));
             monedas500.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png",50,60 - i*10,20,20));

@@ -4,8 +4,8 @@ import t3.logica_expendedor.Bebidas.*;
 import t3.logica_expendedor.Dulces.*;
 import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Excepciones.*;
-
-import javax.swing.*;
+import t3.logica_interfaz.PanelExpendedor;
+import t3.logica_interfaz.PanelProductos;
 
 /**
  * Clase que representa a un expendedor de Bebidas y Dulces
@@ -14,12 +14,12 @@ public class Expendedor {
     private Deposito<Moneda> monEn;     //Deposito que guarda las monedas que entran
     private int valorIngresado = 0;         //Guarda el valor total ingresado de las monedas
     private Deposito<Moneda> monVu;     //Deposito que guarda las monedas del vuelto
-    private Deposito<Bebida> coca;      //Deposito que guarda las bebidas CocaCola
-    private Deposito<Bebida> sprite;    //Deposito que guarda las bebidas Sprite
-    private Deposito<Bebida> fanta;     //Deposito que guarda las bebidas Fanta
-    private Deposito<Dulce> snickers;   //Deposito que guarda los dulces Snickers
-    private Deposito<Dulce> super8;     //Deposito que guarda los dulces Super8
-    private Producto deposito;
+    private Deposito<Producto> coca;      //Deposito que guarda las bebidas CocaCola
+    private Deposito<Producto> sprite;    //Deposito que guarda las bebidas Sprite
+    private Deposito<Producto> fanta;     //Deposito que guarda las bebidas Fanta
+    private Deposito<Producto> snickers;   //Deposito que guarda los dulces Snickers
+    private Deposito<Producto> super8;     //Deposito que guarda los dulces Super8
+    private Producto depositoSalida;
 
     /**
      * Constructor: Recibe la cantidad de bebidas con la que se llenaran los depósitos
@@ -27,13 +27,13 @@ public class Expendedor {
      * @param numBebidas Cantidad de bebidas con las que se llamaran los depósitos
      */
     public Expendedor(int numBebidas) {
-        monEn = new Deposito<Moneda>();     //Instanciacion del Deposito de Monedas
-        monVu = new Deposito<Moneda>();     //Instanciacion del Deposito de Monedas
-        coca = new Deposito<Bebida>();      //Instanciacion del Deposito de CocaColas
-        sprite = new Deposito<Bebida>();    //Instanciacion del Deposito de Sprite
-        fanta = new Deposito<Bebida>();     //Instanciacion del Deposito de Fanta
-        snickers = new Deposito<Dulce>();   //Instanciacion del Deposito de Snickers
-        super8 = new Deposito<Dulce>();     //Instanciacion del Deposito de Super8
+        monEn = new Deposito<>();     //Instanciacion del Deposito de Monedas
+        monVu = new Deposito<>();     //Instanciacion del Deposito de Monedas
+        coca = new Deposito<>();      //Instanciacion del Deposito de CocaColas
+        sprite = new Deposito<>();    //Instanciacion del Deposito de Sprite
+        fanta = new Deposito<>();     //Instanciacion del Deposito de Fanta
+        snickers = new Deposito<>();   //Instanciacion del Deposito de Snickers
+        super8 = new Deposito<>();     //Instanciacion del Deposito de Super8
 
         for (int i = 0; i < numBebidas; i++) {      //For en que se rellenan los depositos con sus respectivasd monedas
             Bebida bc = new CocaCola(i);            //Se crea una CocaCola con su numero de serie
@@ -97,7 +97,7 @@ public class Expendedor {
             } //Elimino todas las monedas del deposito de entrada
             valorIngresado = 0;
         }
-        deposito = producto;   //Se retorna el producto que se compro o null en otros casos
+        depositoSalida = producto;   //Se retorna el producto que se compro o null en otros casos
     }
 
     /**
@@ -159,18 +159,18 @@ public class Expendedor {
     }
 
     /**
-     * devuelve el producto obtenido del expendedor
+     * Devuelve el producto obtenido del expendedor
      * @return producto obtenido
      */
 
     public Producto getProducto() throws NoHayProductoDepositoSalida{
         Producto producto = null;
-        if (deposito == null) {
+        if (depositoSalida == null) {
             throw new NoHayProductoDepositoSalida();
         }
 
-        producto = deposito;
-        deposito = null;
+        producto = depositoSalida;
+        depositoSalida = null;
 
 
 
@@ -180,10 +180,18 @@ public class Expendedor {
     public int CantidadMonedasVuelto(int valor){
         int contador = 0;
         for(int i = 0; i < monVu.size(); i++){
-            if(((Moneda)monVu.getInstance(i)).getValor() == valor){
-                contador++;
-            }
+            if(((Moneda)monVu.getInstance(i)).getValor() == valor){contador++;}
         }
         return contador;
+    }
+
+    public int CantidadProductoDentro(Precios_Productos tipoProducto){
+        return switch (tipoProducto){
+            case COCACOLA -> coca.size();
+            case SPRITE -> sprite.size();
+            case FANTA -> fanta.size();
+            case SNICKERS -> snickers.size();
+            case SUPER8 -> super8.size();
+        };
     }
 }

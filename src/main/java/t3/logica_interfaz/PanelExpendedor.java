@@ -15,6 +15,7 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
     private PanelComprador panelComprador;
     private final BotonProducto botonProducto;
     private final BotonVuelto botonVuelto;
+    private final PanelProductos panelProductos;
 
     public PanelExpendedor(Expendedor expendedor, Comprador comprador) {
         super();
@@ -25,19 +26,8 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
         setBounds(400, 0, 850, 670);
         setLayout(null);
 
-        //Se agregan los productos
-        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",65,100,150,150));
-        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",170,100,150,150));
-        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",270,100,150,150));
-        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",55,270,160,160));
-        add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/super8.png",153,275,160,160));
-
-        //Se agregan los precios
-        add(mostrarPrecios(Precios_Productos.COCACOLA,120,250,30,20));
-        add(mostrarPrecios(Precios_Productos.SPRITE,230,250,30,20));
-        add(mostrarPrecios(Precios_Productos.FANTA,330,250,30,20));
-        add(mostrarPrecios(Precios_Productos.SNICKERS,120,425,30,20));
-        add(mostrarPrecios(Precios_Productos.SUPER8,225,425,30,20));
+        panelProductos = new PanelProductos(this);
+        add(panelProductos);
 
         //Agregar el Letrero
         this.letrero = new Letrero(this,432,105,165,100);
@@ -72,14 +62,6 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
         add(expendedorLabel);
     }
 
-    private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
-        JLabel precio = new JLabel("$" + nombre.getPrecio());
-        precio.setForeground(new Color(0x000000));
-        precio.setBounds(x,y,width,height);
-
-        return precio;
-    }
-
     public void setProducto(Precios_Productos producto){this.producto = producto;}
 
     public Precios_Productos getProducto() throws ProductoNoSeleccionado{
@@ -104,4 +86,6 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
     public Precios_Productos getComprado(){return this.pComprado;}
 
     public BotonProducto getBotonProducto(){return botonProducto;}
+
+    public PanelProductos getPanelProductos(){return panelProductos;}
 }
