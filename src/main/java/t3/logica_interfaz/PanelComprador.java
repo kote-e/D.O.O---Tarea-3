@@ -6,23 +6,22 @@ import t3.logica_expendedor.Precios_Productos;
 import javax.swing.*;
 import java.awt.*;
 
- GeneradorImagen{
 /**
  * La clase PanelCompradores un JPanel personalizado que muestra los productos y
  * monedas del comprador
  * @author
  */
-     public class PanelComprador extends JPanel implements {
-    private ProductosUsuarioLabel productoUsuarioCoca;
-    private ProductosUsuarioLabel productoUsuarioSprite;
-    private ProductosUsuarioLabel productoUsuarioFanta;
-    private ProductosUsuarioLabel productoUsuarioSuper8;
-    private ProductosUsuarioLabel productoUsuarioSnickers;
+     public class PanelComprador extends JPanel implements GeneradorImagen{
+    private final ProductosUsuarioLabel productoUsuarioCoca;
+    private final ProductosUsuarioLabel productoUsuarioSprite;
+    private final ProductosUsuarioLabel productoUsuarioFanta;
+    private final ProductosUsuarioLabel productoUsuarioSuper8;
+    private final ProductosUsuarioLabel productoUsuarioSnickers;
 
-    private CantidadMonedasLabel moneda1500CantLabel;
-    private CantidadMonedasLabel moneda1000CantLabel;
-    private CantidadMonedasLabel moneda500CantLabel;
-    private CantidadMonedasLabel moneda100CantLabel;
+    private final CantidadMonedasLabel moneda1500CantLabel;
+    private final CantidadMonedasLabel moneda1000CantLabel;
+    private final CantidadMonedasLabel moneda500CantLabel;
+    private final CantidadMonedasLabel moneda100CantLabel;
 
     /**
      * es un constructor para inicializar el panel del comprador
@@ -69,8 +68,6 @@ import java.awt.*;
         panelCantMonedas.setBackground(new Color(0xF4F8FF));
         panelCantMonedas.setBounds(20, 285, 350, 180);
         panelCantMonedas.setLayout(null);
-
-
 
 
         // seccion de seleccion de moneda

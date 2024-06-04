@@ -16,7 +16,7 @@ public class Ventana extends JFrame {
             comprador = new Comprador(expendedor);
 
             // popUp para poner monedas en el comprador
-            JPanel setupPanel = new PanelSetup(comprador, this);
+            new PanelSetup(comprador, this);
 
             // Comprador y Expendedor
             PanelExpendedor panelExpendedor = new PanelExpendedor(expendedor, comprador);
@@ -37,11 +37,7 @@ public class Ventana extends JFrame {
             this.add(panelExpendedor);
 
             this.setVisible(true);
-
         }
-        catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+        catch (Exception e){JOptionPane.showMessageDialog(this, e.getMessage());}
     }
 }

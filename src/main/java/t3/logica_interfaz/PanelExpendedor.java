@@ -9,7 +9,7 @@ import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
 /**
  * La subclase PanelExpendedor es una extensión de JPanel que representa la interfaz gráfica
  * de la máquina expendedora
- * @author
+ * @author Antonio Benavides
  */
 
 public class PanelExpendedor extends JPanel implements GeneradorImagen{
@@ -39,39 +39,39 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
         setLayout(null);
 
         panelProductos = new PanelProductos(this);
-        add(panelProductos);
+        this.add(panelProductos);
 
         //Agregar el Letrero
         this.letrero = new Letrero(this,432,105,165,100);
-        add(letrero);
+        this.add(letrero);
 
         //Se agregan los botones para seleccionar los productos
-        add(new BotonSelectorP(this,Precios_Productos.COCACOLA,"1",438,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SPRITE,"2",490,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.FANTA,"3",544,328,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SNICKERS,"4",438,377,47,42));
-        add(new BotonSelectorP(this,Precios_Productos.SUPER8,"5",490,377,47,42));
+        this.add(new BotonSelectorP(this,Precios_Productos.COCACOLA,"1",438,328,47,42));
+        this.add(new BotonSelectorP(this,Precios_Productos.SPRITE,"2",490,328,47,42));
+        this.add(new BotonSelectorP(this,Precios_Productos.FANTA,"3",544,328,47,42));
+        this.add(new BotonSelectorP(this,Precios_Productos.SNICKERS,"4",438,377,47,42));
+        this.add(new BotonSelectorP(this,Precios_Productos.SUPER8,"5",490,377,47,42));
 
         //Se agrega el Boton para concretar la compra
-        add(new BotonCompra(this,557,235,40,40));
+        this.add(new BotonCompra(this,557,235,40,40));
 
         //Se agrega el Boton para Sacar las Monedas ingresadas sin comprar
-        add(new BotonResetMoney(this,500,235,40,40));
+        this.add(new BotonResetMoney(this,500,235,40,40));
 
         //Se agrega el boton para sacar el vuelto
         botonVuelto = new BotonVuelto(this,431,477,166,82);
-        add(botonVuelto);
+        this.add(botonVuelto);
 
         //Se agrega el boton para sacar al producto
         botonProducto = new BotonProducto(this,panelComprador,93,477,306,82);
-        add(botonProducto);
+        this.add(botonProducto);
 
         //Se carga, redimenciona y agrega la imagen de fondo del Expendedor
         ImageIcon expendedorIcon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/expendedor.png",600,600);
         JLabel expendedorLabel = new JLabel(expendedorIcon);
         expendedorLabel.setBounds(0,0 , 670,670);
 
-        add(expendedorLabel);
+        this.add(expendedorLabel);
     }
 
     public void setProducto(Precios_Productos producto){this.producto = producto;}
@@ -83,7 +83,7 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
 
     /**
      * Obtiene el expendedor asociado
-     * @return
+     * @return Retorna el Expendedor asociado
      */
     public Expendedor getExpendedor(){return this.expendedor;}
 
@@ -100,7 +100,7 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
     public Letrero getLetrero(){return this.letrero;}
 
     /**
-     * este establece el panel
+     * este establece el panel del Comprador
      * @param panelComprador este es el panel del comprador
      */
     public void setPanelComprador(PanelComprador panelComprador) {
@@ -111,7 +111,7 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
 
     /**
      * Establese el producto comprado
-     * @param producto
+     * @param producto Representa al ultimo tipo de producto que se compro
      */
     public void setComprado(Precios_Productos producto){this.pComprado = producto;}
 

@@ -25,7 +25,6 @@ public class BotonSelectorP extends JLabel implements MouseListener {
      * @param width este es el ancho del botón
      * @param height este es el alto del botón
      */
-    public BotonSelectorP(PanelExpendedor pExp, Precios_Productos producto, int x, int y, int width, int height) {
     public BotonSelectorP(PanelExpendedor pExp, Precios_Productos producto,String ver, int x, int y, int width, int height) {
         this.pExpendedor = pExp;
         this.producto = producto;

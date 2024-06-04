@@ -11,20 +11,17 @@ import t3.logica_expendedor.Monedas.*;
 public class PanelSetup extends JPanel implements ChangeListener {
 
     // inicializar variables
-    private Comprador comprador;
-
-    private JSpinner compradorMonedas100;
-    private JSpinner compradorMonedas500;
-    private JSpinner compradorMonedas1000;
-    private JSpinner compradorMonedas1500;
+    private final JSpinner compradorMonedas100;
+    private final JSpinner compradorMonedas500;
+    private final JSpinner compradorMonedas1000;
+    private final JSpinner compradorMonedas1500;
 
     private int cantMonedas100 = 5;
     private int cantMonedas500 = 5;
     private int cantMonedas1000 = 5;
     private int cantMonedas1500 = 5;
 
-    public PanelSetup(Comprador cmp, Ventana frame) {
-        comprador = cmp;
+    public PanelSetup(Comprador comprador, Ventana frame) {
         JPanel setupPanel = new JPanel();
 
         setupPanel.setLayout(new GridLayout(0, 2, 2, 2));
@@ -66,37 +63,29 @@ public class PanelSetup extends JPanel implements ChangeListener {
         if (option == JOptionPane.OK_OPTION) {
             // agregar monedas al comprador
             for (int i = 0; i < cantMonedas100; i++) {comprador.addMonedas(new Moneda100());}
-
             for (int j = 0; j < cantMonedas500; j++) {comprador.addMonedas(new Moneda500());}
-
             for (int k = 0; k < cantMonedas1000; k++) {comprador.addMonedas(new Moneda1000());}
-
             for (int l = 0; l < cantMonedas1500; l++) {comprador.addMonedas(new Moneda1500());}
-
-        } else if(option == JOptionPane.CLOSED_OPTION){
+        }
+        else if(option == JOptionPane.CLOSED_OPTION){
             System.exit( 0 );
         }
     }
 
     @Override
     public void stateChanged(ChangeEvent e) {
-
-        // guardar cantidad de monedas
+        // Guardar cantidad de monedas
         if(e.getSource() == compradorMonedas100){
-            String value100 = compradorMonedas100.getValue() + "";
-            cantMonedas100 = Integer.parseInt(value100);
-
-        } else if(e.getSource() == compradorMonedas500){
-            String value500 = compradorMonedas500.getValue() + "";
-            cantMonedas500 = Integer.parseInt(value500);
-
-        } else if(e.getSource() == compradorMonedas1000){
-            String value1000 = compradorMonedas1000.getValue() + "";
-            cantMonedas1000 = Integer.parseInt(value1000);
-
-        } else if(e.getSource() == compradorMonedas1500){
-            String value1500 = compradorMonedas1500.getValue() + "";
-            cantMonedas1500 = Integer.parseInt(value1500);
+            cantMonedas100 = Integer.parseInt(compradorMonedas100.getValue() + "");
+        }
+        else if(e.getSource() == compradorMonedas500){
+            cantMonedas500 = Integer.parseInt(compradorMonedas500.getValue() + "");
+        }
+        else if(e.getSource() == compradorMonedas1000){
+            cantMonedas1000 = Integer.parseInt(compradorMonedas1000.getValue() + "");
+        }
+        else if(e.getSource() == compradorMonedas1500){
+            cantMonedas1500 = Integer.parseInt(compradorMonedas1500.getValue() + "");
         }
     }
 }

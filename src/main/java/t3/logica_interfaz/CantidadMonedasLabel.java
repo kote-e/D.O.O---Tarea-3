@@ -12,9 +12,7 @@ import java.awt.*;
  * @author
  */
 public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
-    private CantidadMonedasLabel thisLabel;
     private int cantidad = 0;
-    private Comprador comprador = null;
     private String strVal = "";
 
     /**
@@ -22,32 +20,12 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
      * @param val esta es el valor de la moneda
      * @param posX esta es la coordenada x donde se encuentra la etiqueta en la pantalla
      * @param posY esta es la coordenada y donde se encuentra la etiqueta en la pantalla
-     * @param comp este es el comprador
+     * @param comprador este es el comprador
      */
-    public CantidadMonedasLabel(int val, int posX, int posY , Comprador comp) {
-        thisLabel = this;
-        comprador = comp;
+    public CantidadMonedasLabel(int val, int posX, int posY , Comprador comprador) {
         cantidad = comprador.cantidadMonedas(val);
 
-
-        /** Selecciona el ícono correspondiente al valor de la moneda */
-
-        ImageIcon icon = null;
-        switch(val) {
-            case 100 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
-
-            case 500 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
-
-            case 1000 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
-
-            case 1500 -> icon = new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-        }
-
-
-        /** Escala la imagen del ícono */
-        Image img = icon.getImage();
-        Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
-        icon = new ImageIcon(scaledImg);
+        /** Carga y escala  de imagenes*/
         ImageIcon icon = switch(val) {
             case 100 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",20,20);
             case 500 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png",20,20);
@@ -55,7 +33,6 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
             case 1500 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png",20,20);
             default -> null;
         };
-
 
         /** Establece el texto y el ícono de la etiqueta */
         if(val >= 1000){strVal = String.valueOf(val);}
@@ -79,6 +56,6 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
     */
     public void setCantidad(int cant){
         cantidad = cant;
-        thisLabel.setText(strVal + "           cantidad: " + cantidad);
+        this.setText(strVal + "           cantidad: " + cantidad);
     }
 }

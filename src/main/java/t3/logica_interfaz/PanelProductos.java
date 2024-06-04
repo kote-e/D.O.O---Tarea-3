@@ -7,12 +7,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PanelProductos extends JPanel implements GeneradorImagen{
-    private PanelExpendedor pExpendedor;
-    private ArrayList<JLabel> Cocacola;
-    private ArrayList<JLabel> Sprite;
-    private ArrayList<JLabel> Fanta;
-    private ArrayList<JLabel> Snickers;
-    private ArrayList<JLabel> Super8;
+    private final PanelExpendedor pExpendedor;
+    private final ArrayList<JLabel> Cocacola;
+    private final ArrayList<JLabel> Sprite;
+    private final ArrayList<JLabel> Fanta;
+    private final ArrayList<JLabel> Snickers;
+    private final ArrayList<JLabel> Super8;
 
     public PanelProductos(PanelExpendedor pExpendedor) {
         this.pExpendedor = pExpendedor;

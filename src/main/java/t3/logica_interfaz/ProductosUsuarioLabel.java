@@ -72,7 +72,8 @@ public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
             }
             catch (NoHayProductoComprador exp){
                 JOptionPane.showMessageDialog(null, exp.getMessage());
-            } catch (Exception exception) {
+            }
+            catch (Exception exception) {
                 exception.printStackTrace();
             }
         }

@@ -19,11 +19,11 @@ import java.awt.event.MouseListener;
  * @author
  */
 
-public class MonedaButton extends JButton implements Sonidos{
-    private int value = 0;
-    private JLabel selecMonedaLabel;
-    private CantidadMonedasLabel cantMonedasLabel;
-    private Comprador comprador;
+public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
+    private final int value;    //Valor de la moneda que representara el Boton
+    private final JLabel selecMonedaLabel;
+    private final CantidadMonedasLabel cantMonedasLabel;
+    private final Comprador comprador;
     private final PanelExpendedor pExpendedor;
     private final Clip meterMoneda;
 
@@ -44,17 +44,7 @@ public class MonedaButton extends JButton implements Sonidos{
         comprador = pExpendedor.getComprador();
         meterMoneda = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Meter_Moneda.wav");
 
-        ImageIcon icon = switch(val) {
-            case 100 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
-            case 500 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png");
-            case 1000 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1000.png");
-            case 1500 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_1500.png");
-            default -> null;
-        };
-
-        Image img = icon.getImage();
-        Image scaledImg = img.getScaledInstance(30,30, Image.SCALE_DEFAULT);
-        icon = new ImageIcon(scaledImg);
+        ImageIcon icon = GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_"+ value +".png",30,30);
 
         this.setBounds(posX, posY, 85, 45);
         this.setIcon(icon);
@@ -73,7 +63,6 @@ public class MonedaButton extends JButton implements Sonidos{
     /**
      * Clase interna que implementa ActionListener para manejar eventos de acción del botón
      */
-    private class EscuchadorBoton implements ActionListener {
 
     private class EscuchadorBoton implements ActionListener, GeneradorImagen {
         public void actionPerformed(ActionEvent ae) {
@@ -122,6 +111,5 @@ public class MonedaButton extends JButton implements Sonidos{
             MonedaButton btn = (MonedaButton) e.getComponent();
             btn.setBackground(new Color(0xE0FAFA));
         }
-
     }
 }
