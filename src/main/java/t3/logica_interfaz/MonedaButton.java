@@ -31,8 +31,8 @@ public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
      *Constructor para inicializar el botón de moneda
      * @param panelExpendeor este es el panel expendedor al que pertenece el botón
      * @param val este es el valor de la moneda
-     * @param posX esta es la cooredenada x donde se encuentra el bóton en la pantalla
-     * @param posY esta es la cooredenada y donde se encuentra el bóton en la pantalla
+     * @param posX esta es la coordenada x donde se encuentra el botón en la pantalla
+     * @param posY esta es la coordenada y donde se encuentra el botón en la pantalla
      * @param selecMonlbl es la etiqueta que muestra la moneda seleccionada
      * @param cantMonedasLbl esta es la etiqueta que muestra la cantidad de monedas
      */
@@ -86,7 +86,7 @@ public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
     }
 
     /**
-     * esta es una clase interna que implementa MouseListener para
+     * Esta es una clase interna que implementa MouseListener para
      * manejar eventos del mause sobre el botón
      */
     private class EscucharMouse implements MouseListener {
