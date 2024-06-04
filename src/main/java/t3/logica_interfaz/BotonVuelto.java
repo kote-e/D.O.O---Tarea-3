@@ -6,8 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import javax.sound.sampled.Clip;
 
-public class BotonVuelto extends JLabel implements MouseListener, GeneradorImagen {
+public class BotonVuelto extends JLabel implements MouseListener, GeneradorImagen, Sonidos {
     private final PanelExpendedor pExpendedor;
     private PanelComprador pComprador;
 
@@ -15,6 +16,8 @@ public class BotonVuelto extends JLabel implements MouseListener, GeneradorImage
     private ArrayList<JLabel> monedas500;
     private ArrayList<JLabel> monedas1000;
     private ArrayList<JLabel> monedas1500;
+
+    private final Clip abrirSonido;
 
     public BotonVuelto(PanelExpendedor pExp, int x, int y, int width, int height) {
         this.pExpendedor = pExp;
@@ -30,6 +33,8 @@ public class BotonVuelto extends JLabel implements MouseListener, GeneradorImage
         monedas1500 = new ArrayList<>();
 
         creacionMonedas();
+
+        abrirSonido = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Abrir_Compuerta.wav");
     }
 
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
@@ -54,6 +59,7 @@ public class BotonVuelto extends JLabel implements MouseListener, GeneradorImage
         BotonVuelto lbl = (BotonVuelto) me.getComponent();
         lbl.setBackground(new Color(0x672222));
         imprimirMonedas();
+        Sonidos.reproducirSonido(abrirSonido, () -> {});
     }
 
     public void mouseExited(MouseEvent me) {

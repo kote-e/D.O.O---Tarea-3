@@ -4,13 +4,14 @@ import t3.logica_expendedor.Bebidas.*;
 import t3.logica_expendedor.Dulces.*;
 import t3.logica_expendedor.Monedas.*;
 import t3.logica_expendedor.Excepciones.*;
-import t3.logica_interfaz.PanelExpendedor;
-import t3.logica_interfaz.PanelProductos;
+import t3.logica_interfaz.Sonidos;
+
+import javax.sound.sampled.Clip;
 
 /**
  * Clase que representa a un expendedor de Bebidas y Dulces
  */
-public class Expendedor {
+public class Expendedor implements Sonidos {
     private Deposito<Moneda> monEn;     //Deposito que guarda las monedas que entran
     private int valorIngresado = 0;         //Guarda el valor total ingresado de las monedas
     private Deposito<Moneda> monVu;     //Deposito que guarda las monedas del vuelto
@@ -20,6 +21,9 @@ public class Expendedor {
     private Deposito<Producto> snickers;   //Deposito que guarda los dulces Snickers
     private Deposito<Producto> super8;     //Deposito que guarda los dulces Super8
     private Producto depositoSalida;
+    private final Clip caerLata;
+    private final Clip caerDulce;
+    private final Clip caerMonedas;
 
     /**
      * Constructor: Recibe la cantidad de bebidas con la que se llenaran los depósitos
@@ -47,6 +51,10 @@ public class Expendedor {
             Dulce d8 = new Super8(4 * numBebidas + i);   //Se crea un Super8 con su numero de serie
             super8.add(d8);                   //Se ingresa el dulce recien creado al deposito de Super8
         }
+
+        caerLata = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Caer_Lata.wav");
+        caerDulce = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Caer_Envoltorio.wav");
+        caerMonedas = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Caer_Monedas.wav");
     }
 
     /**
@@ -97,7 +105,13 @@ public class Expendedor {
             } //Elimino todas las monedas del deposito de entrada
             valorIngresado = 0;
         }
+
         depositoSalida = producto;   //Se retorna el producto que se compro o null en otros casos
+
+        if(cualProducto == Precios_Productos.COCACOLA || cualProducto == Precios_Productos.SPRITE || cualProducto == Precios_Productos.FANTA){
+            Sonidos.reproducirSonido(caerLata, () -> {;});
+        }
+        else{Sonidos.reproducirSonido(caerDulce,() -> {});}
     }
 
     /**
@@ -154,6 +168,7 @@ public class Expendedor {
      */
 
     public void sacarMonedasEntradaASalida(){
+        if(monEn.size() != 0){Sonidos.reproducirSonido(caerMonedas,() -> {;});}
         for(int i = 0; i < monEn.size(); i++){monVu.add(monEn.get());}   //Se agrega la moneda al deposito del vuelto
         valorIngresado = 0;
     }

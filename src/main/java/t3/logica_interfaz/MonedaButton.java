@@ -1,11 +1,10 @@
 package t3.logica_interfaz;
 
 import t3.logica_expendedor.Excepciones.NoHayMonedasComprador;
-import t3.logica_expendedor.Monedas.Moneda100;
-import t3.logica_interfaz.Ventana;
 import t3.logica_expendedor.*;
 import t3.logica_expendedor.Monedas.Moneda;
 
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,12 +19,13 @@ import java.awt.event.MouseListener;
  * @author
  */
 
-public class MonedaButton extends JButton{
+public class MonedaButton extends JButton implements Sonidos{
     private int value = 0;
     private JLabel selecMonedaLabel;
     private CantidadMonedasLabel cantMonedasLabel;
     private Comprador comprador;
     private final PanelExpendedor pExpendedor;
+    private final Clip meterMoneda;
 
     /**
      *Constructor para inicializar el botón de moneda
@@ -42,6 +42,7 @@ public class MonedaButton extends JButton{
         selecMonedaLabel = selecMonlbl;
         cantMonedasLabel = (CantidadMonedasLabel) cantMonedasLbl;
         comprador = pExpendedor.getComprador();
+        meterMoneda = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Meter_Moneda.wav");
 
         ImageIcon icon = switch(val) {
             case 100 -> new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png");
@@ -86,6 +87,7 @@ public class MonedaButton extends JButton{
                 cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
                 selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
                 pExpendedor.getLetrero().ImprimirMonedas();
+                Sonidos.reproducirSonido(meterMoneda,() -> {;});
             } else {
                 selecMonedaLabel.setText("XXXXX");
                 NoHayMonedasComprador exc = new NoHayMonedasComprador(String.valueOf(value));

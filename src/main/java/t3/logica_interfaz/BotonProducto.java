@@ -6,11 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.sound.sampled.Clip;
 
-public class BotonProducto extends JLabel implements MouseListener, GeneradorImagen {
+public class BotonProducto extends JLabel implements MouseListener, GeneradorImagen, Sonidos {
     private final PanelExpendedor pExp;
     private PanelComprador panelComprador;
     private JLabel labelProducto = null;
+    private final Clip abrirSonido;
 
     public BotonProducto(PanelExpendedor pExp,PanelComprador panelComprador ,int x, int y, int width, int height) {
         this.pExp = pExp;
@@ -20,6 +22,8 @@ public class BotonProducto extends JLabel implements MouseListener, GeneradorIma
         this.setOpaque(true);
         this.addMouseListener(this);
         this.setToolTipText("Sacar producto");
+
+        abrirSonido = Sonidos.cargarSonido("src/main/java/t3/logica_interfaz/Sonidos/Abrir_Compuerta.wav");
     }
 
     public void mouseClicked(MouseEvent me) {;}
@@ -48,6 +52,7 @@ public class BotonProducto extends JLabel implements MouseListener, GeneradorIma
         BotonProducto lbl = (BotonProducto) me.getComponent();
         lbl.setBackground(new Color(0x672222));
         if(labelProducto!=null){labelProducto.setVisible(true);}
+        Sonidos.reproducirSonido(abrirSonido,() -> {});
     }
 
     public void mouseExited(MouseEvent me) {
