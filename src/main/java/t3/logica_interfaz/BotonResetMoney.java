@@ -16,11 +16,11 @@ public class BotonResetMoney extends JLabel implements MouseListener {
 
     /**
      * crea una instancia de BotonResetMoney
-     * @param pExp es el panel en expendedor asociado al boton
-     * @param x esta es la cooredenada x donde se encuentra el bóton en la pantalla
-     * @param y esta es la cooredenada y donde se encuentra el bóton en la pantalla
-     * @param width este es el ancho del boton
-     * @param height este es el alto del boton
+     * @param pExp es el panel en expendedor asociado al botón
+     * @param x esta es la coordenada x donde se encuentra el botón en la pantalla
+     * @param y esta es la coordenada y donde se encuentra el botón en la pantalla
+     * @param width este es el ancho del botón
+     * @param height este es el alto del botón
      */
     public BotonResetMoney(PanelExpendedor pExp, int x, int y, int width, int height) {
         this.pExpendedor = pExp;
@@ -31,7 +31,7 @@ public class BotonResetMoney extends JLabel implements MouseListener {
     }
 
     /**
-     *este metodo se utiliza al hacer clic en el boton (press y el release
+     *este método se utiliza al hacer clic en el botón (press y el release
      *ocurren en el mismo pixel)
      * @param me este es el evento del mouse
      */
@@ -52,12 +52,12 @@ public class BotonResetMoney extends JLabel implements MouseListener {
      */
     public void mouseReleased(MouseEvent me) {;}
     /**
-     *esto se utiluza cuando el mouse esta dentro del area del botón
+     *esto se utiluza cuando el mouse está dentro del area del botón
      * @param me este es el evento del mouse
      */
     public void mouseEntered(MouseEvent me) {;}
     /**
-     * esto se utiliza cuando el mouse sale del del area del boton
+     * esto se utiliza cuando el mouse sale del area del botón
      * @param me es el evento del mouse
      */
     public void mouseExited(MouseEvent me) {;}
