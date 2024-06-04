@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * La clase CantidadMonedasLabel que muestra una etiqueta la cantidad de monedas de
- * un valor que tiene el comprador
+ * La subclase CantidadMonedasLabel es una extensión de JLabel que muestra una
+ * etiqueta la cantidad de monedas de un valor que tiene el comprador e implementa
+ * la interfaz GeneradorImagen
  * @author
  */
-public class CantidadMonedasLabel extends JLabel {
 public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
     private CantidadMonedasLabel thisLabel;
     private int cantidad = 0;
@@ -20,8 +20,8 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
     /**
      * Constructor para inicializar la etiqueta con la cantidad de monedas y su ícono correspondiente
      * @param val esta es el valor de la moneda
-     * @param posX esta es la cooredenada x donde se encuentra la etiqueta en la pantalla
-     * @param posY esta es la cooredenada y donde se encuentra la etiqueta en la pantalla
+     * @param posX esta es la coordenada x donde se encuentra la etiqueta en la pantalla
+     * @param posY esta es la coordenada y donde se encuentra la etiqueta en la pantalla
      * @param comp este es el comprador
      */
     public CantidadMonedasLabel(int val, int posX, int posY , Comprador comp) {
@@ -45,7 +45,6 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
 
 
         /** Escala la imagen del ícono */
-
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(20,20, Image.SCALE_DEFAULT);
         icon = new ImageIcon(scaledImg);
@@ -59,7 +58,6 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
 
 
         /** Establece el texto y el ícono de la etiqueta */
-
         if(val >= 1000){strVal = String.valueOf(val);}
         else{strVal = String.valueOf(val) + " ";}
 
@@ -75,9 +73,9 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
     }
 
 
-    /*
-    * Metodo para cambiar el texto del indicador de cantidad de monedas en la label pasada como argumento en el constructor.
-    * @param int cantidad cantidad de monedas
+    /**
+     * Metodo para cambiar el texto del indicador de cantidad de monedas en la label pasada como argumento en el constructor.
+    * @param cant la nueva cantidad de monedas
     */
     public void setCantidad(int cant){
         cantidad = cant;
