@@ -6,6 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * La clase PanelProductos es una extensión de JPanel que representa los productos en
+ * la interfaz gráfica de la máquina expendedora
+ * @author Antonio Benavides
+ */
 public class PanelProductos extends JPanel implements GeneradorImagen{
     private final PanelExpendedor pExpendedor;
     private final ArrayList<JLabel> Cocacola;
@@ -14,6 +19,10 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
     private final ArrayList<JLabel> Snickers;
     private final ArrayList<JLabel> Super8;
 
+    /**
+     * este es un constructor para iniciar el panel de productos
+     * @param pExpendedor este es el panel expendedor
+     */
     public PanelProductos(PanelExpendedor pExpendedor) {
         this.pExpendedor = pExpendedor;
 
@@ -39,6 +48,15 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         add(mostrarPrecios(Precios_Productos.SUPER8,165,335,30,20));
     }
 
+    /**
+     * se crea un JLabel para mostrar el precio del producto
+     * @param nombre tipo de producto
+     * @param x esta es la coordenada x donde se encuentra el JLabel
+     * @param y esta es la coordenada y donde se encuentra el JLabel
+     * @param width este es el ancho del JLabel
+     * @param height este es el alto del JLabel
+     * @return un JLabel con el precio del producto
+     */
     private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
         JLabel precio = new JLabel("$" + nombre.getPrecio());
         precio.setForeground(new Color(0x000000));
@@ -47,6 +65,9 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         return precio;
     }
 
+    /**
+     * crea y añade etiquetas de imagenes de los productos
+     */
     private void creacionProductos(){     // 166 x 82
         for(int i=0;i<5;i++){   //Cantidad de productos que se pueden mostrar en la salida del vuelto
             Cocacola.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",5,25 - i*7,150,140));
@@ -57,6 +78,9 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         }
     }
 
+    /**
+     * imprime los productos disponibles
+     */
     public void imprimirProductos(){
         int cantidad = pExpendedor.getExpendedor().CantidadProductoDentro(Precios_Productos.COCACOLA);
         if(cantidad >5){cantidad = 5;}
@@ -81,6 +105,9 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         this.repaint();
     }
 
+    /**
+     * oculta los productos
+     */
     public void ocultarProductos(){
         for(int i = 0; i<5; i++){this.remove(Cocacola.get(i));}
         for(int i = 0; i<5; i++){this.remove(Sprite.get(i));}
