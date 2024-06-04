@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
- *  La subclase BotonSelectorP s una extensión de JLabel e implementa MouseListener
+ *  La subclase BotonSelectorP es una extensión de JLabel e implementa MouseListener
  *  que representa un botón que muestra un producto
  * @author
  */
@@ -16,20 +16,17 @@ public class BotonSelectorP extends JLabel implements MouseListener {
     private final Precios_Productos producto;
     private final PanelExpendedor pExpendedor;
 
-<<<<<<< HEAD
     /**
      * Constructor para inicializar el botón con un producto
-     * @param pExp es el panel en expendedor asociado al boton
+     * @param pExp es el panel en expendedor asociado al botón
      * @param producto El producto asociado a cada botón
-     * @param x  esta es la cooredenada x donde se encuentrab el bóton en la pantalla
-     * @param y esta es la cooredenada y donde se encuentrab el bóton en la pantalla
-     * @param width este es el ancho del boton
-     * @param height este es el alto del boton
+     * @param x  esta es la coordenada x donde se encuentra el botón en la pantalla
+     * @param y esta es la coordenada y donde se encuentra el botón en la pantalla
+     * @param width este es el ancho del botón
+     * @param height este es el alto del botón
      */
     public BotonSelectorP(PanelExpendedor pExp, Precios_Productos producto, int x, int y, int width, int height) {
-=======
     public BotonSelectorP(PanelExpendedor pExp, Precios_Productos producto,String ver, int x, int y, int width, int height) {
->>>>>>> d0430253fc45c7dbe9d94a63705ec29c24568871
         this.pExpendedor = pExp;
         this.producto = producto;
         this.setBounds(x,y,width,height);
@@ -43,14 +40,14 @@ public class BotonSelectorP extends JLabel implements MouseListener {
     }
 
     /**
-     *este metodo se utiliza al hacer clic en el boton (press y el release
+     *este método se utiliza al hacer clic en el botón (press y el release
      *ocurren en el mismo pixel)
      * @param me este es el evento del mouse
      */
     public void mouseClicked(MouseEvent me) {;}
 
     /**
-     * este metodo se utiliza al precionar el botón del mouse el producto seleccionado en
+     * este método se utiliza al presionar el botón del mouse, seleccionando el producto en
      * el panel expendedor e imprime el precio del producto seleccionado en la pantalla
      * @param me este es el evento del mouse
      */
