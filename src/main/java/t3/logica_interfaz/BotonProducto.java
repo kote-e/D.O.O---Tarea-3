@@ -47,7 +47,7 @@ public class BotonProducto extends JLabel implements MouseListener, GeneradorIma
      *ocurren en el mismo pixel)
      * @param me este es el evento del mouse
      */
-    public void mouseClicked(MouseEvent me) {;}
+    public void mouseClicked(MouseEvent me) {}
 
     /**
      * Este metodo se utiliza al presionar el botón del mouse, intenta sacar un producto
@@ -76,7 +76,7 @@ public class BotonProducto extends JLabel implements MouseListener, GeneradorIma
      * Este metodo se utiliza cuando se deja de hacer clic al mouse
      * @param me este es el evento del mouse
      */
-    public void mouseReleased(MouseEvent me) {;}
+    public void mouseReleased(MouseEvent me) {}
 
     /**
      * esto se utiliza cuando el mouse esta dento de del area del botón

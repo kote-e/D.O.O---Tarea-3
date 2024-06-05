@@ -12,7 +12,7 @@ import t3.logica_expendedor.Monedas.*;
  * La clase PanelSetup es una extensión de JPanel que permite al usuario configurar
  * la cantidad de monedas que tiene el comprador e implementa ChangeListener para responder
  * a cambios en los valores de los JSpinner
- * @autor Antonio Benavides
+ * @author Antonio Benavides
  */
 
 public class PanelSetup extends JPanel implements ChangeListener {

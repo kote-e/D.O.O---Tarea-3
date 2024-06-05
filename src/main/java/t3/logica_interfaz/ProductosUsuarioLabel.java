@@ -1,7 +1,6 @@
 package t3.logica_interfaz;
 
 import t3.logica_expendedor.Comprador;
-import t3.logica_expendedor.Excepciones.NoHayProductoComprador;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
@@ -13,7 +12,6 @@ import java.awt.event.MouseListener;
  *  La clase ProductosUsuarioLabel es una extensión de JLabel que representa un producto
  *  del usuario en la interfaz gráfica. Implementa la interfaz GeneradorImagen para generar
  *  imágenes de productos
- * @author
  */
 public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
 
@@ -86,11 +84,8 @@ public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
                 comprador.consumirProducto(producto);
                 thisLabel.setCantidad(comprador.cantidadProducto(producto));
             }
-            catch (NoHayProductoComprador exp){
+            catch (Exception exp){
                 JOptionPane.showMessageDialog(null, exp.getMessage());
-            }
-            catch (Exception exception) {
-                exception.printStackTrace();
             }
         }
 
@@ -116,6 +111,6 @@ public class ProductosUsuarioLabel extends JLabel implements GeneradorImagen{
      */
     public void setCantidad(int cant){
         cantidad = cant;
-        this.setText(strProducto + "       cantidad: " + String.valueOf(cantidad));
+        this.setText(strProducto + "       cantidad: " + cantidad);
     }
 }

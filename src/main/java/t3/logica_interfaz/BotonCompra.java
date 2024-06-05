@@ -5,7 +5,6 @@ import t3.logica_expendedor.Expendedor;
 import t3.logica_expendedor.Precios_Productos;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -39,7 +38,7 @@ public class BotonCompra extends JLabel implements MouseListener{
      * ocurren en el mismo pixel)
      * @param me este es el evento del mouse
      */
-    public void mouseClicked(MouseEvent me) {;}
+    public void mouseClicked(MouseEvent me) {}
 
     /**
      * Este metodo se utiliza al presionar el botón del mouse, se intenta realizar una
@@ -77,17 +76,17 @@ public class BotonCompra extends JLabel implements MouseListener{
      * este método se utiliza cuando se deja de hacer clic en el mouse
      * @param me este es el evento del mouse
      */
-    public void mouseReleased(MouseEvent me) {;}
+    public void mouseReleased(MouseEvent me) {}
 
     /**
      *Este se utiliza cuando el mouse está dentro del área del botón
      * @param me este es el evento del mouse
      */
-    public void mouseEntered(MouseEvent me) {;}
+    public void mouseEntered(MouseEvent me) {}
 
     /**
      * Esto se utiliza cuando el mouse sale del area del boton
      * @param me es el evento del mouse
      */
-    public void mouseExited(MouseEvent me) {;}
+    public void mouseExited(MouseEvent me) {}
 }

@@ -8,7 +8,6 @@ import java.awt.*;
 /**
  * La subclase Letrero es una extensión de JLabel que muestra información sobre
  * los precios de los productos y la cantidad de monedas ingresadas
- * @author
  */
 public class Letrero extends JLabel {
     private final PanelExpendedor panelExpendedor;

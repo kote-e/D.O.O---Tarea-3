@@ -41,11 +41,11 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         imprimirProductos();
 
         //Se agregan los precios
-        this.add(mostrarPrecios(Precios_Productos.COCACOLA,60,160,30,20));
-        this.add(mostrarPrecios(Precios_Productos.SPRITE,170,160,30,20));
-        this.add(mostrarPrecios(Precios_Productos.FANTA,270,160,30,20));
-        this.add(mostrarPrecios(Precios_Productos.SNICKERS,60,335,30,20));
-        this.add(mostrarPrecios(Precios_Productos.SUPER8,165,335,30,20));
+        this.add(mostrarPrecios(Precios_Productos.COCACOLA,60,160));
+        this.add(mostrarPrecios(Precios_Productos.SPRITE,170,160));
+        this.add(mostrarPrecios(Precios_Productos.FANTA,270,160));
+        this.add(mostrarPrecios(Precios_Productos.SNICKERS,60,335));
+        this.add(mostrarPrecios(Precios_Productos.SUPER8,165,335));
 
         this.add(crearEtiqueta("1",33,15));
         this.add(crearEtiqueta("2",140,15));
@@ -60,14 +60,12 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
      * @param nombre tipo de producto
      * @param x esta es la coordenada x donde se encuentra el JLabel
      * @param y esta es la coordenada y donde se encuentra el JLabel
-     * @param width este es el ancho del JLabel
-     * @param height este es el alto del JLabel
      * @return un JLabel con el precio del producto
      */
-    private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
+    private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y){
         JLabel precio = new JLabel("$" + nombre.getPrecio());
         precio.setForeground(new Color(0x000000));
-        precio.setBounds(x,y,width,height);
+        precio.setBounds(x,y,30,20);
 
         return precio;
     }
