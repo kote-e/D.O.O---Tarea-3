@@ -36,4 +36,4 @@ botones y sonidos.
    * Ventana: La clase principal que inicializa la interfaz gráfica y gestiona su funcionamiento.
 
 
-![](C:\Users\Maria Jose\Desktop\programar\java\interfaz.jpeg)
+
