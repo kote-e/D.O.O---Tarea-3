@@ -70,9 +70,9 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
      */
     private void creacionProductos(){     // 166 x 82
         for(int i=0;i<5;i++){   //Cantidad de productos que se pueden mostrar en la salida del vuelto
-            Cocacola.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",5,25 - i*7,150,140));
-            Sprite.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",110,25 - i*7,150,140));
-            Fanta.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",210,20 - i*7,150,140));
+            Cocacola.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",5,35 - i*7,150,131));
+            Sprite.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",110,30 - i*7,150,138));
+            Fanta.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",210,32 - i*7,150,130));
             Snickers.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",-5,195 - i*10,160,160));
             Super8.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/super8.png",93,205 - i*10,160,160));
         }
