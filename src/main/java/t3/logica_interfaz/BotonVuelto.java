@@ -12,16 +12,15 @@ import javax.sound.sampled.Clip;
  * La subclase BotonVuelto es una extensión de JLabel e implementa MouseListener,
  * representa un botón que permite sacar el vuelto de la máquina expendedora y también
  * implementa GeneradorImagen y Sonidos
- * @author
  */
 public class BotonVuelto extends JLabel implements MouseListener, GeneradorImagen, Sonidos {
     private final PanelExpendedor pExpendedor;
     private PanelComprador pComprador;
 
-    private ArrayList<JLabel> monedas100;
-    private ArrayList<JLabel> monedas500;
-    private ArrayList<JLabel> monedas1000;
-    private ArrayList<JLabel> monedas1500;
+    private final ArrayList<JLabel> monedas100;
+    private final ArrayList<JLabel> monedas500;
+    private final ArrayList<JLabel> monedas1000;
+    private final ArrayList<JLabel> monedas1500;
 
     private final Clip abrirSonido;
 
@@ -56,7 +55,7 @@ public class BotonVuelto extends JLabel implements MouseListener, GeneradorImage
      * ocurren en el mismo píxel)
      * @param me este es el evento del mouse
      */
-    public void mouseClicked(MouseEvent me) {;}
+    public void mouseClicked(MouseEvent me) {}
 
     /**
      * este es el método llamado cuando se presiona el botón del mouse y se intenta
@@ -81,7 +80,7 @@ public class BotonVuelto extends JLabel implements MouseListener, GeneradorImage
      * Método llamado cuando se deja de hacer clic en el mouse
      * @param me Este es el evento del mouse
      */
-    public void mouseReleased(MouseEvent me) {;}
+    public void mouseReleased(MouseEvent me) {}
 
     /**
      * Este método es se utiliza cuando el mouse entra en el área del botón y cambia

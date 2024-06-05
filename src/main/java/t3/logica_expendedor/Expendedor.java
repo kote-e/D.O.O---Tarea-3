@@ -12,14 +12,14 @@ import javax.sound.sampled.Clip;
  * Clase que representa a un expendedor de Bebidas y Dulces
  */
 public class Expendedor implements Sonidos {
-    private Deposito<Moneda> monEn;     //Deposito que guarda las monedas que entran
+    private final Deposito<Moneda> monEn;     //Deposito que guarda las monedas que entran
     private int valorIngresado = 0;         //Guarda el valor total ingresado de las monedas
-    private Deposito<Moneda> monVu;     //Deposito que guarda las monedas del vuelto
-    private Deposito<Producto> coca;      //Deposito que guarda las bebidas CocaCola
-    private Deposito<Producto> sprite;    //Deposito que guarda las bebidas Sprite
-    private Deposito<Producto> fanta;     //Deposito que guarda las bebidas Fanta
-    private Deposito<Producto> snickers;   //Deposito que guarda los dulces Snickers
-    private Deposito<Producto> super8;     //Deposito que guarda los dulces Super8
+    private final Deposito<Moneda> monVu;     //Deposito que guarda las monedas del vuelto
+    private final Deposito<Producto> coca;      //Deposito que guarda las bebidas CocaCola
+    private final Deposito<Producto> sprite;    //Deposito que guarda las bebidas Sprite
+    private final Deposito<Producto> fanta;     //Deposito que guarda las bebidas Fanta
+    private final Deposito<Producto> snickers;   //Deposito que guarda los dulces Snickers
+    private final Deposito<Producto> super8;     //Deposito que guarda los dulces Super8
     private Producto depositoSalida;
     private final Clip caerLata;
     private final Clip caerDulce;
@@ -67,7 +67,7 @@ public class Expendedor implements Sonidos {
      * @throws ProductoNoSeleccionado    si no se ha seleccionado ningun producto para comprar
      */
     public void comprarProducto(Precios_Productos cualProducto) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoDepositoExpendedorException, ProductoNoSeleccionado {   //Funcion que permite comprar productos del expendedor ingresando una moneda y el numero que indica el producto a comprar
-        Producto producto = null; //Se crea un puntero auxiliar de tipo Bebida nulo
+        Producto producto; //Se crea un puntero auxiliar de tipo Bebida nulo
 
         // Si no se escogio producto
         if(cualProducto == null){throw new ProductoNoSeleccionado();}
@@ -104,12 +104,13 @@ public class Expendedor implements Sonidos {
                 monEn.get();
             } //Elimino todas las monedas del deposito de entrada
             valorIngresado = 0;
+            Sonidos.reproducirSonido(caerMonedas,() -> {});
         }
 
         depositoSalida = producto;   //Se retorna el producto que se compro o null en otros casos
 
         if(cualProducto == Precios_Productos.COCACOLA || cualProducto == Precios_Productos.SPRITE || cualProducto == Precios_Productos.FANTA){
-            Sonidos.reproducirSonido(caerLata, () -> {;});
+            Sonidos.reproducirSonido(caerLata, () -> {});
         }
         else{Sonidos.reproducirSonido(caerDulce,() -> {});}
     }
@@ -117,7 +118,7 @@ public class Expendedor implements Sonidos {
 
     /**
      * Funcion que agrega productos al expendedor
-     * @param int cantidad de productos a añadir
+     * @param numBebidas cantidad de productos a añadir
      */
 
     public void agregarProductos(int numBebidas){
@@ -146,29 +147,6 @@ public class Expendedor implements Sonidos {
     }
 
     /**
-     * Funcion que retorna el precio de los productos
-     * @param producto tipo de producto
-     * @return precio del producto
-     */
-
-    public int getPrecio(Precios_Productos producto){
-        switch (producto) {
-            case COCACOLA:
-                return Precios_Productos.COCACOLA.getPrecio();
-            case SPRITE:
-                return Precios_Productos.SPRITE.getPrecio();
-            case FANTA:
-                return Precios_Productos.FANTA.getPrecio();
-            case SNICKERS:
-                return Precios_Productos.SNICKERS.getPrecio();
-            case SUPER8:
-                return Precios_Productos.SUPER8.getPrecio();
-            default:
-                return 0;
-        }
-    }
-
-    /**
      * Agrega la moneda al deposito
      * @param moneda la moneda que se agrega
      */
@@ -188,7 +166,7 @@ public class Expendedor implements Sonidos {
      */
 
     public void sacarMonedasEntradaASalida(){
-        if(monEn.size() != 0){Sonidos.reproducirSonido(caerMonedas,() -> {;});}
+        if(monEn.size() != 0){Sonidos.reproducirSonido(caerMonedas,() -> {});}
         for(int i = 0; i < monEn.size(); i++){monVu.add(monEn.get());}   //Se agrega la moneda al deposito del vuelto
         valorIngresado = 0;
     }
@@ -199,15 +177,10 @@ public class Expendedor implements Sonidos {
      */
 
     public Producto getProducto() throws NoHayProductoDepositoSalida{
-        Producto producto = null;
-        if (depositoSalida == null) {
-            throw new NoHayProductoDepositoSalida();
-        }
+        if (depositoSalida == null) {throw new NoHayProductoDepositoSalida();}
 
-        producto = depositoSalida;
+        Producto producto = depositoSalida;
         depositoSalida = null;
-
-
 
         return producto;
     }

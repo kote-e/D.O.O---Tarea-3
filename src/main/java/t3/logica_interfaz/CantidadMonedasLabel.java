@@ -9,11 +9,10 @@ import java.awt.*;
  * La subclase CantidadMonedasLabel es una extensión de JLabel que muestra una
  * etiqueta la cantidad de monedas de un valor que tiene el comprador e implementa
  * la interfaz GeneradorImagen
- * @author
  */
 public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
-    private int cantidad = 0;
-    private String strVal = "";
+    private int cantidad;
+    private final String strVal;
 
     /**
      * Constructor para inicializar la etiqueta con la cantidad de monedas y su ícono correspondiente
@@ -25,7 +24,7 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
     public CantidadMonedasLabel(int val, int posX, int posY , Comprador comprador) {
         cantidad = comprador.cantidadMonedas(val);
 
-        /** Carga y escala  de imagenes*/
+        //Carga y escala  de imagenes
         ImageIcon icon = switch(val) {
             case 100 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_100.png",20,20);
             case 500 -> GeneradorImagen.scaledProducto("src/main/java/t3/logica_interfaz/Imagenes/moneda_500.png",20,20);
@@ -34,9 +33,9 @@ public class CantidadMonedasLabel extends JLabel implements GeneradorImagen{
             default -> null;
         };
 
-        /** Establece el texto y el ícono de la etiqueta */
+        // Establece el texto y el ícono de la etiqueta
         if(val >= 1000){strVal = String.valueOf(val);}
-        else{strVal = String.valueOf(val) + " ";}
+        else{strVal = val + " ";}
 
         this.setText(strVal + "           cantidad: " + cantidad);
         this.setFont(new Font("monospaced", Font.PLAIN, 16));

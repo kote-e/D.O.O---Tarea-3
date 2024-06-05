@@ -6,7 +6,6 @@ import java.awt.*;
 /**
  * La interfaz GeneradorImagen proporciona métodos estáticos para cargar,
  *redimensionar y generar etiquetas con imágenes.
- * @author
  */
 public interface GeneradorImagen {
 

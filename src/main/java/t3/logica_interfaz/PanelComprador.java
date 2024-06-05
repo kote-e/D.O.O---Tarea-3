@@ -9,7 +9,6 @@ import java.awt.*;
 /**
  * La clase PanelCompradores un JPanel personalizado que muestra los productos y
  * monedas del comprador
- * @author
  */
      public class PanelComprador extends JPanel implements GeneradorImagen{
     private final ProductosUsuarioLabel productoUsuarioCoca;

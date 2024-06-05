@@ -8,7 +8,6 @@ import javax.swing.*;
 /**
  * La clase Ventana es una extencion de JFrame que representa la interfaz gráfica
  * de la máquina expendedora y configura los componentes principales de la interfaz de usuario
- * @author
  */
 public class Ventana extends JFrame {
     /**

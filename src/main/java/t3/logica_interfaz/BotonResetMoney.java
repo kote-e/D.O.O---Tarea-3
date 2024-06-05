@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 /**
  * La subclase BotonResetMoney es una extensión de JLabel e implementa MouseListener
  *  que representa un botón en la interfaz que reinicia el dinero al ser presionado
- * @author
  * @see PanelExpendedor
  */
 public class BotonResetMoney extends JLabel implements MouseListener {
@@ -35,7 +34,7 @@ public class BotonResetMoney extends JLabel implements MouseListener {
      *ocurren en el mismo pixel)
      * @param me este es el evento del mouse
      */
-    public void mouseClicked(MouseEvent me) {;}
+    public void mouseClicked(MouseEvent me) {}
     /**
      * este metodo se utiliza al precionar el botón del mouse se
      * reinicia el dinero en el expendedor
@@ -50,15 +49,15 @@ public class BotonResetMoney extends JLabel implements MouseListener {
      * este metodo es cuando se deja de hacer clic en el mouse
      * @param me este es el evento del mouse
      */
-    public void mouseReleased(MouseEvent me) {;}
+    public void mouseReleased(MouseEvent me) {}
     /**
      *esto se utiluza cuando el mouse está dentro del area del botón
      * @param me este es el evento del mouse
      */
-    public void mouseEntered(MouseEvent me) {;}
+    public void mouseEntered(MouseEvent me) {}
     /**
      * esto se utiliza cuando el mouse sale del area del botón
      * @param me es el evento del mouse
      */
-    public void mouseExited(MouseEvent me) {;}
+    public void mouseExited(MouseEvent me) {}
 }

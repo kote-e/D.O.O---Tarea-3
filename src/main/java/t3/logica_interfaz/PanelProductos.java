@@ -5,7 +5,7 @@ import t3.logica_expendedor.Precios_Productos;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+import javax.swing.SwingConstants;
 /**
  * La clase PanelProductos es una extensión de JPanel que representa los productos en
  * la interfaz gráfica de la máquina expendedora
@@ -41,11 +41,18 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         imprimirProductos();
 
         //Se agregan los precios
-        add(mostrarPrecios(Precios_Productos.COCACOLA,60,160,30,20));
-        add(mostrarPrecios(Precios_Productos.SPRITE,170,160,30,20));
-        add(mostrarPrecios(Precios_Productos.FANTA,270,160,30,20));
-        add(mostrarPrecios(Precios_Productos.SNICKERS,60,335,30,20));
-        add(mostrarPrecios(Precios_Productos.SUPER8,165,335,30,20));
+        this.add(mostrarPrecios(Precios_Productos.COCACOLA,60,160));
+        this.add(mostrarPrecios(Precios_Productos.SPRITE,170,160));
+        this.add(mostrarPrecios(Precios_Productos.FANTA,270,160));
+        this.add(mostrarPrecios(Precios_Productos.SNICKERS,60,335));
+        this.add(mostrarPrecios(Precios_Productos.SUPER8,165,335));
+
+        this.add(crearEtiqueta("1",33,15));
+        this.add(crearEtiqueta("2",140,15));
+        this.add(crearEtiqueta("3",245,15));
+        this.add(crearEtiqueta("4",33,188));
+        this.add(crearEtiqueta("5",140,188));
+
     }
 
     /**
@@ -53,14 +60,12 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
      * @param nombre tipo de producto
      * @param x esta es la coordenada x donde se encuentra el JLabel
      * @param y esta es la coordenada y donde se encuentra el JLabel
-     * @param width este es el ancho del JLabel
-     * @param height este es el alto del JLabel
      * @return un JLabel con el precio del producto
      */
-    private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y, int width, int height){
+    private JLabel mostrarPrecios(Precios_Productos nombre, int x, int y){
         JLabel precio = new JLabel("$" + nombre.getPrecio());
         precio.setForeground(new Color(0x000000));
-        precio.setBounds(x,y,width,height);
+        precio.setBounds(x,y,30,20);
 
         return precio;
     }
@@ -70,9 +75,9 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
      */
     private void creacionProductos(){     // 166 x 82
         for(int i=0;i<5;i++){   //Cantidad de productos que se pueden mostrar en la salida del vuelto
-            Cocacola.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",5,25 - i*7,150,140));
-            Sprite.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",110,25 - i*7,150,140));
-            Fanta.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",210,20 - i*7,150,140));
+            Cocacola.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/CocaCola.png",5,35 - i*7,150,131));
+            Sprite.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/sprite.png",110,30 - i*7,150,138));
+            Fanta.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/fanta.png",210,32 - i*7,150,130));
             Snickers.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/snickers.png",-5,195 - i*10,160,160));
             Super8.add(GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/super8.png",93,205 - i*10,160,160));
         }
@@ -114,5 +119,17 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         for(int i = 0; i<5; i++){this.remove(Fanta.get(i));}
         for(int i = 0; i<5; i++){this.remove(Snickers.get(i));}
         for(int i = 0; i<5; i++){this.remove(Super8.get(i));}
+    }
+
+    public JLabel crearEtiqueta(String numero, int x, int y){
+        JLabel label = new JLabel();
+        label.setBounds(x,y,20,20);
+        label.setText(" " + numero);
+        label.setFont(new Font("monospace", Font.BOLD, 20));
+        label.setHorizontalTextPosition(SwingConstants.CENTER);
+        label.setVerticalTextPosition(SwingConstants.CENTER);
+        label.setOpaque(false);
+
+        return label;
     }
 }

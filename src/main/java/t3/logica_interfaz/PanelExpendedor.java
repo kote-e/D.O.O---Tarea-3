@@ -2,11 +2,8 @@ package t3.logica_interfaz;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.stream.IntStream;
 
 import t3.logica_expendedor.*;
 import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
@@ -60,7 +57,6 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
 
         // boton para agregar productos al expendedor
 
-
         JButton btnAgregarProductos = new JButton(new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/reload.png"));
         btnAgregarProductos.setBounds(544,377,47,42);
         btnAgregarProductos.setBackground(new Color(0xF6AD8D));
@@ -77,8 +73,19 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
 
                     String input = JOptionPane.showInputDialog("¿Cuantos productos agregar?");
 
+                    if (input == null) { // El usuario ha cancelado la entrada
+                        System.out.println("Entrada cancelada por el usuario.");
+                        return;
+                    }
+
                     while (!input.matches("\\d+")){
-                        input = JOptionPane.showInputDialog("Ingresar un número entre 1 y 100");}
+                        input = JOptionPane.showInputDialog("Ingresar un número entre 1 y 100");
+
+                        if (input == null) { // El usuario ha cancelado la entrada
+                            System.out.println("Entrada cancelada por el usuario.");
+                            return;
+                        }
+                    }
 
                     cantidad = Integer.parseInt(input);
                 }
@@ -86,9 +93,9 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
                 panelExpendedor.getPanelProductos().imprimirProductos();
             }
             @Override
-            public void mousePressed(MouseEvent e) {;}
+            public void mousePressed(MouseEvent e) {}
             @Override
-            public void mouseReleased(MouseEvent e) {;}
+            public void mouseReleased(MouseEvent e) {}
             @Override
             public void mouseEntered(MouseEvent e) {btnAgregarProductos.setBackground(new Color(0xF6CC8D));}
             @Override

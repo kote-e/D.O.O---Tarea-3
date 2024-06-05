@@ -10,7 +10,6 @@ import javax.swing.*;
 /**
  *  La subclase BotonSelectorP es una extensión de JLabel e implementa MouseListener
  *  que representa un botón que muestra un producto
- * @author
  */
 public class BotonSelectorP extends JLabel implements MouseListener {
     private final Precios_Productos producto;
@@ -43,7 +42,7 @@ public class BotonSelectorP extends JLabel implements MouseListener {
      *ocurren en el mismo pixel)
      * @param me este es el evento del mouse
      */
-    public void mouseClicked(MouseEvent me) {;}
+    public void mouseClicked(MouseEvent me) {}
 
     /**
      * este método se utiliza al presionar el botón del mouse, seleccionando el producto en
@@ -58,7 +57,7 @@ public class BotonSelectorP extends JLabel implements MouseListener {
      * este metodo es cuando se deja de hacer clic en el mouse
      * @param me este es el evento del mouse
      */
-    public void mouseReleased(MouseEvent me) {;}
+    public void mouseReleased(MouseEvent me) {}
 
     /**
      * Cambia el color del botón cuando el mouse interactua con este

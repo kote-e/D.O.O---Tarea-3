@@ -16,7 +16,6 @@ import java.awt.event.MouseListener;
  * La clase MonedaButton es una extensión de JButton que representa un botón personalizado
  * que permite seleccionar una moneda de un valor específico, al hacer clic en el botón,
  * se actualiza la interfaz del expendedor para reflejar la selección de la moneda
- * @author
  */
 
 public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
@@ -76,7 +75,7 @@ public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
                 cantMonedasLabel.setCantidad(comprador.cantidadMonedas(value));
                 selecMonedaLabel.setText(String.valueOf(moneda.getSerie()));
                 pExpendedor.getLetrero().ImprimirMonedas();
-                Sonidos.reproducirSonido(meterMoneda,() -> {;});
+                Sonidos.reproducirSonido(meterMoneda,() -> {});
             } else {
                 selecMonedaLabel.setText("XXXXX");
                 NoHayMonedasComprador exc = new NoHayMonedasComprador(String.valueOf(value));
@@ -89,7 +88,7 @@ public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
      * Esta es una clase interna que implementa MouseListener para
      * manejar eventos del mause sobre el botón
      */
-    private class EscucharMouse implements MouseListener {
+    static class EscucharMouse implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {}
