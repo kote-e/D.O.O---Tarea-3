@@ -118,6 +118,7 @@ public class BotonProducto extends JLabel implements MouseListener, GeneradorIma
             case SNICKERS -> GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/snickers_90.png",100,-40,150,150);
             case SUPER8 -> GeneradorImagen.ImageLabel("src/main/java/t3/logica_interfaz/Imagenes/super8_90.png",80,-35,130,130);
         };
+        labelProducto.setVisible(false);
         this.add(labelProducto);
     }
 }
