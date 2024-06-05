@@ -34,3 +34,6 @@ botones y sonidos.
    * Sonidos: Gestiona los efectos de sonido para mejorar la experiencia del usuario durante 
    la interacción con la máquina.
    * Ventana: La clase principal que inicializa la interfaz gráfica y gestiona su funcionamiento.
+
+
+![](C:\Users\Maria Jose\Desktop\programar\java\interfaz.jpeg)
