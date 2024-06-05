@@ -17,7 +17,7 @@ Algunas de las caracteristicas del proyecto son:
 * Efectos de sonido al interactuar con la máquina.
 
 El proyecto está dividido en dos partes:
-1. logica_expendedor: Contiene la lógica de la máquina expendedora, incluyendo la gestión 
+1. **logica_expendedor:** Contiene la lógica de la máquina expendedora, incluyendo la gestión 
 de productos, monedas y excepciones.
     * Excepciones: Contiene clases de excepción específicas para manejar errores comunes 
     durante la interacción con la máquina.
@@ -26,7 +26,7 @@ de productos, monedas y excepciones.
     * Productos: Contiene la definición abstracta y la gestión de productos que pueden 
     ser comprados desde la máquina.
 
-2. logica_interfaz: Contiene la lógica de la interfaz gráfica de usuario, incluyendo paneles, 
+2. **logica_interfaz:** Contiene la lógica de la interfaz gráfica de usuario, incluyendo paneles, 
 botones y sonidos.
    * PanelComprador, PanelExpendedor, PanelProductos: Representan los componentes visuales de 
    la interfaz de usuario para mostrar productos, la máquina expendedora y las acciones del 
