@@ -2,6 +2,11 @@ package t3.logica_interfaz;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.stream.IntStream;
 
 import t3.logica_expendedor.*;
 import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
@@ -15,10 +20,10 @@ import t3.logica_expendedor.Excepciones.ProductoNoSeleccionado;
 public class PanelExpendedor extends JPanel implements GeneradorImagen{
     private Precios_Productos producto = null;
     private Precios_Productos pComprado = null;
+    private PanelComprador panelComprador;
     private final Expendedor expendedor;
     private final Comprador comprador;
     private final Letrero letrero;
-    private PanelComprador panelComprador;
     private final BotonProducto botonProducto;
     private final BotonVuelto botonVuelto;
     private final PanelProductos panelProductos;
@@ -51,6 +56,47 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
         this.add(new BotonSelectorP(this,Precios_Productos.FANTA,"3",544,328,47,42));
         this.add(new BotonSelectorP(this,Precios_Productos.SNICKERS,"4",438,377,47,42));
         this.add(new BotonSelectorP(this,Precios_Productos.SUPER8,"5",490,377,47,42));
+
+
+        // boton para agregar productos al expendedor
+
+
+        JButton btnAgregarProductos = new JButton(new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/reload.png"));
+        btnAgregarProductos.setBounds(544,377,47,42);
+        btnAgregarProductos.setBackground(new Color(0xF6AD8D));
+
+        PanelExpendedor panelExpendedor = this;
+        btnAgregarProductos.addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int cantidad = 0;
+
+                while(cantidad <= 0 || cantidad > 100) {
+
+                    String input = JOptionPane.showInputDialog("¿Cuantos productos agregar?");
+
+                    while (!input.matches("\\d+")){
+                        input = JOptionPane.showInputDialog("Ingresar un número entre 1 y 100");}
+
+                    cantidad = Integer.parseInt(input);
+                }
+                expendedor.agregarProductos(cantidad);
+                panelExpendedor.getPanelProductos().imprimirProductos();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {;}
+            @Override
+            public void mouseReleased(MouseEvent e) {;}
+            @Override
+            public void mouseEntered(MouseEvent e) {btnAgregarProductos.setBackground(new Color(0xF6CC8D));}
+            @Override
+            public void mouseExited(MouseEvent e) {btnAgregarProductos.setBackground(new Color(0xF6AD8D));}
+        });
+
+        this.add(btnAgregarProductos);
+
 
         //Se agrega el botón para concretar la compra
         this.add(new BotonCompra(this,557,235,40,40));

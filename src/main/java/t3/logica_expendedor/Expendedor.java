@@ -114,6 +114,26 @@ public class Expendedor implements Sonidos {
         else{Sonidos.reproducirSonido(caerDulce,() -> {});}
     }
 
+
+    /**
+     * Funcion que agrega productos al expendedor
+     * @param int cantidad de productos a añadir
+     */
+
+    public void agregarProductos(int numBebidas){
+        for (int i = 0; i < numBebidas; i++) {      //For en que se rellenan los depositos con sus respectivasd monedas
+            Bebida bc = new CocaCola(i);            //Se crea una CocaCola con su numero de serie
+            coca.add(bc);                     //Se ingresa la bebida recien creada al deposito de CocaCola
+            Bebida bs = new Sprite(numBebidas + i);   //Se crea una Sprite con su numero de serie
+            sprite.add(bs);                   //Se ingresa la bebida recien creada al deposito de Sprite
+            Bebida bf = new Fanta(2 * numBebidas + i);   //Se crea una Fanta con su numero de serie
+            fanta.add(bf);                   //Se ingresa la bebida recien creada al deposito de Fanta
+            Dulce ds = new Snickers(3 * numBebidas + i);            //Se crea un Snickers con su numero de serie
+            snickers.add(ds);                 //Se ingresa el dulce recien creado al deposito de Snickers
+            Dulce d8 = new Super8(4 * numBebidas + i);   //Se crea un Super8 con su numero de serie
+            super8.add(d8);                   //Se ingresa el dulce recien creado al deposito de Super8
+        }
+    }
     /**
      *Devuelve una moneda del depósito
      * @return Moneda del depósito
