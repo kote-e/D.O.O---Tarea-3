@@ -64,6 +64,7 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
         JButton btnAgregarProductos = new JButton(new ImageIcon("src/main/java/t3/logica_interfaz/Imagenes/reload.png"));
         btnAgregarProductos.setBounds(544,377,47,42);
         btnAgregarProductos.setBackground(new Color(0xF6AD8D));
+        btnAgregarProductos.setToolTipText("Agregar productos a expendedor");
 
         PanelExpendedor panelExpendedor = this;
         btnAgregarProductos.addMouseListener(new MouseListener(){
@@ -84,7 +85,6 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
                 expendedor.agregarProductos(cantidad);
                 panelExpendedor.getPanelProductos().imprimirProductos();
             }
-
             @Override
             public void mousePressed(MouseEvent e) {;}
             @Override
