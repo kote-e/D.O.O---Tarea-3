@@ -68,7 +68,6 @@ public class BotonCompra extends JLabel implements MouseListener{
             pExp.getLetrero().ImprimirCompra();
             pExp.getBotonProducto().impresionProducto();
             pExp.getPanelProductos().ocultarProductos();
-            pExp.getPanelProductos().imprimirProductos();
         }
         catch (Exception e) {JOptionPane.showMessageDialog(null, e.getMessage());}
         finally {pExp.setProducto(null);}
