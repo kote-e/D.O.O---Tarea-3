@@ -5,7 +5,7 @@ import t3.logica_expendedor.Precios_Productos;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+import javax.swing.SwingConstants;
 /**
  * La clase PanelProductos es una extensión de JPanel que representa los productos en
  * la interfaz gráfica de la máquina expendedora
@@ -41,11 +41,18 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         imprimirProductos();
 
         //Se agregan los precios
-        add(mostrarPrecios(Precios_Productos.COCACOLA,60,160,30,20));
-        add(mostrarPrecios(Precios_Productos.SPRITE,170,160,30,20));
-        add(mostrarPrecios(Precios_Productos.FANTA,270,160,30,20));
-        add(mostrarPrecios(Precios_Productos.SNICKERS,60,335,30,20));
-        add(mostrarPrecios(Precios_Productos.SUPER8,165,335,30,20));
+        this.add(mostrarPrecios(Precios_Productos.COCACOLA,60,160,30,20));
+        this.add(mostrarPrecios(Precios_Productos.SPRITE,170,160,30,20));
+        this.add(mostrarPrecios(Precios_Productos.FANTA,270,160,30,20));
+        this.add(mostrarPrecios(Precios_Productos.SNICKERS,60,335,30,20));
+        this.add(mostrarPrecios(Precios_Productos.SUPER8,165,335,30,20));
+
+        this.add(crearEtiqueta("1",33,15));
+        this.add(crearEtiqueta("2",140,15));
+        this.add(crearEtiqueta("3",245,15));
+        this.add(crearEtiqueta("4",33,188));
+        this.add(crearEtiqueta("5",140,188));
+
     }
 
     /**
@@ -114,5 +121,17 @@ public class PanelProductos extends JPanel implements GeneradorImagen{
         for(int i = 0; i<5; i++){this.remove(Fanta.get(i));}
         for(int i = 0; i<5; i++){this.remove(Snickers.get(i));}
         for(int i = 0; i<5; i++){this.remove(Super8.get(i));}
+    }
+
+    public JLabel crearEtiqueta(String numero, int x, int y){
+        JLabel label = new JLabel();
+        label.setBounds(x,y,20,20);
+        label.setText(" " + numero);
+        label.setFont(new Font("monospace", Font.BOLD, 20));
+        label.setHorizontalTextPosition(SwingConstants.CENTER);
+        label.setVerticalTextPosition(SwingConstants.CENTER);
+        label.setOpaque(false);
+
+        return label;
     }
 }
