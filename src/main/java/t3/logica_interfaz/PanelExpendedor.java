@@ -76,8 +76,19 @@ public class PanelExpendedor extends JPanel implements GeneradorImagen{
 
                     String input = JOptionPane.showInputDialog("¿Cuantos productos agregar?");
 
+                    if (input == null) { // El usuario ha cancelado la entrada
+                        System.out.println("Entrada cancelada por el usuario.");
+                        return;
+                    }
+
                     while (!input.matches("\\d+")){
-                        input = JOptionPane.showInputDialog("Ingresar un número entre 1 y 100");}
+                        input = JOptionPane.showInputDialog("Ingresar un número entre 1 y 100");
+
+                        if (input == null) { // El usuario ha cancelado la entrada
+                            System.out.println("Entrada cancelada por el usuario.");
+                            return;
+                        }
+                    }
 
                     cantidad = Integer.parseInt(input);
                 }
