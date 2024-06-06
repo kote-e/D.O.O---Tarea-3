@@ -35,5 +35,10 @@ botones y sonidos.
    la interacción con la máquina.
    * Ventana: La clase principal que inicializa la interfaz gráfica y gestiona su funcionamiento.
 
+**Estructura del Proyecto**:
 
+
+**Diagrama UML**:
+
+A continuación se muestran una captura de pantalla de la interfaz gráfica del proyecto:
 
