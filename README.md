@@ -37,8 +37,11 @@ botones y sonidos.
 
 **Estructura del Proyecto**:
 
+![image](https://github.com/kote-e/D.O.O---Tarea-3/assets/167266187/d85ff99f-49ce-4ac4-b986-13eaccd07f0e)
 
 **Diagrama UML**:
+![UML doo3](https://github.com/kote-e/D.O.O---Tarea-3/assets/167266187/69a8af28-301c-4bee-b659-38358d65569e)
 
 A continuación se muestran una captura de pantalla de la interfaz gráfica del proyecto:
+![interfaz](https://github.com/kote-e/D.O.O---Tarea-3/assets/167266187/c76bffb6-63fe-442e-885a-6c4fca4a730d)
 
