@@ -51,7 +51,7 @@ public class MonedaButton extends JButton implements GeneradorImagen,Sonidos{
         this.setFont(new Font("monospaced", Font.PLAIN, 12));
         this.setForeground(Color.black);
         this.setFocusable(true);
-        this.setToolTipText("text");
+
         this.setBackground(new Color(0xE0FAFA));
         this.setBorder(BorderFactory.createEtchedBorder());
 
